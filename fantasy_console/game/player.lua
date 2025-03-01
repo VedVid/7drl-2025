@@ -11,6 +11,10 @@ player.skills = {
 player.max_health = 0
 player.current_health = 0
 
+-- It will be kinda hack. Since there are only two additional dice (red and gold),
+-- we can assume that reds are first and golds are last.
+player.inventory = {}
+
 function player.set_random_skills()
     local iterations = 4
     for i = 1, iterations do

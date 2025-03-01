@@ -62,8 +62,8 @@ function Input()
             for i = 1, player.skills[1][2] do
                 table.insert(dices, dice.green)
             end
-            if utils.has_value(player.inventory, dice.red) then
-                table.insert(dices, dice.red)
+            if player.inventory[1] == dice.red then
+                table.insert(dices, table.remove(player.inventory, 1))
             end
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
@@ -74,8 +74,8 @@ function Input()
             for i = 1, player.skills[2][2] do
                 table.insert(dices, dice.green)
             end
-            if utils.has_value(player.inventory, dice.red) then
-                table.insert(dices, dice.red)
+            if player.inventory[1] == dice.red then
+                table.insert(dices, table.remove(player.inventory, 1))
             end
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
@@ -86,8 +86,8 @@ function Input()
             for i = 1, player.skills[3][2] do
                 table.insert(dices, dice.green)
             end
-            if utils.has_value(player.inventory, dice.gold) then
-                table.insert(dices, dice.gold)
+            if player.inventory[#player.inventory] == dice.gold then
+                table.insert(dices, table.remove(player.inventory, #player.inventory))
             end
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
@@ -98,8 +98,8 @@ function Input()
             for i = 1, player.skills[4][2] do
                 table.insert(dices, dice.green)
             end
-            if utils.has_value(player.inventory, dice.gold) then
-                table.insert(dices, dice.gold)
+            if player.inventory[#player.inventory] == dice.gold then
+                table.insert(dices, table.remove(player.inventory, #player.inventory))
             end
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
