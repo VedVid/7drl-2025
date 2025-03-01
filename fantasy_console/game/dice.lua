@@ -36,15 +36,24 @@ function dice.add_to_last_results(side, die)
   dice.last_results_die = die
 end
 
-function dice.generate_rolls(roll_length)
+function dice.generate_rolls(dice_amount, roll_length)
+  assert(dice_amount ~= nil, "dice_amount can't be nil")
+  assert(dice_amount > 0, "dice_amount must be larger than 0")
   if not roll_length then roll_length = math.random(3, 6) end
-  local rolls_sequence = {}
-  while (roll_length > 0) do
-    table.insert(rolls_sequence, dice.generate_roll())
-    roll_length = roll_length - 1
+  local rolls = {}
+  print(dice_amount)
+  for i = 1, dice_amount do
+    local rolls_sequence = {}
+    local j = 0
+    while (roll_length > j) do
+      table.insert(rolls_sequence, dice.generate_roll())
+      j = j + 1
+    end
+    table.insert(rolls, rolls_sequence)
+    print(table.concat(rolls_sequence, ", "))
   end
-  print(table.concat(rolls_sequence, ", "))
-  return rolls_sequence
+  print(#rolls[2])
+  return rolls
 end
 
 function dice.generate_roll()
