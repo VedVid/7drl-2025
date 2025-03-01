@@ -187,7 +187,7 @@ function dice.generate_rolls(dice_amount, die, roll_length)
       j = j + 1
     end
     table.insert(rolls, rolls_sequence)
-    --print(table.concat(rolls_sequence, ", "))
+    print(table.concat(rolls_sequence, ", "))
   end
   return rolls
 end

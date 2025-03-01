@@ -19,7 +19,7 @@ end
 function Input()
     if Btnp("return") and State == states.blank then
         State = states.rolling
-        Rolls = dice.generate_rolls(4, dice.red, 7)
+        Rolls = dice.generate_rolls(4, dice.gold, 7)
         Current_side = 1
         dice.update_last_results(Rolls, Current_side, dice.gold)
     end
