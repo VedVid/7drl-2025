@@ -47,15 +47,6 @@ function Input()
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
             dice.update_last_results(Rolls, Current_side)
-        elseif Btnp("4") then
-            State = states.rolling
-            local dices = {}
-            for i = 1, player.skills[4][2] do
-                table.insert(dices, dice.green)
-            end
-            Rolls = dice.generate_rolls(dices, 7)
-            Current_side = 1
-            dice.update_last_results(Rolls, Current_side)
         elseif Btnp("q") then
             State = states.rolling
             local dices = {}
@@ -80,16 +71,6 @@ function Input()
             State = states.rolling
             local dices = {}
             for i = 1, player.skills[3][2] do
-                table.insert(dices, dice.green)
-            end
-            pcall(table.insert, dices, player.remove_from_inventory(dice.gold))
-            Rolls = dice.generate_rolls(dices, 7)
-            Current_side = 1
-            dice.update_last_results(Rolls, Current_side)
-        elseif Btnp("r") then
-            State = states.rolling
-            local dices = {}
-            for i = 1, player.skills[4][2] do
                 table.insert(dices, dice.green)
             end
             pcall(table.insert, dices, player.remove_from_inventory(dice.gold))
