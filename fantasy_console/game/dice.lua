@@ -155,7 +155,7 @@ dice.gold.sprites = {
   }
 }
 
-function dice.update_last_results(rolls, current_side, dice)
+function dice.update_last_results()
   dice.zero_last_results()
   do end
 end
@@ -180,9 +180,42 @@ function dice.generate_rolls(dices, roll_length)
       table.insert(rolls_sequence, dice.generate_roll(die))
       j = j + 1
     end
-    table.insert(rolls, rolls_sequence)
-    print(table.concat(rolls_sequence, ", "))
+    table.insert(rolls, {die, rolls_sequence})
+    --print(table.concat(rolls_sequence, ", "))
   end
+  --##########################
+  --##########################
+  if rolls[1][1] == dice.green then
+    print("green;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[1][1] == dice.red then
+    print("red;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[1][1] == dice.gold then
+    print("gold;" .. table.concat(rolls[1][2], ", "))
+  else
+    print("???;" .. table.concat(rolls[1][2], ", "))
+  end
+  --##########################
+  if rolls[2][1] == dice.green then
+    print("green;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[2][1] == dice.red then
+    print("red;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[2][1] == dice.gold then
+    print("gold;" .. table.concat(rolls[1][2], ", "))
+  else
+    print("???;" .. table.concat(rolls[1][2], ", "))
+  end
+  --##########################
+  if rolls[3][1] == dice.green then
+    print("green;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[3][1] == dice.red then
+    print("red;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[3][1] == dice.gold then
+    print("gold;" .. table.concat(rolls[1][2], ", "))
+  else
+    print("???;" .. table.concat(rolls[1][2], ", "))
+  end
+  --##########################
+  --##########################
   return rolls
 end
 
