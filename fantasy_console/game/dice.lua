@@ -4,7 +4,6 @@ require "api"
 local dice = {}
 
 dice.last_results = {}
-dice.last_results_die = nil
 
 dice.green = {}
 dice.green.sides = {
@@ -156,39 +155,69 @@ dice.gold.sprites = {
   }
 }
 
-function dice.update_last_results(rolls, current_side, die)
+function dice.update_last_results(rolls, current_side)
   dice.zero_last_results()
   for _, roll in ipairs(rolls) do
-    dice.add_to_last_results(roll[current_side], die)
+    table.insert(dice.last_results, {roll[1], roll[2][current_side]})
   end
 end
 
 function dice.zero_last_results()
   dice.last_results = {}
-  dice.last_results_die = nil
 end
 
 function dice.add_to_last_results(side, die)
-  table.insert(dice.last_results, side)
-  dice.last_results_die = die
+  table.insert(dice.last_results, {die, side})
 end
 
-function dice.generate_rolls(dice_amount, die, roll_length)
-  assert(dice_amount ~= nil, "dice_amount can't be nil")
-  assert(dice_amount > 0, "dice_amount must be larger than 0")
-  if not die then die = dice.green end
+function dice.generate_rolls(dices, roll_length)
+  assert(dices ~= nil, "dices can't be nil")
+  assert(#dices > 0, "dices array must be longer than 0")
   if not roll_length then roll_length = math.random(3, 6) end
   local rolls = {}
-  for i = 1, dice_amount do
+  for _, die in ipairs(dices) do
     local rolls_sequence = {}
     local j = 0
     while (roll_length > j) do
       table.insert(rolls_sequence, dice.generate_roll(die))
       j = j + 1
     end
-    table.insert(rolls, rolls_sequence)
-    print(table.concat(rolls_sequence, ", "))
+    table.insert(rolls, {die, rolls_sequence})
+    --print(table.concat(rolls_sequence, ", "))
   end
+  --##########################
+  --##########################
+  if rolls[1][1] == dice.green then
+    print("green;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[1][1] == dice.red then
+    print("red;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[1][1] == dice.gold then
+    print("gold;" .. table.concat(rolls[1][2], ", "))
+  else
+    print("???;" .. table.concat(rolls[1][2], ", "))
+  end
+  --##########################
+  if rolls[2][1] == dice.green then
+    print("green;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[2][1] == dice.red then
+    print("red;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[2][1] == dice.gold then
+    print("gold;" .. table.concat(rolls[1][2], ", "))
+  else
+    print("???;" .. table.concat(rolls[1][2], ", "))
+  end
+  --##########################
+  if rolls[3][1] == dice.green then
+    print("green;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[3][1] == dice.red then
+    print("red;" .. table.concat(rolls[1][2], ", "))
+  elseif rolls[3][1] == dice.gold then
+    print("gold;" .. table.concat(rolls[1][2], ", "))
+  else
+    print("???;" .. table.concat(rolls[1][2], ", "))
+  end
+  --##########################
+  --##########################
   return rolls
 end
 
