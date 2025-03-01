@@ -18,24 +18,7 @@ function screen.draw_dividers()
 end
 
 function screen.draw_last_roll(State)
-    for i, side in ipairs(dice.last_results) do
-        local side_to_show = side
-        if State ~= states.rolling then
-            if side_to_show == 6 and dice.last_results_die == dice.green then
-                side_to_show = 7  -- 6 with success marked
-            elseif (side_to_show == 6 or side_to_show == 1) and dice.last_results_die == dice.red then
-                side_to_show = 7
-            elseif (side_to_show == 6 or side_to_show == 2 or side_to_show == 3) and dice.last_results_die == dice.gold then
-                side_to_show = 7
-            end
-        end
-        dice.draw(
-            screen.dice_slots[i][1],
-            screen.dice_slots[i][2],
-            dice.last_results_die,
-            side_to_show
-        )
-    end
+    do end
 end
 
 function screen.draw_player_data()

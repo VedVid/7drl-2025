@@ -4,7 +4,6 @@ require "api"
 local dice = {}
 
 dice.last_results = {}
-dice.last_results_die = nil
 
 dice.green = {}
 dice.green.sides = {
@@ -156,21 +155,17 @@ dice.gold.sprites = {
   }
 }
 
-function dice.update_last_results(rolls, current_side, die)
+function dice.update_last_results(rolls, current_side, dice)
   dice.zero_last_results()
-  for _, roll in ipairs(rolls) do
-    dice.add_to_last_results(roll[current_side], die)
-  end
+  do end
 end
 
 function dice.zero_last_results()
   dice.last_results = {}
-  dice.last_results_die = nil
 end
 
 function dice.add_to_last_results(side, die)
-  table.insert(dice.last_results, side)
-  dice.last_results_die = die
+  table.insert(dice.last_results, {die, side})
 end
 
 function dice.generate_rolls(dices, roll_length)
