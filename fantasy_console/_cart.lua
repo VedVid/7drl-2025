@@ -6,6 +6,7 @@ local dice = require "game/dice"
 local screen = require "game/main_screen"
 local player = require "game/player"
 local states = require "game/states"
+local utils = require "game/utils"
 
 
 function Init()
@@ -13,6 +14,7 @@ function Init()
     State = states.blank
     F = 0
     player.set_random_skills()
+    player.inventory = {dice.red, dice.red, dice.gold, dice.gold}
 end
 
 
@@ -50,6 +52,54 @@ function Input()
             local dices = {}
             for i = 1, player.skills[4][2] do
                 table.insert(dices, dice.green)
+            end
+            Rolls = dice.generate_rolls(dices, 7)
+            Current_side = 1
+            dice.update_last_results(Rolls, Current_side)
+        elseif Btnp("q") then
+            State = states.rolling
+            local dices = {}
+            for i = 1, player.skills[1][2] do
+                table.insert(dices, dice.green)
+            end
+            if utils.has_value(player.inventory, dice.red) then
+                table.insert(dices, dice.red)
+            end
+            Rolls = dice.generate_rolls(dices, 7)
+            Current_side = 1
+            dice.update_last_results(Rolls, Current_side)
+        elseif Btnp("w") then
+            State = states.rolling
+            local dices = {}
+            for i = 1, player.skills[2][2] do
+                table.insert(dices, dice.green)
+            end
+            if utils.has_value(player.inventory, dice.red) then
+                table.insert(dices, dice.red)
+            end
+            Rolls = dice.generate_rolls(dices, 7)
+            Current_side = 1
+            dice.update_last_results(Rolls, Current_side)
+        elseif Btnp("e") then
+            State = states.rolling
+            local dices = {}
+            for i = 1, player.skills[3][2] do
+                table.insert(dices, dice.green)
+            end
+            if utils.has_value(player.inventory, dice.gold) then
+                table.insert(dices, dice.gold)
+            end
+            Rolls = dice.generate_rolls(dices, 7)
+            Current_side = 1
+            dice.update_last_results(Rolls, Current_side)
+        elseif Btnp("r") then
+            State = states.rolling
+            local dices = {}
+            for i = 1, player.skills[4][2] do
+                table.insert(dices, dice.green)
+            end
+            if utils.has_value(player.inventory, dice.gold) then
+                table.insert(dices, dice.gold)
             end
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
