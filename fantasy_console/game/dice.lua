@@ -38,12 +38,12 @@ end
 
 function dice.generate_rolls(roll_length)
   if not roll_length then roll_length = math.random(3, 6) end
-  print(roll_length)
   local rolls_sequence = {}
   while (roll_length > 0) do
     table.insert(rolls_sequence, dice.generate_roll())
     roll_length = roll_length - 1
   end
+  print(table.concat(rolls_sequence, ", "))
   return rolls_sequence
 end
 
