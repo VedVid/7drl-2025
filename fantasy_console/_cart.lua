@@ -62,9 +62,7 @@ function Input()
             for i = 1, player.skills[1][2] do
                 table.insert(dices, dice.green)
             end
-            if player.inventory[1] == dice.red then
-                table.insert(dices, table.remove(player.inventory, 1))
-            end
+            pcall(table.insert, dices, player.remove_from_inventory(dice.red))
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
             dice.update_last_results(Rolls, Current_side)
@@ -74,9 +72,7 @@ function Input()
             for i = 1, player.skills[2][2] do
                 table.insert(dices, dice.green)
             end
-            if player.inventory[1] == dice.red then
-                table.insert(dices, table.remove(player.inventory, 1))
-            end
+            pcall(table.insert, dices, player.remove_from_inventory(dice.red))
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
             dice.update_last_results(Rolls, Current_side)
@@ -86,9 +82,7 @@ function Input()
             for i = 1, player.skills[3][2] do
                 table.insert(dices, dice.green)
             end
-            if player.inventory[#player.inventory] == dice.gold then
-                table.insert(dices, table.remove(player.inventory, #player.inventory))
-            end
+            pcall(table.insert, dices, player.remove_from_inventory(dice.gold))
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
             dice.update_last_results(Rolls, Current_side)
@@ -98,9 +92,7 @@ function Input()
             for i = 1, player.skills[4][2] do
                 table.insert(dices, dice.green)
             end
-            if player.inventory[#player.inventory] == dice.gold then
-                table.insert(dices, table.remove(player.inventory, #player.inventory))
-            end
+            pcall(table.insert, dices, player.remove_from_inventory(dice.gold))
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
             dice.update_last_results(Rolls, Current_side)
