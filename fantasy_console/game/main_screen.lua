@@ -18,7 +18,14 @@ function screen.draw_dividers()
 end
 
 function screen.draw_last_roll(State)
-    do end
+    for i, roll in ipairs(dice.last_results) do
+        dice.draw(
+            screen.dice_slots[i][1],
+            screen.dice_slots[i][2],
+            dice.last_results[i][1],
+            dice.last_results[i][2]
+        )
+    end
 end
 
 function screen.draw_player_data()
