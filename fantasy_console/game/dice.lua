@@ -155,9 +155,14 @@ dice.gold.sprites = {
   }
 }
 
-function dice.update_last_results()
+function dice.update_last_results(rolls, current_side)
   dice.zero_last_results()
-  do end
+  for _, roll in ipairs(rolls) do
+    --local pprint = require('pprint')
+    --pprint(roll)
+    --pprint(roll[2])
+    table.insert(dice.last_results, {roll[1], roll[2][current_side]})
+  end
 end
 
 function dice.zero_last_results()

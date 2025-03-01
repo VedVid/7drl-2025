@@ -21,7 +21,7 @@ function Input()
         State = states.rolling
         Rolls = dice.generate_rolls({dice.green, dice.green, dice.gold}, 7)
         Current_side = 1
-        dice.update_last_results()
+        dice.update_last_results(Rolls, Current_side)
     end
 end
 
@@ -31,7 +31,7 @@ function Update()
     if State == states.rolling and F % 10 == 0 then
         if Current_side + 1 <= #Rolls[1] then
             Current_side = Current_side + 1
-            dice.update_last_results()
+            dice.update_last_results(Rolls, Current_side)
         else
             State = states.blank
         end
