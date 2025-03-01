@@ -3,6 +3,9 @@ require "api"
 
 local dice = {}
 
+dice.last_results = {}
+dice.last_results_die = nil
+
 dice.sides = {
   -- current side, other sides
   {1, {2, 3, 4, 5}},
@@ -22,6 +25,16 @@ dice.probabilities = {
   {5, 2},
   {6, 1}
 }
+
+function dice.zero_last_results()
+  dice.last_results = {}
+  dice.last_results_die = nil
+end
+
+function dice.add_to_last_results(side, die)
+  table.insert(dice.last_results, side)
+  dice.last_results_die = die
+end
 
 function dice.generate_rolls(roll_length)
   if not roll_length then roll_length = math.random(3, 6) end
