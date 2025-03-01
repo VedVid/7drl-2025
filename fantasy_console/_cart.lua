@@ -119,6 +119,7 @@ end
 
 function Draw()
     screen.draw_dividers()
+    screen.draw_map()
     screen.draw_last_roll(State)
     screen.draw_player_data()
 end
