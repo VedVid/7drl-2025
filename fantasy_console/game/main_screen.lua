@@ -55,26 +55,26 @@ function screen.draw_map(state)
     local line_color = Blue
     if state == states.travel then line_color = BlueBold end
     if #map.doors_to == 1 then
-        table.insert(positions, {50, 31, 16, 15})
+        table.insert(positions, {50, 31, 15, 15})
         Line(20, 38, 50, 38, line_color)
     elseif #map.doors_to == 2 then
-        table.insert(positions, {50, 15, 16, 15})
-        table.insert(positions, {50, 47, 16, 15})
+        table.insert(positions, {50, 15, 15, 15})
+        table.insert(positions, {50, 47, 15, 15})
         Line(20, 38, 50, 22, line_color)
         Line(20, 38, 50, 54, line_color)
     elseif #map.doors_to == 3 then
-        table.insert(positions, {50, 31, 16, 15})
-        table.insert(positions, {50, 12, 16, 15})
-        table.insert(positions, {50, 50, 16, 15})
-        Line(20, 38, 50, 38, line_color)
+        table.insert(positions, {50, 12, 15, 15})
+        table.insert(positions, {50, 31, 15, 15})
+        table.insert(positions, {50, 50, 15, 15})
         Line(20, 38, 50, 19, line_color)
+        Line(20, 38, 50, 38, line_color)
         Line(20, 38, 50, 57, line_color)
     end
     -- Draw current room
     Rect(6, 31, 16, 15, White)
     Rectfill(7, 32, 14, 13, WhiteBold)
     Write(12, 35, "@", Green)
-    for _, position in ipairs(positions) do
+    for i, position in ipairs(positions) do
         Rect(
             position[1],
             position[2],
@@ -82,6 +82,13 @@ function screen.draw_map(state)
             position[4],
             White
         )
+        if map.doors_to[i] == "merchant" then
+            Spr(position[1]+4, position[2]+4, 29)
+        elseif map.doors_to[i] == "event" then
+            Write(position[1]+6, position[2] + 4, "?", PinkBold)
+        elseif map.doors_to[i] == "combat" then
+            Spr(position[1]+4, position[2]+4, 30)
+        end
     end
 end
 
