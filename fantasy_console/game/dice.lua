@@ -56,6 +56,56 @@ dice.green.sprites = {
   }
 }
 
+dice.red = {}
+dice.red.sides = {
+  -- current side, other sides
+  {6, {2, 3, 4, 5}},
+  {2, {6, 3, 4, 6}},
+  {3, {6, 2, 5, 6}},
+  {4, {6, 2, 5, 6}},
+  {5, {6, 3, 4, 6}},
+  {6, {2, 3, 4, 5}}
+}
+dice.red.probabilities = {
+  -- previous side, next side
+  {6, 6},
+  {2, 5},
+  {3, 4},
+  {4, 3},
+  {5, 2},
+  {6, 6}
+}
+dice.green.sprites = {
+  { --1=6
+    {61, 62},
+    {91, 92}
+  },
+  { --2
+    {69, 70},
+    {99, 100}
+  },
+  { --3
+    {67, 68},
+    {97, 98}
+  },
+  { --4
+    {65, 66},
+    {95, 96}
+  },
+  { --5
+    {63, 64},
+    {93, 94},
+  },
+  { --6
+    {61, 62},
+    {91, 92}
+  },
+  { --6 success marked
+    {71, 72},
+    {101, 102}
+  }
+}
+
 function dice.update_last_results(rolls, current_side, die)
   dice.zero_last_results()
   for _, roll in ipairs(rolls) do
