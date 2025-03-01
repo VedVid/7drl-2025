@@ -1,6 +1,7 @@
 require "../api"
 
 local dice = require "game/dice"
+local map = require "game/map"
 local player = require "game/player"
 local states = require "game/states"
 
@@ -47,6 +48,48 @@ function screen.draw_player_data()
     Write(168, 106, tostring(player.skills[2][2]))
     Write(132, 116, "Empathy:")
     Write(168, 116, tostring(player.skills[3][2]))
+end
+
+function screen.draw_map(state)
+    local positions = {}
+    local line_color = Blue
+    if state == states.travel then line_color = BlueBold end
+    if #map.doors_to == 1 then
+        table.insert(positions, {50, 31, 15, 15})
+        Line(20, 38, 50, 38, line_color)
+    elseif #map.doors_to == 2 then
+        table.insert(positions, {50, 15, 15, 15})
+        table.insert(positions, {50, 47, 15, 15})
+        Line(20, 38, 50, 22, line_color)
+        Line(20, 38, 50, 54, line_color)
+    elseif #map.doors_to == 3 then
+        table.insert(positions, {50, 12, 15, 15})
+        table.insert(positions, {50, 31, 15, 15})
+        table.insert(positions, {50, 50, 15, 15})
+        Line(20, 38, 50, 19, line_color)
+        Line(20, 38, 50, 38, line_color)
+        Line(20, 38, 50, 57, line_color)
+    end
+    -- Draw current room
+    Rect(6, 31, 16, 15, White)
+    Rectfill(7, 32, 14, 13, WhiteBold)
+    Write(12, 35, "@", Green)
+    for i, position in ipairs(positions) do
+        Rect(
+            position[1],
+            position[2],
+            position[3],
+            position[4],
+            White
+        )
+        if map.doors_to[i] == "merchant" then
+            Spr(position[1]+4, position[2]+4, 29)
+        elseif map.doors_to[i] == "event" then
+            Write(position[1]+6, position[2] + 4, "?", PinkBold)
+        elseif map.doors_to[i] == "combat" then
+            Spr(position[1]+4, position[2]+4, 30)
+        end
+    end
 end
 
 return screen
