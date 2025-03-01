@@ -43,12 +43,10 @@ function screen.draw_player_data()
     Write(168, 86, player.current_health .. "/" .. player.max_health)
     Write(132, 96,  "Physique:")
     Write(168, 96, tostring(player.skills[1][2]))
-    Write(132, 106, "Precision:")
+    Write(132, 106, "Cunning:")
     Write(168, 106, tostring(player.skills[2][2]))
-    Write(132, 116, "Logic:")
+    Write(132, 116, "Empathy:")
     Write(168, 116, tostring(player.skills[3][2]))
-    Write(132, 126, "Empathy:")
-    Write(168, 126, tostring(player.skills[4][2]))
 end
 
 return screen
