@@ -4,12 +4,15 @@ local g = require "globals"
 
 local dice = require "game/dice"
 local screen = require "game/main_screen"
+local player = require "game/player"
 local states = require "game/states"
 
 
 function Init()
+    math.randomseed(os.time())
     State = states.blank
     F = 0
+    player.set_random_skills()
 end
 
 
@@ -42,4 +45,5 @@ end
 function Draw()
     screen.draw_dividers()
     screen.draw_last_roll(State)
+    screen.draw_player_data()
 end
