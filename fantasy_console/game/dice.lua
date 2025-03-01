@@ -73,7 +73,8 @@ function dice.generate_roll()
   return next_side
 end
 
-dice.green = {
+dice.green = {}
+dice.green.sprites = {
   { --1
     {11, 12},
     {41, 42}
@@ -105,10 +106,10 @@ dice.green = {
 }
 
 function dice.draw(x, y, die, side)
-  Spr(x, y, die[side][1][1])
-  Spr(x+8, y, die[side][1][2])
-  Spr(x, y+8, die[side][2][1])
-  Spr(x+8, y+8, die[side][2][2])
+  Spr(x, y, die.sprites[side][1][1])
+  Spr(x+8, y, die.sprites[side][1][2])
+  Spr(x, y+8, die.sprites[side][2][1])
+  Spr(x+8, y+8, die.sprites[side][2][2])
 end
 
 return dice
