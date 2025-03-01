@@ -19,9 +19,9 @@ end
 function Input()
     if Btnp("return") and State == states.blank then
         State = states.rolling
-        Rolls = dice.generate_rolls(4, dice.green, 7)
+        Rolls = dice.generate_rolls(4, dice.red, 7)
         Current_side = 1
-        dice.update_last_results(Rolls, Current_side, dice.green)
+        dice.update_last_results(Rolls, Current_side, dice.red)
     end
 end
 
@@ -31,7 +31,7 @@ function Update()
     if State == states.rolling and F % 10 == 0 then
         if Current_side + 1 <= #Rolls[1] then
             Current_side = Current_side + 1
-            dice.update_last_results(Rolls, Current_side, dice.green)
+            dice.update_last_results(Rolls, Current_side, dice.red)
         else
             State = states.blank
         end

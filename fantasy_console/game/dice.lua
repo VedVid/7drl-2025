@@ -75,7 +75,7 @@ dice.red.probabilities = {
   {5, 2},
   {6, 6}
 }
-dice.green.sprites = {
+dice.red.sprites = {
   { --1=6
     {61, 62},
     {91, 92}
