@@ -1,6 +1,7 @@
 require "api"
 
 local dice = require "game/dice"
+local screen = require "game/main_screen"
 
 
 function Init()
@@ -26,6 +27,7 @@ end
 
 
 function Draw()
+    screen.draw_dividers()
     dice.draw(4, 4, dice.green, roll1[no])
     dice.draw(4+16+2, 4, dice.green, roll2[no])
 end
