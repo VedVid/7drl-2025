@@ -17,11 +17,44 @@ end
 
 
 function Input()
-    if Btnp("return") and State == states.blank then
-        State = states.rolling
-        Rolls = dice.generate_rolls({dice.green, dice.green, dice.gold}, 7)
-        Current_side = 1
-        dice.update_last_results(Rolls, Current_side)
+    if State == states.blank then
+        if Btnp("1") then
+            State = states.rolling
+            local dices = {}
+            for i = 1, player.skills[1][2] do
+                table.insert(dices, dice.green)
+            end
+            Rolls = dice.generate_rolls(dices, 7)
+            Current_side = 1
+            dice.update_last_results(Rolls, Current_side)
+        elseif Btnp("2") then
+            State = states.rolling
+            local dices = {}
+            for i = 1, player.skills[2][2] do
+                table.insert(dices, dice.green)
+            end
+            Rolls = dice.generate_rolls(dices, 7)
+            Current_side = 1
+            dice.update_last_results(Rolls, Current_side)
+        elseif Btnp("3") then
+            State = states.rolling
+            local dices = {}
+            for i = 1, player.skills[3][2] do
+                table.insert(dices, dice.green)
+            end
+            Rolls = dice.generate_rolls(dices, 7)
+            Current_side = 1
+            dice.update_last_results(Rolls, Current_side)
+        elseif Btnp("4") then
+            State = states.rolling
+            local dices = {}
+            for i = 1, player.skills[4][2] do
+                table.insert(dices, dice.green)
+            end
+            Rolls = dice.generate_rolls(dices, 7)
+            Current_side = 1
+            dice.update_last_results(Rolls, Current_side)
+        end
     end
 end
 
