@@ -1,3 +1,6 @@
+local dice = require "game/dice"
+
+
 local player = {}
 
 player.skills = {
@@ -11,6 +14,10 @@ player.skills = {
 player.max_health = 0
 player.current_health = 0
 
+-- It will be kinda hack. Since there are only two additional dice (red and gold),
+-- we can assume that reds are first and golds are last.
+player.inventory = {}
+
 function player.set_random_skills()
     local iterations = 4
     for i = 1, iterations do
@@ -21,6 +28,24 @@ function player.set_random_skills()
     end
     player.max_health = player.skills[5][2]
     player.current_health = player.max_health
+end
+
+function player.add_to_inventory(die)
+    assert(die == dice.red or die == dice.gold, "die should be only red or gold")
+    if die == dice.red then
+        table.insert(player.inventory, 1, dice.red)
+    else
+        table.insert(player.inventory, dice.gold)
+    end
+end
+
+function player.remove_from_inventory(die)
+    assert(die == dice.red or die == dice.gold, "die should be only red or gold")
+    if die == dice.red and player.inventory[1] == dice.red then
+        return table.remove(player.inventory, 1)
+    elseif die == dice.gold and player.inventory[#player.inventory] == dice.gold then
+        return table.remove(player.inventory, #player.inventory)
+    end
 end
 
 return player
