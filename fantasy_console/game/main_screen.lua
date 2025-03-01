@@ -1,6 +1,7 @@
 require "../api"
 
 local dice = require "game/dice"
+local states = require "game/states"
 
 local screen = {}
 
@@ -15,13 +16,17 @@ function screen.draw_dividers()
     Line(0, (192/2)-15, 256, (192/2)-15, BlackBold)
 end
 
-function screen.draw_last_roll()
+function screen.draw_last_roll(State)
     for i, side in ipairs(dice.last_results) do
+        local side_to_show = side
+        if side_to_show == 6 and State ~= states.rolling then
+            side_to_show = 7  -- 6 with success marked
+        end
         dice.draw(
             screen.dice_slots[i][1],
             screen.dice_slots[i][2],
             dice.last_results_die,
-            side
+            side_to_show
         )
     end
 end

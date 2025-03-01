@@ -46,5 +46,5 @@ end
 
 function Draw()
     screen.draw_dividers()
-    screen.draw_last_roll()
+    screen.draw_last_roll(State)
 end
