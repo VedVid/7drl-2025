@@ -26,6 +26,13 @@ dice.probabilities = {
   {6, 1}
 }
 
+function dice.update_last_results(rolls, current_side, die)
+  dice.zero_last_results()
+  for _, roll in ipairs(rolls) do
+    dice.add_to_last_results(roll[current_side], die)
+  end
+end
+
 function dice.zero_last_results()
   dice.last_results = {}
   dice.last_results_die = nil
