@@ -6,16 +6,6 @@ local dice = {}
 dice.last_results = {}
 dice.last_results_die = nil
 
-dice.probabilities = {
-  -- previous side, next side
-  {1, 6},
-  {2, 5},
-  {3, 4},
-  {4, 3},
-  {5, 2},
-  {6, 1}
-}
-
 dice.green = {}
 dice.green.sides = {
   -- current side, other sides
@@ -25,6 +15,15 @@ dice.green.sides = {
   {4, {1, 2, 5, 6}},
   {5, {1, 3, 4, 6}},
   {6, {2, 3, 4, 5}}
+}
+dice.green.probabilities = {
+  -- previous side, next side
+  {1, 6},
+  {2, 5},
+  {3, 4},
+  {4, 3},
+  {5, 2},
+  {6, 1}
 }
 dice.green.sprites = {
   { --1
@@ -95,9 +94,9 @@ end
 
 function dice.generate_roll(die)
   local current_side = math.random(1, 6)
-  local previous_side = dice.probabilities[current_side][2]
+  local previous_side = die.probabilities[current_side][2]
   local next_side = die.sides[current_side][2][math.random(4)]
-  if next_side ~= dice.probabilities[previous_side][2] then
+  if next_side ~= die.probabilities[previous_side][2] then
     next_side = die.sides[current_side][2][math.random(4)]
   end
   return next_side
