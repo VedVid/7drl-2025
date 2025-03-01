@@ -29,7 +29,7 @@ end
 function Update()
     F = F + 1
     if State == states.rolling and F % 10 == 0 then
-        if Current_side + 1 <= #Rolls[1] then
+        if Current_side + 1 <= #Rolls[1][2] then
             Current_side = Current_side + 1
             dice.update_last_results(Rolls, Current_side)
         else
