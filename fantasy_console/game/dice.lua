@@ -173,13 +173,12 @@ function dice.add_to_last_results(side, die)
   dice.last_results_die = die
 end
 
-function dice.generate_rolls(dice_amount, die, roll_length)
-  assert(dice_amount ~= nil, "dice_amount can't be nil")
-  assert(dice_amount > 0, "dice_amount must be larger than 0")
-  if not die then die = dice.green end
+function dice.generate_rolls(dices, roll_length)
+  assert(dices ~= nil, "dices can't be nil")
+  assert(#dices > 0, "dices array must be longer than 0")
   if not roll_length then roll_length = math.random(3, 6) end
   local rolls = {}
-  for i = 1, dice_amount do
+  for _, die in ipairs(dices) do
     local rolls_sequence = {}
     local j = 0
     while (roll_length > j) do
