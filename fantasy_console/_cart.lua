@@ -18,6 +18,7 @@ function Init()
     State = states.menu
     F = 0
     map.generate_rooms()
+    Current_event = event_start
     event_start.generate_travel_options()
     menu.current_menu = menu.new_menu(event_start)
     player.set_random_skills()
