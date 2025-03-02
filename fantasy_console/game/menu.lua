@@ -1,5 +1,6 @@
 require "../api"
 
+local actions = require "game/actions"
 local dice = require "game/dice"
 local event_combat = require "game/event_combat"
 local event_merchant = require "game/event_merchant"
@@ -76,6 +77,7 @@ function menu.choose_option()
         do end -- TODO: COMBAT FIGHT
     elseif string.find(v, events_options.try_to_flee) then
         State = states.rolling
+        Action = actions.fleeing
         local dices = {}
         for i = 1, player.skills[2][2] do
             table.insert(dices, dice.green)
