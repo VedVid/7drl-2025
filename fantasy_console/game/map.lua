@@ -1,6 +1,6 @@
 local map = {}
 
-map.current_room = "combat"
+map.current_room = "start"
 map.travel_destination = 0
 map.doors_to = {}
 map.possible_doors = {
