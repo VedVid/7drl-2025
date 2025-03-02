@@ -55,25 +55,31 @@ function screen.draw_map(state)
     local line_color = Blue
     if state == states.travel then line_color = BlueBold end
     if #map.doors_to == 1 then
-        table.insert(positions, {50, 31, 15, 15})
-        Line(20, 38, 50, 38, line_color)
+        table.insert(positions, {95, 31, 15, 15})
+        Line(65, 38, 95, 38, line_color)
     elseif #map.doors_to == 2 then
-        table.insert(positions, {50, 15, 15, 15})
-        table.insert(positions, {50, 47, 15, 15})
-        Line(20, 38, 50, 22, line_color)
-        Line(20, 38, 50, 54, line_color)
+        table.insert(positions, {95, 15, 15, 15})
+        table.insert(positions, {95, 47, 15, 15})
+        Line(65, 38, 95, 22, line_color)
+        Line(65, 38, 95, 54, line_color)
     elseif #map.doors_to == 3 then
-        table.insert(positions, {50, 12, 15, 15})
-        table.insert(positions, {50, 31, 15, 15})
-        table.insert(positions, {50, 50, 15, 15})
-        Line(20, 38, 50, 19, line_color)
-        Line(20, 38, 50, 38, line_color)
-        Line(20, 38, 50, 57, line_color)
+        table.insert(positions, {95, 12, 15, 15})
+        table.insert(positions, {95, 31, 15, 15})
+        table.insert(positions, {95, 50, 15, 15})
+        Line(65, 38, 95, 19, line_color)
+        Line(65, 38, 95, 38, line_color)
+        Line(65, 38, 95, 57, line_color)
+    end
+    -- Draw previous room
+    if map.current_room ~= map.door_names.start then
+        Line(30, 38, 56, 38, Blue)
+        Rect(18, 32, 13, 13, White)
     end
     -- Draw current room
-    Rect(6, 31, 16, 15, White)
-    Rectfill(7, 32, 14, 13, WhiteBold)
-    Write(12, 35, "@", Green)
+    Rect(55, 31, 16, 15, White)
+    Rectfill(56, 32, 14, 13, WhiteBold)
+    Write(61, 35, "@", Green)
+    -- Draw next rooms
     for i, position in ipairs(positions) do
         Rect(
             position[1],

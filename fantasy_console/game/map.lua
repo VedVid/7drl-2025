@@ -1,12 +1,17 @@
 local map = {}
 
-map.current_room = "empty"
+map.current_room = "combat"
 map.doors_to = {}
 map.possible_doors = {
     "merchant",
     "event",
     "combat"
 }
+map.door_names = {}
+map.door_names.merchant = "merchant"
+map.door_names.event = "event"
+map.door_names.combat = "combat"
+map.door_names.start = "start"
 
 function map.generate_rooms()
     map.doors_to = {}
