@@ -85,9 +85,13 @@ function Update()
         end
     elseif State == states.menu and Action == actions.fleeing then
         if dice.check_for_success() == true then
-            print("You escape the bandits!")
+            Current_event.generate_travel_options()
+            menu.current_menu = menu.new_menu(Current_event)
+            menu.current_menu.header = "You managed to escape.\nWhere are you going to go now?"
+            menu.option_chosen = 1
         else
             player.current_health = player.current_health - 1
+            menu.current_menu.header = "You failed to escape.\nYou have been hit.\nWhat do you do?"
         end
         Action = actions.waiting
     end
