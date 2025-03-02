@@ -4,7 +4,9 @@ local g = require "globals"
 
 local debug = require "game/debug"
 local dice = require "game/dice"
+local event_start = require "game/event_start"
 local map = require "game/map"
+local menu = require "game/menu"
 local screen = require "game/main_screen"
 local player = require "game/player"
 local states = require "game/states"
@@ -13,9 +15,11 @@ local states = require "game/states"
 function Init()
     Debug = true
     math.randomseed(os.time())
-    State = states.blank
+    State = states.menu
     F = 0
     map.generate_rooms()
+    event_start.generate_travel_options()
+    menu.current_menu = menu.new_menu(event_start)
     player.set_random_skills()
     player.inventory = {dice.red, dice.red, dice.red, dice.red, dice.red, dice.red, dice.gold, dice.gold}
 end
@@ -40,6 +44,18 @@ function Input()
         elseif Btnp("escape") then
             player.inventory_chosen = 1
             State = states.blank
+        end
+    elseif State == states.menu then
+        if Btnp("up") then
+            menu.option_chosen = menu.option_chosen - 1
+            if menu.option_chosen < 1 then
+                menu.option_chosen = #menu.current_menu.options
+            end
+        elseif Btnp("down") then
+            menu.option_chosen = menu.option_chosen + 1
+            if menu.option_chosen > #menu.current_menu.options then
+                menu.option_chosen = 1
+            end
         end
     end
 end
@@ -73,4 +89,5 @@ function Draw()
     screen.draw_last_roll(State)
     screen.draw_player_data()
     screen.draw_inventory()
+    screen.draw_menu()
 end

@@ -2,6 +2,7 @@ require "../api"
 
 local dice = require "game/dice"
 local map = require "game/map"
+local menu = require "game/menu"
 local player = require "game/player"
 local states = require "game/states"
 
@@ -144,6 +145,20 @@ function screen.draw_map(state)
     end
     if State == states.travel then
         Rectfill(0, 0, Travel_anim_x, 81, Black)
+    end
+end
+
+function screen.draw_menu()
+    Write(3, 86, menu.current_menu.header, White)
+    local y = 122
+    local y_step = 10
+    local x = 15
+    for i, option in ipairs(menu.current_menu.options) do
+        if State == states.menu and i == menu.option_chosen then
+            Spr(x-12, y-1, 181)
+        end
+        Write(x, y, option, WhiteBold)
+        y = y + y_step
     end
 end
 
