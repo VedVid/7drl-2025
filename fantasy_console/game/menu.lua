@@ -67,6 +67,12 @@ function menu.choose_option()
         menu.current_menu = menu.new_menu(Current_event)
         menu.current_menu.header = "You left the merchant.\nWhere are you going to go now?"
         menu.option_chosen = 1
+    elseif string.find(v, events_options.fight) then
+        do end -- TODO: COMBAT FIGHT
+    elseif string.find(v, events_options.try_to_flee) then
+        do end -- TODO: COMBAT FLEE
+    elseif string.find(v, events_options.try_diplomacy) then
+        do end -- TODO: COMBAT DIPLOMACY
     end
 end
 

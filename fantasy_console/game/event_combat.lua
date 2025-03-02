@@ -3,7 +3,11 @@ local map = require "game/map"
 
 local event = {}
 event.header = "Hostile encounter!\nWhat do you do?"
-event.options = {}
+event.options = {
+    "Fight",
+    "Try to flee",
+    "Try diplomacy"
+}
 
 function event.generate_travel_options()
     event.options = {}

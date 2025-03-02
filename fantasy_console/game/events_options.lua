@@ -7,5 +7,8 @@ events_options.purchase = "Purchase"
 events_options.sell = "Sell"
 events_options.pickpocket = "Pickpocket"
 events_options.leave = "Leave"
+events_options.fight = "Fight"
+events_options.try_to_flee = "Try to flee"
+events_options.try_diplomacy = "Try diplomacy"
 
 return events_options
