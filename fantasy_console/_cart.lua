@@ -19,7 +19,7 @@ function Init()
     F = 0
     map.generate_rooms()
     Current_event = event_start
-    event_start.generate_travel_options()
+    Current_event.generate_travel_options()
     menu.current_menu = menu.new_menu(event_start)
     player.set_random_skills()
     player.inventory = {dice.red, dice.red, dice.red, dice.red, dice.red, dice.red, dice.gold, dice.gold}
@@ -79,6 +79,8 @@ function Update()
             map.travel()
             State = states.menu
             menu.option_chosen = 1
+            Current_event.generate_travel_options()
+            menu.current_menu = menu.new_menu(Current_event)
         end
     end
     if F > 3000 then
