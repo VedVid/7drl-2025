@@ -3,9 +3,19 @@ local map = require "game/map"
 
 local event = {}
 event.header = "Hostile encounter!\nWhat do you do?"
-event.options = {}
+event.options = {
+    "Fight",
+    "Try to flee",
+    "Try diplomacy"
+}
+event.base_options = {
+    "Fight",
+    "Try to flee",
+    "Try diplomacy"
+}
 
 function event.generate_travel_options()
+    print("Called event_combat.generate_travel_options")
     event.options = {}
     for i, room in ipairs(map.doors_to) do
         local number = "first"
