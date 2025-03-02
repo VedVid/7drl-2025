@@ -200,7 +200,7 @@ end
 
 function dice.check_for_success()
   for i, roll in ipairs(Rolls) do
-    if roll[#roll][1] == 6 then
+    if roll[2][#roll[2]] == 6 then
       return true
     end
   end
