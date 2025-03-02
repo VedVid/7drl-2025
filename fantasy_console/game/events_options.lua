@@ -10,5 +10,6 @@ events_options.leave = "Leave"
 events_options.fight = "Fight"
 events_options.try_to_flee = "Try to flee"
 events_options.try_diplomacy = "Try diplomacy"
+events_options.proceed = "Proceed"
 
 return events_options

@@ -3,7 +3,7 @@ local map = require "game/map"
 
 local event = {}
 event.header = "This is random event."
-event.options = {}
+event.options = {"Proceed"}
 
 function event.generate_travel_options()
     event.options = {}
