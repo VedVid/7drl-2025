@@ -56,6 +56,14 @@ function menu.choose_option()
         elseif string.find(v, map.door_names.event) then
             Current_event = event_random
         end
+    elseif string.find(v, events_options.purchase) then
+        do end -- TODO: MERCHANT PURCHASE
+    elseif string.find(v, events_options.sell) then
+        do end -- TODO: MERCHANT SELL
+    elseif string.find(v, events_options.pickpocket) then
+        do end -- TODO: MERCHANT PICKPOCKET
+    elseif string.find(v, events_options.leave) then
+        do end -- TODO: MERCHANT LEAVE
     end
 end
 

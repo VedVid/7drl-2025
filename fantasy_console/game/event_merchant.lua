@@ -3,7 +3,12 @@ local map = require "game/map"
 
 local event = {}
 event.header = "You met this friendly merchant.\nMaybe browse his wares?"
-event.options = {}
+event.options = {
+    "Purchase",
+    "Sell",
+    "Steal",
+    "Leave"
+}
 
 function event.generate_travel_options()
     event.options = {}
