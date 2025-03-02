@@ -72,7 +72,20 @@ function screen.draw_map(state)
     end
     -- Draw previous room
     if map.current_room ~= map.door_names.start then
-        Line(30, 38, 56, 38, Blue)
+        Pset(30, 38, Blue)
+        Pset(32, 38, Blue)
+        Pset(34, 38, Blue)
+        Pset(36, 38, Blue)
+        Pset(38, 38, Blue)
+        Pset(40, 38, Blue)
+        Pset(42, 38, Blue)
+        Pset(44, 38, Blue)
+        Pset(46, 38, Blue)
+        Pset(48, 38, Blue)
+        Pset(50, 38, Blue)
+        Pset(52, 38, Blue)
+        Pset(54, 38, Blue)
+        Pset(56, 38, Blue)
         Rect(18, 32, 13, 13, White)
     end
     -- Draw current room
