@@ -6,6 +6,7 @@ event.header = "This is random event."
 event.options = {}
 
 function event.generate_travel_options()
+    event.options = {}
     for i, room in ipairs(map.doors_to) do
         local number = "first"
         if i == 2 then
