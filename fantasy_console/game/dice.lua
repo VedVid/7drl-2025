@@ -198,6 +198,15 @@ function dice.generate_roll(die)
   return next_side
 end
 
+function dice.check_for_success()
+  for i, roll in ipairs(Rolls) do
+    if roll[#roll] == 6 then
+      return true
+    end
+  end
+  return false
+end
+
 function dice.draw(x, y, die, side)
   Spr(x, y, die.sprites[side][1][1])
   Spr(x+8, y, die.sprites[side][1][2])

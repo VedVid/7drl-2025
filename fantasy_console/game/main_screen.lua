@@ -49,11 +49,6 @@ function screen.draw_player_data()
     Write(132, 86, "Health:")
     Write(168, 86, player.current_health .. "/" .. player.max_health)
     local lookup = events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]]
-    if lookup then
-        print(lookup)
-        print(lookup[1])
-        print(lookup[2])
-    end
     if lookup then lookup = lookup[1] end
     if lookup == "physique" then
         Write(132, 96,  "Physique:", WhiteBold)
