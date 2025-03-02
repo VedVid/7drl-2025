@@ -2,6 +2,7 @@ require "api"
 
 local g = require "globals"
 
+local actions = require "game/actions"
 local debug = require "game/debug"
 local dice = require "game/dice"
 local event_start = require "game/event_start"
@@ -16,6 +17,7 @@ function Init()
     Debug = true
     math.randomseed(os.time())
     State = states.menu
+    Action = actions.waiting
     F = 0
     map.generate_rooms()
     Current_event = event_start
@@ -71,7 +73,7 @@ function Update()
             Current_side = Current_side + 1
             dice.update_last_results(Rolls, Current_side)
         else
-            State = states.blank
+            State = states.menu
         end
     elseif State == states.travel and F % 2 == 0 then
         Travel_anim_x = Travel_anim_x + g.screen.gamepixel.w
@@ -81,6 +83,17 @@ function Update()
             menu.option_chosen = 1
             menu.current_menu = menu.new_menu(Current_event)
         end
+    elseif State == states.menu and Action == actions.fleeing then
+        if dice.check_for_success() == true then
+            Current_event.generate_travel_options()
+            menu.current_menu = menu.new_menu(Current_event)
+            menu.current_menu.header = "You managed to escape.\nWhere are you going to go now?"
+            menu.option_chosen = 1
+        else
+            player.current_health = player.current_health - 1
+            menu.current_menu.header = "You failed to escape.\nYou have been hit.\nWhat do you do?"
+        end
+        Action = actions.waiting
     end
     if F > 3000 then
         F = 0

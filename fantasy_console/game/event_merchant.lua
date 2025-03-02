@@ -6,18 +6,17 @@ event.header = "You met this friendly merchant.\nMaybe browse his wares?"
 event.options = {
     "Purchase",
     "Sell",
-    "Steal",
+    "Steal from",
     "Leave"
 }
 event.base_options = {
     "Purchase",
     "Sell",
-    "Steal",
+    "Steal from",
     "Leave"
 }
 
 function event.generate_travel_options()
-    print("Called event_marchant.generate_travel_options")
     event.options = {}
     for i, room in ipairs(map.doors_to) do
         local number = "first"

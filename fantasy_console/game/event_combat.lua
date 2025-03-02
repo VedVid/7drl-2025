@@ -15,7 +15,6 @@ event.base_options = {
 }
 
 function event.generate_travel_options()
-    print("Called event_combat.generate_travel_options")
     event.options = {}
     for i, room in ipairs(map.doors_to) do
         local number = "first"

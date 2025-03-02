@@ -1,10 +1,13 @@
 require "../api"
 
+local actions = require "game/actions"
+local dice = require "game/dice"
 local event_combat = require "game/event_combat"
 local event_merchant = require "game/event_merchant"
 local event_random = require "game/event_random"
 local events_options = require "game/events_options"
 local map = require "game/map"
+local player = require "game/player"
 local states = require "game/states"
 
 
@@ -63,7 +66,7 @@ function menu.choose_option()
         do end -- TODO: MERCHANT PURCHASE
     elseif string.find(v, events_options.sell) then
         do end -- TODO: MERCHANT SELL
-    elseif string.find(v, events_options.pickpocket) then
+    elseif string.find(v, events_options.steal_from) then
         do end -- TODO: MERCHANT PICKPOCKET
     elseif string.find(v, events_options.leave) then
         Current_event.generate_travel_options()
@@ -73,11 +76,20 @@ function menu.choose_option()
     elseif string.find(v, events_options.fight) then
         do end -- TODO: COMBAT FIGHT
     elseif string.find(v, events_options.try_to_flee) then
+        State = states.rolling
+        Action = actions.fleeing
+        local dices = {}
+        for i = 1, player.skills[2][2] do
+            table.insert(dices, dice.green)
+        end
+        Rolls = dice.generate_rolls(dices, 7)
+        Current_side = 1
+        dice.update_last_results(Rolls, Current_side)
         do end -- TODO: COMBAT FLEE
-        Current_event.generate_travel_options()
-        menu.current_menu = menu.new_menu(Current_event)
-        menu.current_menu.header = "You fled.\nWhere are you going to go now?"
-        menu.option_chosen = 1
+        --Current_event.generate_travel_options()
+        --menu.current_menu = menu.new_menu(Current_event)
+        --menu.current_menu.header = "You fled.\nWhere are you going to go now?"
+        --menu.option_chosen = 1
     elseif string.find(v, events_options.try_diplomacy) then
         do end -- TODO: COMBAT DIPLOMACY
     elseif string.find(v, events_options.proceed) then

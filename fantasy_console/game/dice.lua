@@ -185,39 +185,6 @@ function dice.generate_rolls(dices, roll_length)
     table.insert(rolls, {die, rolls_sequence})
     --print(table.concat(rolls_sequence, ", "))
   end
-  --##########################
-  --##########################
-  if rolls[1][1] == dice.green then
-    print("green;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[1][1] == dice.red then
-    print("red;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[1][1] == dice.gold then
-    print("gold;" .. table.concat(rolls[1][2], ", "))
-  else
-    print("???;" .. table.concat(rolls[1][2], ", "))
-  end
-  --##########################
-  if rolls[2][1] == dice.green then
-    print("green;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[2][1] == dice.red then
-    print("red;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[2][1] == dice.gold then
-    print("gold;" .. table.concat(rolls[1][2], ", "))
-  else
-    print("???;" .. table.concat(rolls[1][2], ", "))
-  end
-  --##########################
-  if rolls[3][1] == dice.green then
-    print("green;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[3][1] == dice.red then
-    print("red;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[3][1] == dice.gold then
-    print("gold;" .. table.concat(rolls[1][2], ", "))
-  else
-    print("???;" .. table.concat(rolls[1][2], ", "))
-  end
-  --##########################
-  --##########################
   return rolls
 end
 
@@ -229,6 +196,15 @@ function dice.generate_roll(die)
     next_side = die.sides[current_side][2][math.random(4)]
   end
   return next_side
+end
+
+function dice.check_for_success()
+  for i, roll in ipairs(Rolls) do
+    if roll[2][#roll[2]] == 6 then
+      return true
+    end
+  end
+  return false
 end
 
 function dice.draw(x, y, die, side)
