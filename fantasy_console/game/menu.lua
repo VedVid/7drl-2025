@@ -63,7 +63,10 @@ function menu.choose_option()
     elseif string.find(v, events_options.pickpocket) then
         do end -- TODO: MERCHANT PICKPOCKET
     elseif string.find(v, events_options.leave) then
-        do end -- TODO: MERCHANT LEAVE
+        Current_event.generate_travel_options()
+        menu.current_menu = menu.new_menu(Current_event)
+        menu.current_menu.header = "You left the merchant.\nWhere are you going to go now?"
+        menu.option_chosen = 1
     end
 end
 
