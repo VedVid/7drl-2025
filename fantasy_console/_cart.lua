@@ -3,16 +3,17 @@ require "api"
 local g = require "globals"
 
 local dice = require "game/dice"
+local map = require "game/map"
 local screen = require "game/main_screen"
 local player = require "game/player"
 local states = require "game/states"
-local utils = require "game/utils"
 
 
 function Init()
     math.randomseed(os.time())
     State = states.blank
     F = 0
+    map.generate_rooms()
     player.set_random_skills()
     player.inventory = {dice.red, dice.red, dice.gold, dice.gold}
 end
@@ -77,6 +78,8 @@ function Input()
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
             dice.update_last_results(Rolls, Current_side)
+        elseif Btnp("m") then
+            map.generate_rooms()
         end
     end
 end
