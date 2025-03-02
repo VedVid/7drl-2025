@@ -17,7 +17,7 @@ function Init()
     F = 0
     map.generate_rooms()
     player.set_random_skills()
-    player.inventory = {dice.red, dice.red, dice.gold, dice.gold}
+    player.inventory = {dice.red, dice.red, dice.red, dice.red, dice.red, dice.red, dice.gold, dice.gold}
 end
 
 function Input()
@@ -54,4 +54,5 @@ function Draw()
     screen.draw_map()
     screen.draw_last_roll(State)
     screen.draw_player_data()
+    screen.draw_inventory()
 end

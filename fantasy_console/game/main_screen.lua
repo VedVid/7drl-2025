@@ -50,6 +50,36 @@ function screen.draw_player_data()
     Write(168, 116, tostring(player.skills[3][2]))
 end
 
+function screen.draw_inventory()
+    local sprites_red = {
+        60, 60, 59, 58, 57, 56
+    }
+    local sprites_gold = {
+        90, 90, 90, 89, 88, 87
+    }
+    local y = 85
+    local y_step = 12
+    for _, die in ipairs(player.inventory) do
+        local current_sprites
+        local color
+        if die == dice.red then
+            current_sprites = sprites_red
+            color = Red
+        elseif die == dice.gold then
+            current_sprites = sprites_gold
+            color = Yellow
+        end
+        local x = 195
+        local x_step = 10
+        for i = 1, #current_sprites do
+            Spr(x, y, current_sprites[i])
+            Rect(x-1, y, 9, 9, color)
+            x = x + x_step
+        end
+        y = y + y_step
+    end
+end
+
 function screen.draw_map(state)
     local positions = {}
     local line_color = Blue
