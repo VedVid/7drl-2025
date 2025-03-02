@@ -34,6 +34,28 @@ function menu.choose_option()
         elseif string.find(v, map.door_names.event) then
             Current_event = event_random
         end
+    elseif string.find(v, events_options.go_to_second_room) then
+        State = states.travel
+        Travel_anim_x = 2
+        map.travel_destination = 2
+        if string.find(v, map.door_names.merchant) then
+            Current_event = event_merchant
+        elseif string.find(v, map.door_names.combat) then
+            Current_event = event_combat
+        elseif string.find(v, map.door_names.event) then
+            Current_event = event_random
+        end
+    elseif string.find(v, events_options.go_to_third_room) then
+        State = states.travel
+        Travel_anim_x = 2
+        map.travel_destination = 3
+        if string.find(v, map.door_names.merchant) then
+            Current_event = event_merchant
+        elseif string.find(v, map.door_names.combat) then
+            Current_event = event_combat
+        elseif string.find(v, map.door_names.event) then
+            Current_event = event_random
+        end
     end
 end
 
