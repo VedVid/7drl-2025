@@ -27,6 +27,7 @@ function menu.choose_option()
         State = states.travel
         Travel_anim_x = 2
         map.travel_destination = 1
+        Current_event.options = Current_event.base_options
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
         elseif string.find(v, map.door_names.combat) then
@@ -38,6 +39,7 @@ function menu.choose_option()
         State = states.travel
         Travel_anim_x = 2
         map.travel_destination = 2
+        Current_event.options = Current_event.base_options
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
         elseif string.find(v, map.door_names.combat) then
@@ -49,6 +51,7 @@ function menu.choose_option()
         State = states.travel
         Travel_anim_x = 2
         map.travel_destination = 3
+        Current_event.options = Current_event.base_options
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
         elseif string.find(v, map.door_names.combat) then
@@ -71,6 +74,10 @@ function menu.choose_option()
         do end -- TODO: COMBAT FIGHT
     elseif string.find(v, events_options.try_to_flee) then
         do end -- TODO: COMBAT FLEE
+        Current_event.generate_travel_options()
+        menu.current_menu = menu.new_menu(Current_event)
+        menu.current_menu.header = "You fled.\nWhere are you going to go now?"
+        menu.option_chosen = 1
     elseif string.find(v, events_options.try_diplomacy) then
         do end -- TODO: COMBAT DIPLOMACY
     elseif string.find(v, events_options.proceed) then

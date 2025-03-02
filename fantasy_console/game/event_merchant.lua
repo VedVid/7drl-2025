@@ -9,8 +9,15 @@ event.options = {
     "Steal",
     "Leave"
 }
+event.base_options = {
+    "Purchase",
+    "Sell",
+    "Steal",
+    "Leave"
+}
 
 function event.generate_travel_options()
+    print("Called event_marchant.generate_travel_options")
     event.options = {}
     for i, room in ipairs(map.doors_to) do
         local number = "first"
