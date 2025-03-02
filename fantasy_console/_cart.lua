@@ -43,7 +43,7 @@ function Input()
             do end  -- TODO: Add dice to the current pool there!
         elseif Btnp("escape") then
             player.inventory_chosen = 1
-            State = states.blank
+            State = states.menu
         end
     elseif State == states.menu then
         if Btnp("up") then
@@ -56,6 +56,8 @@ function Input()
             if menu.option_chosen > #menu.current_menu.options then
                 menu.option_chosen = 1
             end
+        elseif Btnp("return") then
+            menu.choose_option()
         end
     end
 end
@@ -73,8 +75,9 @@ function Update()
     elseif State == states.travel and F % 2 == 0 then
         Travel_anim_x = Travel_anim_x + g.screen.gamepixel.w
         if Travel_anim_x >= 256/2 then
-            State = states.blank
             map.travel()
+            State = states.menu
+            menu.option_chosen = 1
         end
     end
     if F > 3000 then
