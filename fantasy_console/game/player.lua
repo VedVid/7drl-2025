@@ -51,7 +51,7 @@ function player.remove_from_inventory(die)
 end
 
 function player.choose_from_inventory()
-
+    
 end
 
 return player
