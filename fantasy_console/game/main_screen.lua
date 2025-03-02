@@ -59,7 +59,12 @@ function screen.draw_inventory()
     }
     local y = 85
     local y_step = 12
-    for _, die in ipairs(player.inventory) do
+    for i, die in ipairs(player.inventory) do
+        local x = 195
+        local x_step = 10
+        if State == states.inventory and i == player.inventory_chosen then
+            Spr(x-x_step, y, 181)
+        end
         local current_sprites
         local color
         if die == dice.red then
@@ -69,10 +74,8 @@ function screen.draw_inventory()
             current_sprites = sprites_gold
             color = Yellow
         end
-        local x = 195
-        local x_step = 10
-        for i = 1, #current_sprites do
-            Spr(x, y, current_sprites[i])
+        for j = 1, #current_sprites do
+            Spr(x, y, current_sprites[j])
             Rect(x-1, y, 9, 9, color)
             x = x + x_step
         end

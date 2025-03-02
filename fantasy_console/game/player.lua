@@ -17,6 +17,7 @@ player.current_health = 0
 -- we can assume that reds are first and golds are last.
 player.inventory = {}
 player.inventory_max = 8
+player.inventory_chosen = 1
 
 function player.set_random_skills()
     local iterations = 4
@@ -49,5 +50,8 @@ function player.remove_from_inventory(die)
     end
 end
 
+function player.choose_from_inventory()
+
+end
 
 return player

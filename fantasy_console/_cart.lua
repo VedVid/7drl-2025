@@ -24,6 +24,24 @@ function Input()
     if Debug then
         debug.inputs()
     end
+    if State == states.inventory then
+        if Btnp("up") then
+            player.inventory_chosen = player.inventory_chosen - 1
+            if player.inventory_chosen < 1 then
+                player.inventory_chosen = #player.inventory
+            end
+        elseif Btnp("down") then
+            player.inventory_chosen = player.inventory_chosen + 1
+            if player.inventory_chosen > #player.inventory then
+                player.inventory_chosen = 1
+            end
+        elseif Btnp("return") then
+            do end  -- TODO: Add dice to the current pool there!
+        elseif Btnp("escape") then
+            player.inventory_chosen = 1
+            State = states.blank
+        end
+    end
 end
 
 

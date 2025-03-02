@@ -77,6 +77,9 @@ function debug.inputs()
             State = states.travel
             Travel_anim_x = 2
             map.travel_destination = 3
+        elseif Btnp("i") then
+            State = states.inventory
+            player.inventory_chosen = 1
         end
     end
 end
