@@ -185,39 +185,6 @@ function dice.generate_rolls(dices, roll_length)
     table.insert(rolls, {die, rolls_sequence})
     --print(table.concat(rolls_sequence, ", "))
   end
-  --##########################
-  --##########################
-  if rolls[1][1] == dice.green then
-    print("green;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[1][1] == dice.red then
-    print("red;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[1][1] == dice.gold then
-    print("gold;" .. table.concat(rolls[1][2], ", "))
-  else
-    print("???;" .. table.concat(rolls[1][2], ", "))
-  end
-  --##########################
-  if rolls[2][1] == dice.green then
-    print("green;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[2][1] == dice.red then
-    print("red;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[2][1] == dice.gold then
-    print("gold;" .. table.concat(rolls[1][2], ", "))
-  else
-    print("???;" .. table.concat(rolls[1][2], ", "))
-  end
-  --##########################
-  if rolls[3][1] == dice.green then
-    print("green;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[3][1] == dice.red then
-    print("red;" .. table.concat(rolls[1][2], ", "))
-  elseif rolls[3][1] == dice.gold then
-    print("gold;" .. table.concat(rolls[1][2], ", "))
-  else
-    print("???;" .. table.concat(rolls[1][2], ", "))
-  end
-  --##########################
-  --##########################
   return rolls
 end
 

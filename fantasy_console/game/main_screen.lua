@@ -40,6 +40,10 @@ function screen.draw_last_roll(state)
     end
 end
 
+function screen.draw_roll_preview(option)
+    do end
+end
+
 function screen.draw_player_data()
     Write(132, 86, "Health:")
     Write(168, 86, player.current_health .. "/" .. player.max_health)
