@@ -6,13 +6,13 @@ event.header = "You met this friendly merchant.\nMaybe browse his wares?"
 event.options = {
     "Purchase",
     "Sell",
-    "Steal",
+    "Steal from",
     "Leave"
 }
 event.base_options = {
     "Purchase",
     "Sell",
-    "Steal",
+    "Steal from",
     "Leave"
 }
 

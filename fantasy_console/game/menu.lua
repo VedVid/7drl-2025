@@ -63,7 +63,7 @@ function menu.choose_option()
         do end -- TODO: MERCHANT PURCHASE
     elseif string.find(v, events_options.sell) then
         do end -- TODO: MERCHANT SELL
-    elseif string.find(v, events_options.pickpocket) then
+    elseif string.find(v, events_options.steal_from) then
         do end -- TODO: MERCHANT PICKPOCKET
     elseif string.find(v, events_options.leave) then
         Current_event.generate_travel_options()
