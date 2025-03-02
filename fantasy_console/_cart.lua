@@ -78,8 +78,12 @@ function Input()
             Rolls = dice.generate_rolls(dices, 7)
             Current_side = 1
             dice.update_last_results(Rolls, Current_side)
-        elseif Btnp("m") then
-            map.generate_rooms()
+        elseif Btnp("a") then
+            map.travel_to(1)
+        elseif Btnp("s") then
+            map.travel_to(2)
+        elseif Btnp("d") then
+            map.travel_to(3)
         end
     end
 end

@@ -21,4 +21,11 @@ function map.generate_rooms()
     end
 end
 
+function map.travel_to(room_no)
+    if room_no > # map.doors_to then return end
+    map.current_room = map.doors_to[room_no]
+    map.generate_rooms()
+    print(map.current_room)
+end
+
 return map

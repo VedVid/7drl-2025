@@ -47,4 +47,5 @@ function player.remove_from_inventory(die)
     end
 end
 
+
 return player
