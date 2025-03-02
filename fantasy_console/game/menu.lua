@@ -63,22 +63,22 @@ function menu.choose_option()
         do end -- TODO: MERCHANT PURCHASE
     elseif string.find(v, events_options.sell) then
         do end -- TODO: MERCHANT SELL
-    elseif string.find(v, events_options.pickpocket[1]) then
+    elseif string.find(v, events_options.pickpocket) then
         do end -- TODO: MERCHANT PICKPOCKET
     elseif string.find(v, events_options.leave) then
         Current_event.generate_travel_options()
         menu.current_menu = menu.new_menu(Current_event)
         menu.current_menu.header = "You left the merchant.\nWhere are you going to go now?"
         menu.option_chosen = 1
-    elseif string.find(v, events_options.fight[1]) then
+    elseif string.find(v, events_options.fight) then
         do end -- TODO: COMBAT FIGHT
-    elseif string.find(v, events_options.try_to_flee[1]) then
+    elseif string.find(v, events_options.try_to_flee) then
         do end -- TODO: COMBAT FLEE
         Current_event.generate_travel_options()
         menu.current_menu = menu.new_menu(Current_event)
         menu.current_menu.header = "You fled.\nWhere are you going to go now?"
         menu.option_chosen = 1
-    elseif string.find(v, events_options.try_diplomacy[1]) then
+    elseif string.find(v, events_options.try_diplomacy) then
         do end -- TODO: COMBAT DIPLOMACY
     elseif string.find(v, events_options.proceed) then
         Current_event.generate_travel_options()
