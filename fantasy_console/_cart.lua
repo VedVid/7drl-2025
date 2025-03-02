@@ -1,5 +1,7 @@
 require "api"
 
+local g = require "globals"
+
 local debug = require "game/debug"
 local dice = require "game/dice"
 local map = require "game/map"
@@ -33,6 +35,12 @@ function Update()
             dice.update_last_results(Rolls, Current_side)
         else
             State = states.blank
+        end
+    elseif State == states.travel and F % 2 == 0 then
+        Travel_anim_x = Travel_anim_x + g.screen.gamepixel.w
+        if Travel_anim_x >= 256/2 then
+            State = states.blank
+            map.travel()
         end
     end
     if F > 3000 then

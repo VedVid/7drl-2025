@@ -109,6 +109,10 @@ function screen.draw_map(state)
             Spr(position[1]+4, position[2]+4, 30)
         end
     end
+    if State == states.travel then
+        Rectfill(0, 0, Travel_anim_x, 81, Black)
+    end
 end
+
 
 return screen

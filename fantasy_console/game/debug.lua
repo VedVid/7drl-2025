@@ -66,11 +66,17 @@ function debug.inputs()
             Current_side = 1
             dice.update_last_results(Rolls, Current_side)
         elseif Btnp("a") then
-            map.travel_to(1)
+            State = states.travel
+            Travel_anim_x = 2
+            map.travel_destination = 1
         elseif Btnp("s") then
-            map.travel_to(2)
+            State = states.travel
+            Travel_anim_x = 2
+            map.travel_destination = 2
         elseif Btnp("d") then
-            map.travel_to(3)
+            State = states.travel
+            Travel_anim_x = 2
+            map.travel_destination = 3
         end
     end
 end

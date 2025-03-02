@@ -1,6 +1,7 @@
 local map = {}
 
 map.current_room = "combat"
+map.travel_destination = 0
 map.doors_to = {}
 map.possible_doors = {
     "merchant",
@@ -21,11 +22,12 @@ function map.generate_rooms()
     end
 end
 
-function map.travel_to(room_no)
-    if room_no > # map.doors_to then return end
-    map.current_room = map.doors_to[room_no]
+function map.travel()
+    if map.travel_destination > # map.doors_to then return end
+    map.current_room = map.doors_to[map.travel_destination]
     map.generate_rooms()
     print(map.current_room)
 end
+
 
 return map
