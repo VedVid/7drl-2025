@@ -19,6 +19,7 @@ function Init()
     math.randomseed(os.time())
     State = states.menu
     Action = actions.waiting
+    Base_difficulty = 1
     Difficulty = 1
     F = 0
     map.generate_rooms()
@@ -105,6 +106,7 @@ function Update()
                 menu.current_menu.header = "You managed to escape, but not unscathed.\nWhere are you going to go now?"
                 menu.option_chosen = 1
             end
+            Difficulty = Base_difficulty
             Action = actions.waiting
         elseif Action == actions.fighting then
             if dice.check_for_success(1) == true then
@@ -112,6 +114,7 @@ function Update()
                 menu.current_menu = menu.new_menu(Current_event)
                 menu.current_menu.header = "You fought well and deafeated\nthe opponents.\nWhere are you going to go now?"
                 menu.option_chosen = 1
+                Difficulty = Base_difficulty
             else
                 player.current_health = player.current_health - 1
                 menu.current_menu.header = "You have been hit.\nWhat do you do?"
@@ -123,6 +126,7 @@ function Update()
                 menu.current_menu = menu.new_menu(Current_event)
                 menu.current_menu.header = "You talked your way out of it.\nWhere are you going to go now?"
                 menu.option_chosen = 1
+                Difficulty = Base_difficulty
             else
                 -- TODO: INCREASE DIFFICULTY OF OTHER TESTS
                 Current_event.options = {"Fight", "Try to flee"}
