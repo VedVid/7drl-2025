@@ -198,13 +198,14 @@ function dice.generate_roll(die)
   return next_side
 end
 
-function dice.check_for_success()
+function dice.check_for_success(difficulty)
+  local result = 0
   for i, roll in ipairs(Rolls) do
     if roll[2][#roll[2]] == 6 then
-      return true
+      result = result + 1
     end
   end
-  return false
+  return result >= difficulty
 end
 
 function dice.draw(x, y, die, side)
