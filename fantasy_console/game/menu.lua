@@ -30,6 +30,7 @@ function menu.choose_option()
         Travel_anim_x = 2
         map.travel_destination = 1
         Current_event.options = Current_event.base_options
+        Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
         elseif string.find(v, map.door_names.combat) then
@@ -42,6 +43,7 @@ function menu.choose_option()
         Travel_anim_x = 2
         map.travel_destination = 2
         Current_event.options = Current_event.base_options
+        Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
         elseif string.find(v, map.door_names.combat) then
@@ -54,6 +56,7 @@ function menu.choose_option()
         Travel_anim_x = 2
         map.travel_destination = 3
         Current_event.options = Current_event.base_options
+        Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
         elseif string.find(v, map.door_names.combat) then

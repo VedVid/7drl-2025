@@ -191,7 +191,11 @@ function screen.draw_menu()
         if State == states.menu and i == menu.option_chosen then
             Spr(x-12, y-1, 181)
         end
-        Write(x, y, option, WhiteBold)
+        if events_options.lookup_with_dice[menu.current_menu.options[i]] then
+            Write(x, y, option .. " [#=" .. Difficulty .. "]", WhiteBold)
+        else
+            Write(x, y, option, WhiteBold)
+        end
         y = y + y_step
     end
 end
