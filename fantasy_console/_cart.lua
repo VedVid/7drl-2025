@@ -90,17 +90,30 @@ function Update()
             menu.option_chosen = 1
             menu.current_menu = menu.new_menu(Current_event)
         end
-    elseif State == states.menu and Action == actions.fleeing then
-        if dice.check_for_success() == true then
-            Current_event.generate_travel_options()
-            menu.current_menu = menu.new_menu(Current_event)
-            menu.current_menu.header = "You managed to escape.\nWhere are you going to go now?"
-            menu.option_chosen = 1
-        else
-            player.current_health = player.current_health - 1
-            menu.current_menu.header = "You failed to escape.\nYou have been hit.\nWhat do you do?"
+    elseif State == states.menu then
+        if Action == actions.fleeing then
+            if dice.check_for_success() == true then
+                Current_event.generate_travel_options()
+                menu.current_menu = menu.new_menu(Current_event)
+                menu.current_menu.header = "You managed to escape.\nWhere are you going to go now?"
+                menu.option_chosen = 1
+            else
+                player.current_health = player.current_health - 1
+                menu.current_menu.header = "You failed to escape.\nYou have been hit.\nWhat do you do?"
+            end
+            Action = actions.waiting
+        elseif Action == actions.fighting then
+            if dice.check_for_success() == true then
+                Current_event.generate_travel_options()
+                menu.current_menu = menu.new_menu(Current_event)
+                menu.current_menu.header = "You fought well and deafeated\nthe opponents.\nWhere are you going to go now?"
+                menu.option_chosen = 1
+            else
+                player.current_health = player.current_health - 1
+                menu.current_menu.header = "You have been hit.\nWhat do you do?"
+            end
+            Action = actions.waiting
         end
-        Action = actions.waiting
     end
     if F > 3000 then
         F = 0
