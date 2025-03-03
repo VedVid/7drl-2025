@@ -6,6 +6,7 @@ local actions = require "game/actions"
 local debug = require "game/debug"
 local dice = require "game/dice"
 local event_start = require "game/event_start"
+local events_options = require "game/events_options"
 local map = require "game/map"
 local menu = require "game/menu"
 local screen = require "game/main_screen"
@@ -43,7 +44,9 @@ function Input()
                 player.inventory_chosen = 1
             end
         elseif Btnp("return") then
-            player.handle_dice_marking()
+            if events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]] then
+                player.handle_dice_marking()
+            end
         elseif Btnp("escape") or Btnp("left") then
             player.inventory_chosen = 1
             State = states.menu
