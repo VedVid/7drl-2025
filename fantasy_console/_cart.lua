@@ -98,8 +98,11 @@ function Update()
                 menu.current_menu.header = "You managed to escape.\nWhere are you going to go now?"
                 menu.option_chosen = 1
             else
+                Current_event.generate_travel_options()
+                menu.current_menu = menu.new_menu(Current_event)
                 player.current_health = player.current_health - 1
-                menu.current_menu.header = "You failed to escape.\nYou have been hit.\nWhat do you do?"
+                menu.current_menu.header = "You managed to escape, but not unscathed.\nWhere are you going to go now?"
+                menu.option_chosen = 1
             end
             Action = actions.waiting
         elseif Action == actions.fighting then
