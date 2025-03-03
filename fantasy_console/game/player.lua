@@ -65,11 +65,11 @@ function player.handle_dice_marking()
     end
 end
 
-function player.make_a_roll(current_action)
+function player.make_a_roll(current_action, current_skill)
     State = states.rolling
     Action = current_action
     local dices = {}
-    for i = 1, player.skills[2][2] do
+    for i = 1, current_skill[2] do
         table.insert(dices, dice.green)
     end
     for i, n in ipairs(player.inventory_marked_for_use) do
