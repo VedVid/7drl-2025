@@ -44,9 +44,7 @@ function Input()
                 player.inventory_chosen = 1
             end
         elseif Btnp("return") then
-            if events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]] then
-                player.handle_dice_marking()
-            end
+            player.handle_dice_marking()
         elseif Btnp("escape") or Btnp("left") then
             player.inventory_chosen = 1
             State = states.menu
@@ -67,7 +65,9 @@ function Input()
         elseif Btnp("return") then
             menu.choose_option()
         elseif Btnp("right") then
-            State = states.inventory
+            if events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]] then
+                State = states.inventory
+            end
         end
     end
 end
