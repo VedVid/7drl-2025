@@ -18,6 +18,7 @@ player.current_health = 0
 player.inventory = {}
 player.inventory_max = 8
 player.inventory_chosen = 1
+player.inventory_marked_for_use = {}
 
 function player.set_random_skills()
     local iterations = 4

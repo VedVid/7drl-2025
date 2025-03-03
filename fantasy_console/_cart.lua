@@ -43,7 +43,7 @@ function Input()
                 player.inventory_chosen = 1
             end
         elseif Btnp("return") then
-            do end  -- TODO: Add dice to the current pool there!
+            table.insert(player.inventory_marked_for_use, player.inventory_chosen)
         elseif Btnp("escape") or Btnp("left") then
             player.inventory_chosen = 1
             State = states.menu

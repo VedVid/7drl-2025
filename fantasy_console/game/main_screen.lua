@@ -6,6 +6,7 @@ local map = require "game/map"
 local menu = require "game/menu"
 local player = require "game/player"
 local states = require "game/states"
+local utils = require "game/utils"
 
 local screen = {}
 
@@ -89,10 +90,13 @@ function screen.draw_inventory()
     local y = 85
     local y_step = 12
     for i, die in ipairs(player.inventory) do
-        local x = 195
+        local x = 192
         local x_step = 10
         if State == states.inventory and i == player.inventory_chosen then
             Spr(x-x_step, y, 181)
+        end
+        if utils.has_value(player.inventory_marked_for_use, i) then
+            Circ(252, y+4, 1, Yellow)
         end
         local current_sprites
         local color
