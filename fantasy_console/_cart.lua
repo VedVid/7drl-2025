@@ -54,11 +54,13 @@ function Input()
             if menu.option_chosen < 1 then
                 menu.option_chosen = #menu.current_menu.options
             end
+            player.inventory_marked_for_use = {}
         elseif Btnp("down") then
             menu.option_chosen = menu.option_chosen + 1
             if menu.option_chosen > #menu.current_menu.options then
                 menu.option_chosen = 1
             end
+            player.inventory_marked_for_use = {}
         elseif Btnp("return") then
             menu.choose_option()
         elseif Btnp("right") then
