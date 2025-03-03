@@ -6,6 +6,7 @@ local actions = require "game/actions"
 local debug = require "game/debug"
 local dice = require "game/dice"
 local event_start = require "game/event_start"
+local events_options = require "game/events_options"
 local map = require "game/map"
 local menu = require "game/menu"
 local screen = require "game/main_screen"
@@ -43,8 +44,8 @@ function Input()
                 player.inventory_chosen = 1
             end
         elseif Btnp("return") then
-            do end  -- TODO: Add dice to the current pool there!
-        elseif Btnp("escape") then
+            player.handle_dice_marking()
+        elseif Btnp("escape") or Btnp("left") then
             player.inventory_chosen = 1
             State = states.menu
         end
@@ -54,13 +55,19 @@ function Input()
             if menu.option_chosen < 1 then
                 menu.option_chosen = #menu.current_menu.options
             end
+            player.inventory_marked_for_use = {}
         elseif Btnp("down") then
             menu.option_chosen = menu.option_chosen + 1
             if menu.option_chosen > #menu.current_menu.options then
                 menu.option_chosen = 1
             end
+            player.inventory_marked_for_use = {}
         elseif Btnp("return") then
             menu.choose_option()
+        elseif Btnp("right") then
+            if events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]] then
+                State = states.inventory
+            end
         end
     end
 end
