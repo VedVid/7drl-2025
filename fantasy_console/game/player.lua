@@ -1,4 +1,5 @@
 local dice = require "game/dice"
+local utils = require "game/utils"
 
 
 local player = {}
@@ -48,6 +49,18 @@ function player.remove_from_inventory(die)
         return table.remove(player.inventory, 1)
     elseif die == dice.gold and player.inventory[#player.inventory] == dice.gold then
         return table.remove(player.inventory, #player.inventory)
+    end
+end
+
+function player.handle_dice_marking()
+    if not utils.has_value(player.inventory_marked_for_use, player.inventory_chosen) then
+        table.insert(player.inventory_marked_for_use, player.inventory_chosen)
+    else
+        for i, v in ipairs(player.inventory_marked_for_use) do
+            if v == player.inventory_chosen then
+                table.remove(player.inventory_marked_for_use, i)
+            end
+        end
     end
 end
 

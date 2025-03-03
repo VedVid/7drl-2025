@@ -43,7 +43,7 @@ function Input()
                 player.inventory_chosen = 1
             end
         elseif Btnp("return") then
-            table.insert(player.inventory_marked_for_use, player.inventory_chosen)
+            player.handle_dice_marking()
         elseif Btnp("escape") or Btnp("left") then
             player.inventory_chosen = 1
             State = states.menu
