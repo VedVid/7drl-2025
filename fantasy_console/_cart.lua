@@ -92,7 +92,7 @@ function Update()
         end
     elseif State == states.menu then
         if Action == actions.fleeing then
-            if dice.check_for_success() == true then
+            if dice.check_for_success(1) == true then
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(Current_event)
                 menu.current_menu.header = "You managed to escape.\nWhere are you going to go now?"
@@ -103,7 +103,7 @@ function Update()
             end
             Action = actions.waiting
         elseif Action == actions.fighting then
-            if dice.check_for_success() == true then
+            if dice.check_for_success(1) == true then
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(Current_event)
                 menu.current_menu.header = "You fought well and deafeated\nthe opponents.\nWhere are you going to go now?"
