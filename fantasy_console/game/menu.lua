@@ -1,7 +1,6 @@
 require "../api"
 
 local actions = require "game/actions"
-local dice = require "game/dice"
 local event_combat = require "game/event_combat"
 local event_merchant = require "game/event_merchant"
 local event_random = require "game/event_random"
