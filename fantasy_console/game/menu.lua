@@ -85,13 +85,16 @@ function menu.choose_option()
         for i, n in ipairs(player.inventory_marked_for_use) do
             if player.inventory[n] == dice.red then
                 table.insert(dices, dice.red)
-                player.remove_from_inventory(dice.red)
             elseif player.inventory[n] == dice.gold then
                 table.insert(dices, dice.gold)
-                player.remove_from_inventory(dice.gold)
             end
-            player.inventory_marked_for_use = {}
         end
+        for _, die in ipairs(dices) do
+            if die == dice.red or die == dice.gold then
+                player.remove_from_inventory(die)
+            end
+        end
+        player.inventory_marked_for_use = {}
         Rolls = dice.generate_rolls(dices, 7)
         Current_side = 1
         dice.update_last_results(Rolls, Current_side)
