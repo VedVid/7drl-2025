@@ -19,6 +19,7 @@ function Init()
     math.randomseed(os.time())
     State = states.menu
     Action = actions.waiting
+    Difficulty = 1
     F = 0
     map.generate_rooms()
     Current_event = event_start
@@ -128,6 +129,7 @@ function Update()
                 menu.current_menu = menu.new_menu(Current_event)
                 menu.current_menu.header = "Your persuasion attempts failed.\nPeace is no longer on the table."
                 menu.option_chosen = 1
+                Difficulty = Difficulty + 1
             end
             Action = actions.waiting
         end
