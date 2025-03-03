@@ -76,33 +76,7 @@ function menu.choose_option()
     elseif string.find(v, events_options.fight) then
         do end -- TODO: COMBAT FIGHT
     elseif string.find(v, events_options.try_to_flee) then
-        State = states.rolling
-        Action = actions.fleeing
-        local dices = {}
-        for i = 1, player.skills[2][2] do
-            table.insert(dices, dice.green)
-        end
-        for i, n in ipairs(player.inventory_marked_for_use) do
-            if player.inventory[n] == dice.red then
-                table.insert(dices, dice.red)
-            elseif player.inventory[n] == dice.gold then
-                table.insert(dices, dice.gold)
-            end
-        end
-        for _, die in ipairs(dices) do
-            if die == dice.red or die == dice.gold then
-                player.remove_from_inventory(die)
-            end
-        end
-        player.inventory_marked_for_use = {}
-        Rolls = dice.generate_rolls(dices, 7)
-        Current_side = 1
-        dice.update_last_results(Rolls, Current_side)
-        do end -- TODO: COMBAT FLEE
-        --Current_event.generate_travel_options()
-        --menu.current_menu = menu.new_menu(Current_event)
-        --menu.current_menu.header = "You fled.\nWhere are you going to go now?"
-        --menu.option_chosen = 1
+        player.make_a_roll(actions.fleeing)
     elseif string.find(v, events_options.try_diplomacy) then
         do end -- TODO: COMBAT DIPLOMACY
     elseif string.find(v, events_options.proceed) then
