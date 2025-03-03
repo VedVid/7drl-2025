@@ -77,7 +77,7 @@ function menu.choose_option()
     elseif string.find(v, events_options.try_to_flee) then
         player.make_a_roll(actions.fleeing, events_options.lookup_with_dice[events_options.try_to_flee])
     elseif string.find(v, events_options.try_diplomacy) then
-        do end -- TODO: COMBAT DIPLOMACY
+        player.make_a_roll(actions.diplomacy, events_options.lookup_with_dice[events_options.try_diplomacy])
     elseif string.find(v, events_options.proceed) then
         Current_event.generate_travel_options()
         menu.current_menu = menu.new_menu(Current_event)

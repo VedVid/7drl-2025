@@ -116,6 +116,20 @@ function Update()
                 menu.current_menu.header = "You have been hit.\nWhat do you do?"
             end
             Action = actions.waiting
+        elseif Action == actions.diplomacy then
+            if dice.check_for_success(1) == true then
+                Current_event.generate_travel_options()
+                menu.current_menu = menu.new_menu(Current_event)
+                menu.current_menu.header = "You talked your way out of it.\nWhere are you going to go now?"
+                menu.option_chosen = 1
+            else
+                -- TODO: INCREASE DIFFICULTY OF OTHER TESTS
+                Current_event.options = {"Fight", "Try to flee"}
+                menu.current_menu = menu.new_menu(Current_event)
+                menu.current_menu.header = "Your persuasion attempts failed.\nPeace is no longer on the table."
+                menu.option_chosen = 1
+            end
+            Action = actions.waiting
         end
     end
     if F > 3000 then
