@@ -49,37 +49,37 @@ end
 function screen.draw_player_data()
     Write(132, 86, "Health:")
     Write(168, 86, player.current_health .. "/" .. player.max_health)
-    Write(132, 96, "Gold:")
-    Write(168, 96, tostring(player.gold))
     local lookup = events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]]
     if lookup then lookup = lookup[1] end
     if lookup == "physique" then
-        Write(132, 106,  "Physique:", WhiteBold)
-        Write(168, 106, tostring(player.skills[1][2]), WhiteBold)
+        Write(132, 96,  "Physique:", WhiteBold)
+        Write(168, 96, tostring(player.skills[1][2]), WhiteBold)
+        Spr(174, 95, 120)
+        Rect(173, 95, 9, 9, Green)
+    else
+        Write(132, 96,  "Physique:")
+        Write(168, 96, tostring(player.skills[1][2]))
+    end
+    if lookup == "cunning" then
+        Write(132, 106, "Cunning:", WhiteBold)
+        Write(168, 106, tostring(player.skills[2][2]), WhiteBold)
         Spr(174, 105, 120)
         Rect(173, 105, 9, 9, Green)
     else
-        Write(132, 106,  "Physique:")
-        Write(168, 106, tostring(player.skills[1][2]))
+        Write(132, 106, "Cunning:")
+        Write(168, 106, tostring(player.skills[2][2]))
     end
-    if lookup == "cunning" then
-        Write(132, 116, "Cunning:", WhiteBold)
-        Write(168, 116, tostring(player.skills[2][2]), WhiteBold)
+    if lookup == "empathy" then
+        Write(132, 116, "Empathy:", WhiteBold)
+        Write(168, 116, tostring(player.skills[3][2]), WhiteBold)
         Spr(174, 115, 120)
         Rect(173, 115, 9, 9, Green)
     else
-        Write(132, 116, "Cunning:")
-        Write(168, 116, tostring(player.skills[2][2]))
+        Write(132, 116, "Empathy:")
+        Write(168, 116, tostring(player.skills[3][2]))
     end
-    if lookup == "empathy" then
-        Write(132, 126, "Empathy:", WhiteBold)
-        Write(168, 126, tostring(player.skills[3][2]), WhiteBold)
-        Spr(174, 125, 120)
-        Rect(173, 125, 9, 9, Green)
-    else
-        Write(132, 126, "Empathy:")
-        Write(168, 126, tostring(player.skills[3][2]))
-    end
+    Write(132, 126, "Gold:")
+    Write(168, 126, tostring(player.gold))
 end
 
 function screen.draw_inventory()
