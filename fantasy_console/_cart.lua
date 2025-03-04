@@ -72,6 +72,20 @@ function Input()
                 State = states.inventory
             end
         end
+    elseif State == states.purchasing then
+        if Btnp("up") then
+            menu.option_chosen = menu.option_chosen - 1
+            if menu.option_chosen < 1 then
+                menu.option_chosen = #menu.current_menu.options
+            end
+        elseif Btnp("down") then
+            menu.option_chosen = menu.option_chosen + 1
+            if menu.option_chosen > #menu.current_menu.options then
+                menu.option_chosen = 1
+            end
+        elseif Btnp("return") then
+            menu.choose_option()
+        end
     end
 end
 

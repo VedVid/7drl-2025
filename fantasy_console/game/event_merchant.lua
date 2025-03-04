@@ -11,6 +11,7 @@ event.options = {
     "Steal from",
     "Leave"
 }
+event.purchasing_options = {}
 event.base_options = {
     "Purchase",
     "Sell",
@@ -32,10 +33,17 @@ function event.reset()
 end
 
 function event.generate_inventory()
-    local inventory_size = math.random(3, 6)
+    local inventory_size = math.random(2, 4)
     for i = 1, inventory_size do
         table.insert(event.inventory, items.items[math.random(#items.items)])
     end
+end
+
+function event.generate_purchasing_options()
+    for _, v in ipairs(event.inventory) do
+        table.insert(event.purchasing_options, v.name)
+    end
+    table.insert(event.purchasing_options, "Go back")
 end
 
 function event.generate_travel_options()

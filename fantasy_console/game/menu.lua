@@ -68,12 +68,18 @@ function menu.choose_option()
             Current_event = event_random
         end
     elseif string.find(v, events_options.purchase) then
-        do end -- TODO: MERCHANT PURCHASE
+        State = states.purchasing
+        Current_event.generate_purchasing_options()
+        Current_event.options = Current_event.purchasing_options
+        menu.current_menu = menu.new_menu(Current_event)
+        menu.current_menu.header = "Merchant is showing you the wares."
+        menu.option_chosen = 1
     elseif string.find(v, events_options.sell) then
         do end -- TODO: MERCHANT SELL
     elseif string.find(v, events_options.steal_from) then
         do end -- TODO: MERCHANT PICKPOCKET
     elseif string.find(v, events_options.leave) then
+        Current_event.reset()
         Current_event.generate_travel_options()
         menu.current_menu = menu.new_menu(Current_event)
         menu.current_menu.header = "You left the merchant.\nWhere are you going to go now?"

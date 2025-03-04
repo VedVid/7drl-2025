@@ -5,5 +5,6 @@ states.rolling = 1
 states.travel = 2
 states.inventory = 3
 states.menu = 4
+states.purchasing = 5
 
 return states
