@@ -63,7 +63,8 @@ function event.grant_rewards()
             end
         end
     end
-    local s = "You looted " .. gold .. "GP"
+    player.gold = player.gold + gold
+    local s = "Looted: " .. gold .. "GP"
     if reds > 0 then
         s = s .. ", " .. reds .. "x red die"
     end

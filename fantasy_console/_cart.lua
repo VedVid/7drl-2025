@@ -6,6 +6,7 @@ local actions = require "game/actions"
 local debug = require "game/debug"
 local dice = require "game/dice"
 local event_start = require "game/event_start"
+local event_combat = require "game/event_combat"
 local events_options = require "game/events_options"
 local map = require "game/map"
 local menu = require "game/menu"
@@ -110,9 +111,10 @@ function Update()
             Action = actions.waiting
         elseif Action == actions.fighting then
             if dice.check_for_success(1) == true then
+                local loot_string = event_combat.grant_rewards()
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(Current_event)
-                menu.current_menu.header = "You fought well and deafeated\nthe opponents.\nWhere are you going to go now?"
+                menu.current_menu.header = "You defeated the opponents.\n" .. loot_string .. "\nWhere are you going to go now?"
                 menu.option_chosen = 1
                 Difficulty = Base_difficulty
             else
