@@ -74,12 +74,12 @@ end
 function event.player_purchase_from_merchant(item_index)
     local item = event.inventory[item_index]
     if player.gold < item.price then return end
-    if item.name == "Red die" then
+    if string.find(item.name, "Red die") then
         if player.add_to_inventory(dice.red) == true then
             player.gold = player.gold - item.price
             table.remove(event.inventory, item_index)
         end
-    elseif item.name == "Gold die" then
+    elseif string.find(item.name, "Gold die") then
         if player.add_to_inventory(dice.gold) == true then
             player.gold = player.gold - item.price
             table.remove(event.inventory, item_index)

@@ -28,7 +28,7 @@ function Init()
     Current_event.generate_travel_options()
     menu.current_menu = menu.new_menu(event_start)
     player.set_random_skills()
-    player.inventory = {dice.red, dice.red, dice.red, dice.red, dice.red, dice.red, dice.gold, dice.gold}
+    player.inventory = {dice.red, dice.gold}
 end
 
 function Input()
