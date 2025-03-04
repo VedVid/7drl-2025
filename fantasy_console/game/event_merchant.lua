@@ -1,3 +1,4 @@
+local dice = require "game/dice"
 local map = require "game/map"
 
 
@@ -15,6 +16,23 @@ event.base_options = {
     "Steal from",
     "Leave"
 }
+event.angry = false
+event.price_modifier = 1
+event.prices_inexpensive = 0.75
+event.prices_normal = 1
+event.prices_expensive = 1.25
+event.prices_overall = event.prices_normal
+event.inventory = {}
+event.possible_items = {
+    dice.red,
+    dice.gold
+}
+
+function event.reset()
+    event.angry = false
+    event.inventory = {}
+    event.prices_overall = event.prices_normal
+end
 
 function event.generate_travel_options()
     event.options = {}
