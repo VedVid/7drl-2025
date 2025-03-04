@@ -8,14 +8,12 @@ local event = {}
 event.header = "You met this friendly merchant.\nMaybe browse his wares?"
 event.options = {
     "Purchase",
-    "Sell",
     "Steal from",
     "Leave"
 }
 event.purchasing_options = {}
 event.base_options = {
     "Purchase",
-    "Sell",
     "Steal from",
     "Leave"
 }
