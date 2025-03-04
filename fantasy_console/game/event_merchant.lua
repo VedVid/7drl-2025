@@ -73,28 +73,9 @@ end
 
 function event.player_purchase_from_merchant(item_index)
     local item = event.inventory[item_index]
-    print("<player_purchase_from_merchant>")
-    print(item_index)
-    if item ~= dice.red and item ~= dice.gold then
-        pcall(print, item.name)
-    elseif item == dice.red then
-        print("die red")
-    elseif item == dice.gold then
-        print("die gold")
-    else
-        print("whooot?")
-    end
-    print("player gold: ")
-    if player.gold < item.price then
-        print("Not enough gold")
-    else
-        print("Enough gold")
-    end
     if player.gold < item.price then return end
-    print("We established we have enough gold")
     if item.name == "Red die" then
         if player.add_to_inventory(dice.red) == true then
-            print("and we have enough inventory slots to do so")
             player.gold = player.gold - item.price
             --table.remove(event_merchant.inventory, item_index)
         end
@@ -106,7 +87,6 @@ function event.player_purchase_from_merchant(item_index)
     else
         do end -- handle other items there TODO
     end
-    print("</player_purchase_from_merchant>")
 end
 
 return event
