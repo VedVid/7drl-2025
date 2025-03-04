@@ -41,6 +41,7 @@ function event.generate_inventory()
 end
 
 function event.generate_purchasing_options()
+    event.purchasing_options = {}
     for _, v in ipairs(event.inventory) do
         table.insert(event.purchasing_options, v.name)
     end
