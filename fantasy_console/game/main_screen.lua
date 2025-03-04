@@ -78,6 +78,8 @@ function screen.draw_player_data()
         Write(132, 116, "Empathy:")
         Write(168, 116, tostring(player.skills[3][2]))
     end
+    Write(132, 126, "Gold:")
+    Write(168, 126, tostring(player.gold))
 end
 
 function screen.draw_inventory()

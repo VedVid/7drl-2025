@@ -14,6 +14,7 @@ player.skills = {
 
 player.max_health = 0
 player.current_health = 0
+player.gold = 0
 
 -- It will be kinda hack. Since there are only two additional dice (red and gold),
 -- we can assume that reds are first and golds are last.
@@ -36,12 +37,13 @@ end
 
 function player.add_to_inventory(die)
     assert(die == dice.red or die == dice.gold, "die should be only red or gold")
-    if #player.inventory >= player.inventory_max then return end
+    if #player.inventory >= player.inventory_max then return false end
     if die == dice.red then
         table.insert(player.inventory, 1, dice.red)
     else
         table.insert(player.inventory, dice.gold)
     end
+    return true
 end
 
 function player.remove_from_inventory(die)
