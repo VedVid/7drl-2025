@@ -87,7 +87,9 @@ function menu.choose_option()
         menu.current_menu.header = Current_event.header
         menu.option_chosen = 1
     elseif State == states.purchasing then
+        print("State == purchasing")
         if event_merchant.check_if_in_inventory(v) then
+            print(v)
             event_merchant.player_purchase_from_merchant(menu.option_chosen)
         end
     elseif string.find(v, events_options.sell) then
