@@ -156,10 +156,10 @@ function screen.draw_map(state)
         Pset(52, 38, Blue)
         Pset(54, 38, Blue)
         Pset(56, 38, Blue)
-        Rect(18, 32, 13, 13, White)
+        Rect(18, 32, 13, 13, BlackBold)
     end
     -- Draw current room
-    Rect(55, 31, 16, 15, White)
+    Rect(55, 31, 16, 15, BlackBold)
     Rectfill(56, 32, 14, 13, WhiteBold)
     Write(61, 35, "@", Green)
     -- Draw next rooms
@@ -169,7 +169,7 @@ function screen.draw_map(state)
             position[2],
             position[3],
             position[4],
-            White
+            BlackBold
         )
         if map.doors_to[i] == "merchant" then
             Spr(position[1]+4, position[2]+4, 29)
@@ -185,7 +185,7 @@ function screen.draw_map(state)
 end
 
 function screen.draw_menu()
-    Write(3, 86, menu.current_menu.header, WhiteBold)
+    Write(3, 86, menu.current_menu.header, White)
     local y = 122
     local y_step = 10
     local x = 15

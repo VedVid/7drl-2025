@@ -87,8 +87,8 @@ palette.cyan_bold = {
 
 palette.white = {
     number=15,
-    hex="#978771",
-    rgb01={0.592, 0.529, 0.443, 1}
+    hex="#ae9d8d",
+    rgb01={0.681, 0.617, 0.554, 1}
 }
 
 palette.white_bold = {
