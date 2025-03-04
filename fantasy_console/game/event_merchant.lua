@@ -43,7 +43,40 @@ end
 function event.generate_purchasing_options()
     event.purchasing_options = {}
     for _, v in ipairs(event.inventory) do
-        local s = v.name .. " [" .. v.price .. "$]"
+        local s = v.name
+        if v ~= items.dice_red and v ~= items.dice_gold then
+            if #v.boost > 0 or #v.nerf > 0 then
+                s = s .. " {"
+                for _, z in ipairs(v.boost) do
+                    local boost_symbol = ""
+                    if z[1] == 1 then
+                        boost_symbol = "P+"
+                    elseif z[1] == 2 then
+                        boost_symbol = "C+"
+                    elseif z[1] == 3 then
+                        boost_symbol = "E+"
+                    else
+                        print("icorrect boost symbol")
+                    end
+                    s = s .. boost_symbol .. z[2]
+                end
+                for _, z in ipairs(v.nerf) do
+                    local nerf_symbol = ""
+                    if z[1] == 1 then
+                        nerf_symbol = "P-"
+                    elseif z[1] == 2 then
+                        nerf_symbol = "C-"
+                    elseif z[1] == 3 then
+                        nerf_symbol = "E-"
+                    else
+                        print("icorrect boost symbol")
+                    end
+                    s = s .. nerf_symbol .. z[2]
+                end
+                s = s .. "}"
+            end
+        end
+        s = s .. " [" .. v.price .. "$]"
         table.insert(event.purchasing_options, s)
     end
     table.insert(event.purchasing_options, "Go back")
