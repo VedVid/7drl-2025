@@ -77,12 +77,12 @@ function event.player_purchase_from_merchant(item_index)
     if item.name == "Red die" then
         if player.add_to_inventory(dice.red) == true then
             player.gold = player.gold - item.price
-            --table.remove(event_merchant.inventory, item_index)
+            table.remove(event.inventory, item_index)
         end
     elseif item.name == "Gold die" then
         if player.add_to_inventory(dice.gold) == true then
             player.gold = player.gold - item.price
-            --table.remove(event_merchant.inventory, item_index)
+            table.remove(event.inventory, item_index)
         end
     else
         do end -- handle other items there TODO
