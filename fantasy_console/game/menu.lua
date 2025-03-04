@@ -25,6 +25,9 @@ end
 
 function menu.choose_option()
     local v = menu.current_menu.options[menu.option_chosen]
+    ---
+    --- TRAVEL
+    --- 
     if string.find(v, events_options.go_to_first_room) then
         State = states.travel
         Travel_anim_x = 2
@@ -67,6 +70,9 @@ function menu.choose_option()
         elseif string.find(v, map.door_names.event) then
             Current_event = event_random
         end
+    ---
+    --- MERCHANT
+    --- 
     elseif string.find(v, events_options.purchase) then
         State = states.purchasing
         Current_event.generate_purchasing_options()
@@ -80,6 +86,7 @@ function menu.choose_option()
         menu.current_menu = menu.new_menu(Current_event)
         menu.current_menu.header = Current_event.header
         menu.option_chosen = 1
+    
     elseif string.find(v, events_options.sell) then
         do end -- TODO: MERCHANT SELL
     elseif string.find(v, events_options.steal_from) then
@@ -90,12 +97,18 @@ function menu.choose_option()
         menu.current_menu = menu.new_menu(Current_event)
         menu.current_menu.header = "You left the merchant.\nWhere are you going to go now?"
         menu.option_chosen = 1
+    ---
+    --- COMBAT
+    ---
     elseif string.find(v, events_options.fight) then
         player.make_a_roll(actions.fighting, events_options.lookup_with_dice[events_options.fight])
     elseif string.find(v, events_options.try_to_flee) then
         player.make_a_roll(actions.fleeing, events_options.lookup_with_dice[events_options.try_to_flee])
     elseif string.find(v, events_options.try_diplomacy) then
         player.make_a_roll(actions.diplomacy, events_options.lookup_with_dice[events_options.try_diplomacy])
+    ---
+    --- RANDOM EVENTS
+    ---
     elseif string.find(v, events_options.proceed) then
         Current_event.generate_travel_options()
         menu.current_menu = menu.new_menu(Current_event)
