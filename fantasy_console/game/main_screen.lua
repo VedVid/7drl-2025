@@ -47,8 +47,8 @@ function screen.draw_roll_preview(option)
 end
 
 function screen.draw_player_data()
-    Write(132, 86, "Health:", WhiteBold)
-    Write(168, 86, player.current_health .. "/" .. player.max_health, WhiteBold)
+    Write(132, 86, "Health:", White)
+    Write(168, 86, player.current_health .. "/" .. player.max_health, White)
     local lookup = events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]]
     if lookup then lookup = lookup[1] end
     if lookup == "physique" then
@@ -57,8 +57,8 @@ function screen.draw_player_data()
         Spr(174, 95, 120)
         Rect(173, 95, 9, 9, Green)
     else
-        Write(132, 96,  "Physique:", WhiteBold)
-        Write(168, 96, tostring(player.skills[1][2]), WhiteBold)
+        Write(132, 96,  "Physique:", White)
+        Write(168, 96, tostring(player.skills[1][2]), White)
     end
     if lookup == "cunning" then
         Write(132, 106, "Cunning:", GreenBold)
@@ -66,8 +66,8 @@ function screen.draw_player_data()
         Spr(174, 105, 120)
         Rect(173, 105, 9, 9, Green)
     else
-        Write(132, 106, "Cunning:", WhiteBold)
-        Write(168, 106, tostring(player.skills[2][2]), WhiteBold)
+        Write(132, 106, "Cunning:", White)
+        Write(168, 106, tostring(player.skills[2][2]), White)
     end
     if lookup == "empathy" then
         Write(132, 116, "Empathy:", GreenBold)
@@ -75,11 +75,11 @@ function screen.draw_player_data()
         Spr(174, 115, 120)
         Rect(173, 115, 9, 9, Green)
     else
-        Write(132, 116, "Empathy:", WhiteBold)
-        Write(168, 116, tostring(player.skills[3][2]), WhiteBold)
+        Write(132, 116, "Empathy:", White)
+        Write(168, 116, tostring(player.skills[3][2]), White)
     end
-    Write(132, 126, "Gold:", WhiteBold)
-    Write(168, 126, tostring(player.gold), WhiteBold)
+    Write(132, 126, "Gold:", White)
+    Write(168, 126, tostring(player.gold), White)
 end
 
 function screen.draw_inventory()
@@ -190,13 +190,15 @@ function screen.draw_menu()
     local y_step = 10
     local x = 15
     for i, option in ipairs(menu.current_menu.options) do
+        local color = White
         if State == states.menu and i == menu.option_chosen then
+            color = BlackBold
             Spr(x-12, y-1, 181)
         end
         if events_options.lookup_with_dice[menu.current_menu.options[i]] then
-            Write(x, y, option .. " [#=" .. Difficulty .. "]", WhiteBold)
+            Write(x, y, option .. " [#=" .. Difficulty .. "]", color)
         else
-            Write(x, y, option, WhiteBold)
+            Write(x, y, option, color)
         end
         y = y + y_step
     end
