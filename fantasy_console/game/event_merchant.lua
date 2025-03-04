@@ -60,4 +60,14 @@ function event.generate_travel_options()
     end
 end
 
+function event.check_if_in_inventory(s)
+    for _, v in ipairs(event.inventory) do
+        if string.find(s, v) then
+            return true
+        end
+    end
+    return false
+end
+
+
 return event
