@@ -33,6 +33,7 @@ function menu.choose_option()
         Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
+            Current_event.generate_inventory()
         elseif string.find(v, map.door_names.combat) then
             Current_event = event_combat
         elseif string.find(v, map.door_names.event) then
@@ -46,6 +47,7 @@ function menu.choose_option()
         Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
+            Current_event.generate_inventory()
         elseif string.find(v, map.door_names.combat) then
             Current_event = event_combat
         elseif string.find(v, map.door_names.event) then
@@ -59,6 +61,7 @@ function menu.choose_option()
         Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
+            Current_event.generate_inventory()
         elseif string.find(v, map.door_names.combat) then
             Current_event = event_combat
         elseif string.find(v, map.door_names.event) then
