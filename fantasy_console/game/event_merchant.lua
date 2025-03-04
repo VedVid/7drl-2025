@@ -85,7 +85,18 @@ function event.player_purchase_from_merchant(item_index)
             table.remove(event.inventory, item_index)
         end
     else
-        do end -- handle other items there TODO
+        for _, v in ipairs(item.boost) do
+            local skill_to_buff = v[1]
+            player.skills[skill_to_buff][2] = player.skills[skill_to_buff][2] + v[2]
+        end
+        for _, v in ipairs(item.nerf) do
+            local skill_to_nerf = v[1]
+            player.skills[skill_to_nerf][2] = player.skills[skill_to_nerf][2] - v[2]
+            if player.skills[skill_to_nerf] < 1 then
+                player.skills[skill_to_nerf] = 1
+            end
+        end
+        table.remove(event.inventory, item_index)
     end
 end
 
