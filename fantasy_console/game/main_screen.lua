@@ -190,15 +190,13 @@ function screen.draw_menu()
     local y_step = 10
     local x = 15
     for i, option in ipairs(menu.current_menu.options) do
-        local color = White
         if State == states.menu and i == menu.option_chosen then
-            color = BlackBold
             Spr(x-12, y-1, 181)
         end
         if events_options.lookup_with_dice[menu.current_menu.options[i]] then
-            Write(x, y, option .. " [#=" .. Difficulty .. "]", color)
+            Write(x, y, option .. " [#=" .. Difficulty .. "]", White)
         else
-            Write(x, y, option, color)
+            Write(x, y, option, White)
         end
         y = y + y_step
     end
