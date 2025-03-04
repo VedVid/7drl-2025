@@ -86,7 +86,8 @@ function menu.choose_option()
         menu.current_menu = menu.new_menu(Current_event)
         menu.current_menu.header = Current_event.header
         menu.option_chosen = 1
-    
+    elseif event_merchant.check_if_in_inventory(v) then
+        event_merchant.player_purchase_from_merchant(menu.option_chosen)
     elseif string.find(v, events_options.sell) then
         do end -- TODO: MERCHANT SELL
     elseif string.find(v, events_options.steal_from) then

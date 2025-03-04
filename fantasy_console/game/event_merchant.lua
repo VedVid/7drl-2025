@@ -1,6 +1,7 @@
 local dice = require "game/dice"
 local items = require "game/items"
 local map = require "game/map"
+local player = require "game/player"
 
 
 local event = {}
@@ -62,12 +63,24 @@ end
 
 function event.check_if_in_inventory(s)
     for _, v in ipairs(event.inventory) do
-        if string.find(s, v) then
+        if string.find(s.name, v) then
             return true
         end
     end
     return false
 end
 
+function event.player_purchase_from_merchant(item_index)
+    local item = event.inventory[item_index]
+    if player.gold < item.price then return end
+    if item == dice.red or item == dice.gold then
+        if player.add_to_inventory(item) == true then
+            player.gold = player.gold - item.price
+            --table.remove(event_merchant.inventory, item_index)
+        end
+    else
+        do end -- handle other items there TODO
+    end
+end
 
 return event
