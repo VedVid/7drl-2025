@@ -89,8 +89,13 @@ function menu.choose_option()
     elseif State == states.purchasing then
         print("State == purchasing")
         if event_merchant.check_if_in_inventory(v) then
-            print(v)
             event_merchant.player_purchase_from_merchant(menu.option_chosen)
+        end
+        Current_event.generate_purchasing_options()
+        Current_event.options = Current_event.purchasing_options
+        menu.current_menu = menu.new_menu(Current_event)
+        if menu.option_chosen > #menu.current_menu.options then
+            menu.option_chosen = #menu.current_menu.options
         end
     elseif string.find(v, events_options.sell) then
         do end -- TODO: MERCHANT SELL
