@@ -6,5 +6,6 @@ states.travel = 2
 states.inventory = 3
 states.menu = 4
 states.purchasing = 5
+states.stealing = 6
 
 return states

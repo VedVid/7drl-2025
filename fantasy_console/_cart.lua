@@ -72,7 +72,7 @@ function Input()
                 State = states.inventory
             end
         end
-    elseif State == states.purchasing then
+    elseif State == states.purchasing or State == states.stealing then
         if Btnp("up") then
             menu.option_chosen = menu.option_chosen - 1
             if menu.option_chosen < 1 then
