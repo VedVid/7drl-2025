@@ -64,7 +64,7 @@ end
 
 function event.check_if_in_inventory(s)
     for _, v in ipairs(event.inventory) do
-        if string.find(s.name, v) then
+        if string.find(s, v.name) then
             return true
         end
     end
