@@ -47,39 +47,39 @@ function screen.draw_roll_preview(option)
 end
 
 function screen.draw_player_data()
-    Write(132, 86, "Health:")
-    Write(168, 86, player.current_health .. "/" .. player.max_health)
+    Write(132, 86, "Health:", WhiteBold)
+    Write(168, 86, player.current_health .. "/" .. player.max_health, WhiteBold)
     local lookup = events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]]
     if lookup then lookup = lookup[1] end
     if lookup == "physique" then
-        Write(132, 96,  "Physique:", WhiteBold)
-        Write(168, 96, tostring(player.skills[1][2]), WhiteBold)
+        Write(132, 96,  "Physique:", GreenBold)
+        Write(168, 96, tostring(player.skills[1][2]), GreenBold)
         Spr(174, 95, 120)
         Rect(173, 95, 9, 9, Green)
     else
-        Write(132, 96,  "Physique:")
-        Write(168, 96, tostring(player.skills[1][2]))
+        Write(132, 96,  "Physique:", WhiteBold)
+        Write(168, 96, tostring(player.skills[1][2]), WhiteBold)
     end
     if lookup == "cunning" then
-        Write(132, 106, "Cunning:", WhiteBold)
-        Write(168, 106, tostring(player.skills[2][2]), WhiteBold)
+        Write(132, 106, "Cunning:", GreenBold)
+        Write(168, 106, tostring(player.skills[2][2]), GreenBold)
         Spr(174, 105, 120)
         Rect(173, 105, 9, 9, Green)
     else
-        Write(132, 106, "Cunning:")
-        Write(168, 106, tostring(player.skills[2][2]))
+        Write(132, 106, "Cunning:", WhiteBold)
+        Write(168, 106, tostring(player.skills[2][2]), WhiteBold)
     end
     if lookup == "empathy" then
-        Write(132, 116, "Empathy:", WhiteBold)
-        Write(168, 116, tostring(player.skills[3][2]), WhiteBold)
+        Write(132, 116, "Empathy:", GreenBold)
+        Write(168, 116, tostring(player.skills[3][2]), GreenBold)
         Spr(174, 115, 120)
         Rect(173, 115, 9, 9, Green)
     else
-        Write(132, 116, "Empathy:")
-        Write(168, 116, tostring(player.skills[3][2]))
+        Write(132, 116, "Empathy:", WhiteBold)
+        Write(168, 116, tostring(player.skills[3][2]), WhiteBold)
     end
-    Write(132, 126, "Gold:")
-    Write(168, 126, tostring(player.gold))
+    Write(132, 126, "Gold:", WhiteBold)
+    Write(168, 126, tostring(player.gold), WhiteBold)
 end
 
 function screen.draw_inventory()
@@ -185,7 +185,7 @@ function screen.draw_map(state)
 end
 
 function screen.draw_menu()
-    Write(3, 86, menu.current_menu.header, White)
+    Write(3, 86, menu.current_menu.header, WhiteBold)
     local y = 122
     local y_step = 10
     local x = 15
