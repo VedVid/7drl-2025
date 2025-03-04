@@ -23,10 +23,6 @@ event.prices_normal = 1
 event.prices_expensive = 1.25
 event.prices_overall = event.prices_normal
 event.inventory = {}
-event.possible_items = {
-    dice.red,
-    dice.gold
-}
 
 function event.reset()
     event.angry = false

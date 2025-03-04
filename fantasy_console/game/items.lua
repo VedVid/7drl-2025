@@ -6,6 +6,14 @@ local items = {}
 
 items.items = {}
 
+items.items.dice_red = {}
+items.items.dice_red.name = "Red die"
+items.items.dice_red.price = 20
+
+items.items.dice_gold = {}
+items.items.dice_gold.name = "Gold die"
+items.items.dice_gold.price = 40
+
 items.items.potion_of_strength = items.new_item(
     "Potion of strength", {{player.skills[1], 1}}
 )
