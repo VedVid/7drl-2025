@@ -1,7 +1,6 @@
 local dice = require "game/dice"
-
-
 local map = require "game/map"
+local player = require "game/player"
 
 
 local event = {}
@@ -33,8 +32,6 @@ end
 
 function event.grant_rewards()
     local gold = math.random(5, 20) * Base_difficulty
-    local s = "You looted " .. gold .. "GP"
-    local dices = {}
     local chance = math.random(101)
     local amount = 0
     local reds = 0
@@ -56,8 +53,17 @@ function event.grant_rewards()
             reds = reds - 1
             golds = golds + 1
         end
-        table.insert(dices, die_type)
+        if not player.add_to_inventory(die_type) then
+            if die_type == dice.red then
+                reds = reds - 1
+                gold = gold + 15
+            elseif die_type == dice.gold then
+                golds = golds - 1
+                gold = gold + 30
+            end
+        end
     end
+    local s = "You looted " .. gold .. "GP"
     if reds > 0 then
         s = s .. ", " .. reds .. "x red die"
     end
