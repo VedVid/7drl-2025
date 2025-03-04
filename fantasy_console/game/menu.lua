@@ -74,6 +74,12 @@ function menu.choose_option()
         menu.current_menu = menu.new_menu(Current_event)
         menu.current_menu.header = "Merchant is showing you the wares."
         menu.option_chosen = 1
+    elseif string.find(v, events_options.go_back) then
+        State = states.menu
+        Current_event.options = Current_event.base_options
+        menu.current_menu = menu.new_menu(Current_event)
+        menu.current_menu.header = Current_event.header
+        menu.option_chosen = 1
     elseif string.find(v, events_options.sell) then
         do end -- TODO: MERCHANT SELL
     elseif string.find(v, events_options.steal_from) then

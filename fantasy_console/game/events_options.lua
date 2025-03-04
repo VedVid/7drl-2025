@@ -14,6 +14,7 @@ events_options.fight = "Fight"
 events_options.try_to_flee = "Try to flee"
 events_options.try_diplomacy = "Try diplomacy"
 events_options.proceed = "Proceed"
+events_options.go_back = "Go back"
 
 events_options.lookup_with_dice = {
     [events_options.steal_from] = player.skills[2],
