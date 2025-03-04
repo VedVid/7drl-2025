@@ -25,6 +25,9 @@ end
 
 function menu.choose_option()
     local v = menu.current_menu.options[menu.option_chosen]
+    ---
+    --- TRAVEL
+    --- 
     if string.find(v, events_options.go_to_first_room) then
         State = states.travel
         Travel_anim_x = 2
@@ -33,6 +36,7 @@ function menu.choose_option()
         Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
+            Current_event.generate_inventory()
         elseif string.find(v, map.door_names.combat) then
             Current_event = event_combat
         elseif string.find(v, map.door_names.event) then
@@ -46,6 +50,7 @@ function menu.choose_option()
         Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
+            Current_event.generate_inventory()
         elseif string.find(v, map.door_names.combat) then
             Current_event = event_combat
         elseif string.find(v, map.door_names.event) then
@@ -59,28 +64,61 @@ function menu.choose_option()
         Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
+            Current_event.generate_inventory()
         elseif string.find(v, map.door_names.combat) then
             Current_event = event_combat
         elseif string.find(v, map.door_names.event) then
             Current_event = event_random
         end
+    ---
+    --- MERCHANT
+    --- 
     elseif string.find(v, events_options.purchase) then
-        do end -- TODO: MERCHANT PURCHASE
+        State = states.purchasing
+        Current_event.generate_purchasing_options()
+        Current_event.options = Current_event.purchasing_options
+        menu.current_menu = menu.new_menu(Current_event)
+        menu.current_menu.header = "Merchant is showing you the wares."
+        menu.option_chosen = 1
+    elseif string.find(v, events_options.go_back) then
+        State = states.menu
+        Current_event.options = Current_event.base_options
+        menu.current_menu = menu.new_menu(Current_event)
+        menu.current_menu.header = Current_event.header
+        menu.option_chosen = 1
+    elseif State == states.purchasing then
+        print("State == purchasing")
+        if event_merchant.check_if_in_inventory(v) then
+            event_merchant.player_purchase_from_merchant(menu.option_chosen)
+        end
+        Current_event.generate_purchasing_options()
+        Current_event.options = Current_event.purchasing_options
+        menu.current_menu = menu.new_menu(Current_event)
+        if menu.option_chosen > #menu.current_menu.options then
+            menu.option_chosen = #menu.current_menu.options
+        end
     elseif string.find(v, events_options.sell) then
         do end -- TODO: MERCHANT SELL
     elseif string.find(v, events_options.steal_from) then
         do end -- TODO: MERCHANT PICKPOCKET
     elseif string.find(v, events_options.leave) then
+        Current_event.reset()
         Current_event.generate_travel_options()
         menu.current_menu = menu.new_menu(Current_event)
         menu.current_menu.header = "You left the merchant.\nWhere are you going to go now?"
         menu.option_chosen = 1
+    ---
+    --- COMBAT
+    ---
     elseif string.find(v, events_options.fight) then
         player.make_a_roll(actions.fighting, events_options.lookup_with_dice[events_options.fight])
     elseif string.find(v, events_options.try_to_flee) then
         player.make_a_roll(actions.fleeing, events_options.lookup_with_dice[events_options.try_to_flee])
     elseif string.find(v, events_options.try_diplomacy) then
         player.make_a_roll(actions.diplomacy, events_options.lookup_with_dice[events_options.try_diplomacy])
+    ---
+    --- RANDOM EVENTS
+    ---
     elseif string.find(v, events_options.proceed) then
         Current_event.generate_travel_options()
         menu.current_menu = menu.new_menu(Current_event)

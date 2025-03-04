@@ -28,7 +28,7 @@ function Init()
     Current_event.generate_travel_options()
     menu.current_menu = menu.new_menu(event_start)
     player.set_random_skills()
-    player.inventory = {dice.red, dice.red, dice.red, dice.red, dice.red, dice.red, dice.gold, dice.gold}
+    player.inventory = {dice.red, dice.gold}
 end
 
 function Input()
@@ -71,6 +71,20 @@ function Input()
             if events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]] then
                 State = states.inventory
             end
+        end
+    elseif State == states.purchasing then
+        if Btnp("up") then
+            menu.option_chosen = menu.option_chosen - 1
+            if menu.option_chosen < 1 then
+                menu.option_chosen = #menu.current_menu.options
+            end
+        elseif Btnp("down") then
+            menu.option_chosen = menu.option_chosen + 1
+            if menu.option_chosen > #menu.current_menu.options then
+                menu.option_chosen = 1
+            end
+        elseif Btnp("return") then
+            menu.choose_option()
         end
     end
 end
