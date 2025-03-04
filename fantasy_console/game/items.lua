@@ -6,29 +6,35 @@ local items = {}
 
 items.items = {}
 
-items.items.dice_red = {}
-items.items.dice_red.name = "Red die"
-items.items.dice_red.price = 20
+items.dice_red = {}
+items.dice_red.name = "Red die"
+items.dice_red.price = 20
+table.insert(items.items, items.dice_red)
 
 items.items.dice_gold = {}
 items.items.dice_gold.name = "Gold die"
 items.items.dice_gold.price = 40
+table.insert(items.items, items.dice_gold)
 
-items.items.potion_of_strength = items.new_item(
+items.potion_of_strength = items.new_item(
     "Potion of strength", {{player.skills[1], 1}}
 )
+table.insert(items.items, items.potion_of_strength)
 
-items.items.potion_of_cunning = items.new_item(
+items.potion_of_cunning = items.new_item(
     "Potion of cunning", {{player.skills[2], 1}}
 )
+table.insert(items.items, items.potion_of_cunning)
 
-items.items.potion_of_empathy = items.new_item(
+items.potion_of_empathy = items.new_item(
     "Potion of empathy", {{player.skills[3], 1}}
 )
+table.insert(items.items, items.potion_of_empathy)
 
-items.items.heavy_shoes = items.new_item(
+items.heavy_shoes = items.new_item(
     "Heavy shoes", {{player.skills[1], 2}}, {{player.skills[2], 1}}
 )
+table.insert(items.items, items.heavy_shoes)
 
 
 function items.new_item(name, boost, nerf)

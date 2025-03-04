@@ -1,4 +1,5 @@
 local dice = require "game/dice"
+local items = require "game/items"
 local map = require "game/map"
 
 
@@ -28,6 +29,13 @@ function event.reset()
     event.angry = false
     event.inventory = {}
     event.prices_overall = event.prices_normal
+end
+
+function event.generate_inventory()
+    local inventory_size = math.random(3, 6)
+    for i = 1, inventory_size do
+        table.insert(event.inventory, items.items[math.random(#items.items)])
+    end
 end
 
 function event.generate_travel_options()
