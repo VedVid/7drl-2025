@@ -96,6 +96,7 @@ function event.player_purchase_from_merchant(item_index)
                 player.skills[skill_to_nerf] = 1
             end
         end
+        player.gold = player.gold - item.price
         table.remove(event.inventory, item_index)
     end
 end
