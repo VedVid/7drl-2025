@@ -33,6 +33,7 @@ function menu.choose_option()
         Travel_anim_x = 2
         map.travel_destination = 1
         Current_event.options = Current_event.base_options
+        Stole_already = false
         Difficulty = Base_difficulty
         Room = Room + 1
         if Room % 10 == 0 then
@@ -53,6 +54,7 @@ function menu.choose_option()
         Travel_anim_x = 2
         map.travel_destination = 2
         Current_event.options = Current_event.base_options
+        Stole_already = false
         Difficulty = Base_difficulty
         Room = Room + 1
         if Room % 10 == 0 then
@@ -73,6 +75,7 @@ function menu.choose_option()
         Travel_anim_x = 2
         map.travel_destination = 3
         Current_event.options = Current_event.base_options
+        Stole_already = false
         Difficulty = Base_difficulty
         Room = Room + 1
         if Room % 10 == 0 then
@@ -117,6 +120,7 @@ function menu.choose_option()
         end
     elseif string.find(v, events_options.steal_from) then
         State = states.stealing
+        Stole_already = false
         player.make_a_roll(actions.stealing, events_options.lookup_with_dice[events_options.steal_from])
     elseif State == states.stealing then
         if event_merchant.check_if_in_inventory(v) then
