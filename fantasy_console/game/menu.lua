@@ -121,6 +121,7 @@ function menu.choose_option()
     elseif State == states.stealing then
         if event_merchant.check_if_in_inventory(v) then
             event_merchant.player_purchase_from_merchant(menu.option_chosen)
+            Stole_already = true
         end
         Current_event.generate_purchasing_options()
         Current_event.options = Current_event.purchasing_options

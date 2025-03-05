@@ -1,6 +1,5 @@
 require "../api"
 
-local actions = require "game/actions"
 local dice = require "game/dice"
 local events_options = require "game/events_options"
 local map = require "game/map"
@@ -214,7 +213,7 @@ function screen.draw_menu()
             end
         end
         if State == states.stealing then
-            if option ~= "Go back" then
+            if option ~= "Go back" and Stole_already == true then
                 color = BlackBold
             end
         end

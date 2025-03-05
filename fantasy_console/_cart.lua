@@ -24,6 +24,7 @@ function Init()
     Room = 1
     Base_difficulty = 1
     Difficulty = 1
+    Stole_already = false
     F = 0
     map.generate_rooms()
     Current_event = event_start
