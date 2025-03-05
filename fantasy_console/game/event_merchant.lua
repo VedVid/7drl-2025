@@ -40,6 +40,8 @@ function event.generate_inventory()
             table.insert(event.inventory, items.dice_gold)
         elseif chance <= 35 and not utils.has_value(event.inventory, items.dice_red) then
             table.insert(event.inventory, items.dice_red)
+        elseif chance <= 60 and not utils.has_value(event.inventory, items.nutritious_meal) then
+            table.insert(event.inventory, items.nutritious_meal)
         else
             local item = items.items[math.random(#items.items)]
             while true do
@@ -132,6 +134,13 @@ function event.player_purchase_from_merchant(item_index)
         if player.add_to_inventory(dice.gold) == true then
             player.gold = player.gold - item.price
             table.remove(event.inventory, item_index)
+        end
+    elseif string.find(item.name, "meal") then
+        if player.current_health < player.max_health then
+            player.current_health = player.current_health + 1
+        else
+            player.max_health = player.max_health + 1
+            player.current_health = player.max_health
         end
     else
         for _, v in ipairs(item.boost) do

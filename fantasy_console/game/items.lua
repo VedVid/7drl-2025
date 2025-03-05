@@ -32,6 +32,11 @@ items.dice_gold.name = "Gold die"
 items.dice_gold.price = 40
 table.insert(items.items, items.dice_gold)
 
+items.nutritious_meal = {}
+items.nutritious_meal.name = "Nutritious meal {HP+1}"
+items.nutricious_meal.price = 50
+table.insert(items.items, items.nutritious_meal)
+
 items.potion_of_strength = items.new_item(
     -- first number is skill number, second number is boost amount
     "Potion of strength", {{1, 1}}
