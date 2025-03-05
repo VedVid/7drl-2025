@@ -38,7 +38,7 @@ function event.generate_inventory()
         local chance = math.random(101)
         if chance <= 15 and not utils.has_value(event.inventory, items.dice_gold) then
             table.insert(event.inventory, items.dice_gold)
-        elseif chance <= 20 and not utils.has_value(event.inventory, items.dice_red) then
+        elseif chance <= 35 and not utils.has_value(event.inventory, items.dice_red) then
             table.insert(event.inventory, items.dice_red)
         else
             local item = items.items[math.random(#items.items)]

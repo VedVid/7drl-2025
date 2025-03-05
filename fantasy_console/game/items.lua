@@ -27,9 +27,9 @@ items.dice_red.name = "Red die"
 items.dice_red.price = 20
 table.insert(items.items, items.dice_red)
 
-items.items.dice_gold = {}
-items.items.dice_gold.name = "Gold die"
-items.items.dice_gold.price = 40
+items.dice_gold = {}
+items.dice_gold.name = "Gold die"
+items.dice_gold.price = 40
 table.insert(items.items, items.dice_gold)
 
 items.potion_of_strength = items.new_item(
