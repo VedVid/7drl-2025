@@ -89,7 +89,6 @@ function event.generate_purchasing_options()
                     end
                     s = s .. nerf_symbol .. z[2] .. "}"
                 end
-                s = s .. "}"
             end
         end
         s = s .. " [" .. v.price .. "$]"

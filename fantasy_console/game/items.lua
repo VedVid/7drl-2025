@@ -8,9 +8,13 @@ function items.new_item(name, boost, nerf)
     if nerf == nil then nerf = {} end
     item.boost = boost
     item.nerf = nerf
-    local price = math.random(15, 30)
-    price = price + (10 * #boost)
-    price = price - (5 * #nerf)
+    local price = 20
+    for _, b in ipairs(boost) do
+        price = price + (10 * b[2])
+    end
+    for _, n in ipairs(nerf) do
+        price = price - (5 * n[2])
+    end
     item.price = price
     return item
 end
@@ -65,14 +69,25 @@ items.sling = items.new_item(
 table.insert(items.items, items.sling)
 
 items.royal_sword = items.new_item(
-    "Royal sword", {{1, 2}, {3, 2}}, {{2, 1}}
+    "Ro.sword", {{1, 2}, {3, 2}}, {{2, 1}}
 )
 table.insert(items.items, items.royal_sword)
 
 items.card_deck = items.new_item(
-    "Card deck", {{2, 1}, {3, 1}}
+    "Card deck", {{2, 2}, {3, 1}}
 )
 table.insert(items.items, items.card_deck)
 
+items.compass = items.new_item(
+    "Compass", {{2, 1}, {3, 1}}
+)
+
+items.grappling_hook = items.new_item(
+    "Grapp. hook", {{2, 3}}, {{3, 2}}
+)
+
+items.bowler_hat = items.new_item(
+    "Bowler hat", {{3, 2}}
+)
 
 return items
