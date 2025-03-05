@@ -1,3 +1,4 @@
+local actions = require "game/actions"
 local dice = require "game/dice"
 local items = require "game/items"
 local map = require "game/map"
@@ -103,7 +104,9 @@ function event.generate_purchasing_options()
         elseif v == items.nutritious_meal then
             s = s .. " {HP+1}"
         end
-        s = s .. " [" .. v.price .. "$]"
+        if Action ~= actions.stealing then
+            s = s .. " [" .. v.price .. "$]"
+        end
         table.insert(event.purchasing_options, s)
     end
     table.insert(event.purchasing_options, "Go back")
