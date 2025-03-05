@@ -152,6 +152,17 @@ function Update()
                 Difficulty = Difficulty + 1
             end
             Action = actions.waiting
+        elseif Action == actions.stealing then
+            if dice.check_for_success(Difficulty) == true then
+                State = states.purchasing
+                Current_event.generate_purchasing_options()
+                Current_event.options = Current_event.purchasing_options
+                menu.current_menu = menu.new_menu(Current_event)
+                if menu.option_chosen > #menu.current_menu.options then
+                    menu.option_chosen = #menu.current_menu.options
+                end
+            end
+            Action = actions.waiting
         end
     end
     if F > 3000 then

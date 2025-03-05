@@ -1,7 +1,6 @@
 require "../api"
 
 local actions = require "game/actions"
-local dice = require "game/dice"
 local event_combat = require "game/event_combat"
 local event_merchant = require "game/event_merchant"
 local event_random = require "game/event_random"
@@ -117,17 +116,6 @@ function menu.choose_option()
         end
     elseif string.find(v, events_options.steal_from) then
         player.make_a_roll(actions.stealing, events_options.lookup_with_dice[events_options.steal_from])
-        -- the code below should be in _cart.lua Update function
-        if dice.check_for_success(Difficulty) == true then
-            Action = actions.stealing
-            State = states.purchasing
-            Current_event.generate_purchasing_options()
-            Current_event.options = Current_event.purchasing_options
-            menu.current_menu = menu.new_menu(Current_event)
-            if menu.option_chosen > #menu.current_menu.options then
-                menu.option_chosen = #menu.current_menu.options
-            end
-        end
     elseif string.find(v, events_options.leave) then
         Current_event.reset()
         Current_event.generate_travel_options()
