@@ -34,6 +34,7 @@ function menu.choose_option()
         map.travel_destination = 1
         Current_event.options = Current_event.base_options
         Difficulty = Base_difficulty
+        Room = Room + 1
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
             Current_event.generate_inventory()
@@ -48,6 +49,7 @@ function menu.choose_option()
         map.travel_destination = 2
         Current_event.options = Current_event.base_options
         Difficulty = Base_difficulty
+        Room = Room + 1
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
             Current_event.generate_inventory()
@@ -62,6 +64,7 @@ function menu.choose_option()
         map.travel_destination = 3
         Current_event.options = Current_event.base_options
         Difficulty = Base_difficulty
+        Room = Room + 1
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
             Current_event.generate_inventory()

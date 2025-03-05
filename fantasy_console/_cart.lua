@@ -20,6 +20,7 @@ function Init()
     math.randomseed(os.time())
     State = states.menu
     Action = actions.waiting
+    Room = 1
     Base_difficulty = 1
     Difficulty = 1
     F = 0

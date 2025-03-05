@@ -80,6 +80,8 @@ function screen.draw_player_data()
     end
     Write(132, 126, "Gold:", White)
     Write(168, 126, tostring(player.gold), White)
+    Write(132, 136, "Room:", White)
+    Write(168, 136, tostring(Room), White)
 end
 
 function screen.draw_inventory()
