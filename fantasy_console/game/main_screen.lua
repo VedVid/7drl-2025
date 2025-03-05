@@ -224,7 +224,7 @@ function screen.draw_menu()
             end
         end
         if events_options.lookup_with_dice[menu.current_menu.options[i]] then
-            Write(x, y, option .. " [#=" .. Difficulty .. "]", color)
+            Write(x, y, option .. " [#" .. Difficulty .. "]", color)
         else
             Write(x, y, option, color)
         end
