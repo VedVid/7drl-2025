@@ -203,16 +203,10 @@ function screen.draw_menu()
             local price
             for _, s in ipairs(ss1) do
                 if string.find(s, "$") then
-                    --print("print(s):")
-                    --print(s)
                     ss2 = Split(s, "%[")
-                    --local pprint = require("pprint")
-                    --print("pprint(ss2):")
-                    --pprint(ss2)
                     if #ss2 >= 2 then
                         price = Sub(ss2[2], 1, #ss2[2]-2)
                     end
-                    --print(#ss2[2])
                 end
             end
             if tonumber(price) > player.gold then

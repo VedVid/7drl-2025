@@ -26,7 +26,6 @@ function map.travel()
     if map.travel_destination > # map.doors_to then return end
     map.current_room = map.doors_to[map.travel_destination]
     map.generate_rooms()
-    print(map.current_room)
 end
 
 

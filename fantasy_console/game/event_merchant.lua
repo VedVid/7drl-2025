@@ -127,7 +127,6 @@ end
 function event.player_purchase_from_merchant(item_index)
     local item = event.inventory[item_index]
     if player.gold < item.price then return end
-    print(item.name)
     if string.find(item.name, "Red die") then
         if player.add_to_inventory(dice.red) == true then
             player.gold = player.gold - item.price
@@ -139,7 +138,6 @@ function event.player_purchase_from_merchant(item_index)
             table.remove(event.inventory, item_index)
         end
     elseif string.find(item.name, "meal") then
-        print("MEAL TIME")
         if player.current_health < player.max_health then
             player.current_health = player.current_health + 1
         else
