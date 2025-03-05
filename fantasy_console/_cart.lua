@@ -176,7 +176,7 @@ function Update()
             if dice.check_for_success(Difficulty) == true then
                 local chances = math.random(101)
                 if chances <= 50 or #player.inventory >= player.inventory_max then
-                    player.gold = player.gold + math.random(10 * Difficulty)
+                    player.gold = player.gold + math.ceil(math.random(10 * Difficulty) * event_merchant.price_modifier)
                     Current_event.generate_travel_options()
                     menu.current_menu = menu.new_menu(Current_event)
                     menu.current_menu.header = "You found some coins.\nWhere are you going to go now?"
@@ -228,7 +228,7 @@ function Update()
                     menu.current_menu = menu.new_menu(Current_event)
                     menu.current_menu.header = "Together you crushed the opponents.\nVictors tossed you a die.\nWhere are you going to go now?"
                 else
-                    local gold = math.random(20, 40)
+                    local gold = math.random(math.floor(20 * event_merchant.price_modifier), math.ceil(40 * event_merchant.price_modifier))
                     player.gold = player.gold + gold
                     Current_event.generate_travel_options()
                     menu.current_menu = menu.new_menu(Current_event)
@@ -256,7 +256,7 @@ function Update()
                     player.add_to_inventory(dice.gold)
                     menu.current_menu.header = menu.current_menu.header .. "They gratefully gave you a gold die\nWhere are you going to go now?"
                 elseif chances <= 300 then
-                    local gold = math.random(10, 50)
+                    local gold = math.random(math.floor(10 * event_merchant.price_modifier), math.ceil(50 * event_merchant.price_modifier))
                     player.gold = player.gold + gold
                     menu.current_menu.header = menu.current_menu.header .. "They gave you a pouch of gold\nWhere are you going to go now?"
                 elseif chances <= 400 then
@@ -272,7 +272,7 @@ function Update()
                         Base_difficulty = Base_difficulty - 1
                         menu.current_menu.header = menu.current_menu.header .. "They gave you a pouch of gold\nWhere are you going to go now?"
                     else
-                        local gold = math.random(10, 50)
+                        local gold = math.random(math.floor(10 * event_merchant.price_modifier), math.ceil(50 * event_merchant.price_modifier))
                         player.gold = player.gold + gold
                         menu.current_menu.header = menu.current_menu.header .. "They gave you a pouch of gold\nWhere are you going to go now?"
                     end
