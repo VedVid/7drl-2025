@@ -173,7 +173,7 @@ function Update()
             end
             Action = actions.waiting
         elseif Action == actions.searching_pockets then
-            if dice.check_for_success(1) == true then
+            if dice.check_for_success(Difficulty) == true then
                 local chances = math.random(101)
                 if chances <= 50 or #player.inventory >= player.inventory_max then
                     player.gold = player.gold + math.random(10 * Difficulty)
@@ -195,7 +195,7 @@ function Update()
             menu.option_chosen = 1
             Action = actions.waiting
         elseif Action == actions.help_smaller then
-            if dice.check_for_success(1) == true then
+            if dice.check_for_success(Difficulty) == true then
                 if #player.inventory < player.inventory_max - 1 then
                     local dices = {dice.red, dice.gold}
                     player.add_to_inventory(dices[math.random(#dices)])
@@ -220,7 +220,7 @@ function Update()
             menu.option_chosen = 1
             Action = actions.waiting
         elseif Action == actions.help_larger then
-            if dice.check_for_success(1) == true then
+            if dice.check_for_success(Difficulty) == true then
                 if #player.inventory < player.inventory_max then
                     local dices = {dice.red, dice.gold}
                     player.add_to_inventory(dices[math.random(#dices)])
@@ -240,6 +240,48 @@ function Update()
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(Current_event)
                 menu.current_menu.header = "The opponents fought very bravely\nand managed to drive you away.\nYou are slightly bruised.\nWhere are you going to go now?"
+            end
+            menu.option_chosen = 1
+            Action = actions.waiting
+        elseif Action == actions.try_to_mediate then
+            if dice.check_for_success(Difficulty) == true then
+                Current_event.generate_travel_options()
+                menu.current_menu = menu.new_menu(Current_event)
+                menu.current_menu.header = "You helped to resolve their conflict.\n"
+                local chances = math.random(500)
+                if chances <= 100 and #player.inventory < player.inventory_max then
+                    player.add_to_inventory(dice.red)
+                    menu.current_menu.header = menu.current_menu.header .. "They gratefully gave you a red die\nWhere are you going to go now?"
+                elseif chances <= 200 and #player.inventory < player.inventory_max then
+                    player.add_to_inventory(dice.gold)
+                    menu.current_menu.header = menu.current_menu.header .. "They gratefully gave you a gold die\nWhere are you going to go now?"
+                elseif chances <= 300 then
+                    local gold = math.random(10, 50)
+                    player.gold = player.gold + gold
+                    menu.current_menu.header = menu.current_menu.header .. "They gave you a pouch of gold\nWhere are you going to go now?"
+                elseif chances <= 400 then
+                    if player.current_health < player.max_health then
+                        player.current_health = player.current_health + 1
+                    else
+                        player.max_health = player.max_health + 1
+                        player.current_health = player.max_health
+                    end
+                    menu.current_menu.header = menu.current_menu.header .. "They gace you a large ration.\nWhere are you going to go now?"
+                else
+                    if Base_difficulty > 1 then
+                        Base_difficulty = Base_difficulty - 1
+                        menu.current_menu.header = menu.current_menu.header .. "They gave you a pouch of gold\nWhere are you going to go now?"
+                    else
+                        local gold = math.random(10, 50)
+                        player.gold = player.gold + gold
+                        menu.current_menu.header = menu.current_menu.header .. "They gave you a pouch of gold\nWhere are you going to go now?"
+                    end
+                end
+            else
+                Current_event.generate_travel_options()
+                menu.current_menu = menu.new_menu(Current_event)
+                menu.current_menu.header = "They kept arguing louder and louder,\nand you started feeling unwell.\nWhere are you going to go now?"
+                player.current_health = player.current_health - 1
             end
             menu.option_chosen = 1
             Action = actions.waiting

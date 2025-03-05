@@ -200,6 +200,13 @@ function menu.choose_option()
             menu.current_menu = menu.new_menu(Current_event)
             menu.current_menu.header = "You sneaked away before\nanyone noticed you.\nWhere are you going to go now?"
             menu.option_chosen = 1
+        elseif string.find(v, event_random.arguing_couple.options[1]) then
+            player.make_a_roll(actions.try_to_mediate, events_options.lookup_with_dice[events_options.try_to_mediate])
+        elseif string.find(v, event_random.arguing_couple.options[2]) then
+            Current_event.generate_travel_options()
+            menu.current_menu = menu.new_menu(Current_event)
+            menu.current_menu.header = "You passed them without\nattracting attention.\nWhere are you going to go now?"
+            menu.option_chosen = 1
         end
     end
 end

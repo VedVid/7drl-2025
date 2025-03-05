@@ -31,7 +31,15 @@ event.infighting.options = {
     "Help the larger group",
     "Do not interfere"
 }
-table.insert(event.events, event.infighting)
+--table.insert(event.events, event.infighting)
+
+event.arguing_couple = {}
+event.arguing_couple.header = "You see two people arguing fiercely.\nWhat do you do?"
+event.arguing_couple.options = {
+    "Try to mediate",
+    "Keep going"
+}
+table.insert(event.events, event.arguing_couple)
 
 
 function event.reset()

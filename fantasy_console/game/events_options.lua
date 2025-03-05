@@ -17,6 +17,7 @@ events_options.go_back = "Go back"
 events_options.search_pockets = "Search the pockets"
 events_options.help_smaller_group = "Help the smaller group"
 events_options.help_larger_group = "Help the larger group"
+events_options.try_to_mediate = "Try to mediate"
 
 events_options.lookup_with_dice = {
     [events_options.steal_from] = player.skills[2],
@@ -26,6 +27,7 @@ events_options.lookup_with_dice = {
     [events_options.search_pockets] = player.skills[2],
     [events_options.help_smaller_group] = player.skills[1],
     [events_options.help_larger_group] = player.skills[1],
+    [events_options.try_to_mediate] = player.skills[3]
 }
 
 return events_options
