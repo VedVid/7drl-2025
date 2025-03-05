@@ -165,6 +165,11 @@ function Update()
                 if menu.option_chosen > #menu.current_menu.options then
                     menu.option_chosen = #menu.current_menu.options
                 end
+            else
+                event_merchant.angry = true
+                event_merchant.increase_prices(0.3)
+                State = states.menu
+                menu.current_menu.header = "You have been caught red handed.\nMerchant is furious and will\nnot trade with you anymore.\nGuild increases prices for you."
             end
             Action = actions.waiting
         end
