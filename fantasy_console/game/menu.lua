@@ -95,12 +95,14 @@ function menu.choose_option()
     --- MERCHANT
     --- 
     elseif string.find(v, events_options.purchase) then
-        State = states.purchasing
-        Current_event.generate_purchasing_options()
-        Current_event.options = Current_event.purchasing_options
-        menu.current_menu = menu.new_menu(Current_event)
-        menu.current_menu.header = "Merchant is showing you the wares."
-        menu.option_chosen = 1
+        if event_merchant.angry == false then
+            State = states.purchasing
+            Current_event.generate_purchasing_options()
+            Current_event.options = Current_event.purchasing_options
+            menu.current_menu = menu.new_menu(Current_event)
+            menu.current_menu.header = "Merchant is showing you the wares."
+            menu.option_chosen = 1
+        end
     elseif string.find(v, events_options.go_back) then
         State = states.menu
         Current_event.options = Current_event.base_options
@@ -119,9 +121,11 @@ function menu.choose_option()
             menu.option_chosen = #menu.current_menu.options
         end
     elseif string.find(v, events_options.steal_from) then
-        State = states.stealing
-        Stole_already = false
-        player.make_a_roll(actions.stealing, events_options.lookup_with_dice[events_options.steal_from])
+        if event_merchant.angry == false then
+            State = states.stealing
+            Stole_already = false
+            player.make_a_roll(actions.stealing, events_options.lookup_with_dice[events_options.steal_from])
+        end
     elseif State == states.stealing then
         if Stole_already == false then
             if event_merchant.check_if_in_inventory(v) then
