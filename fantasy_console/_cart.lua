@@ -118,7 +118,7 @@ function Update()
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(Current_event)
                 player.current_health = player.current_health - 1
-                menu.current_menu.header = "You managed to escape, but not unscathed.\nWhere are you going to go now?"
+                menu.current_menu.header = "You managed to escape,\nbut not unscathed.\nWhere are you going to go now?"
                 menu.option_chosen = 1
             end
             Difficulty = Base_difficulty
