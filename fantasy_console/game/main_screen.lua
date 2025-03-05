@@ -193,7 +193,7 @@ function screen.draw_menu()
     local y_step = 10
     local x = 15
     for i, option in ipairs(menu.current_menu.options) do
-        if (State == states.menu or State == states.purchasing) and i == menu.option_chosen then
+        if (State == states.menu or State == states.purchasing or State == states.stealing) and i == menu.option_chosen then
             Spr(x-12, y-1, 181)
         end
         local color = White

@@ -7,6 +7,7 @@ local debug = require "game/debug"
 local dice = require "game/dice"
 local event_start = require "game/event_start"
 local event_combat = require "game/event_combat"
+local event_merchant = require "game/event_merchant"
 local events_options = require "game/events_options"
 local map = require "game/map"
 local menu = require "game/menu"
@@ -73,7 +74,7 @@ function Input()
                 State = states.inventory
             end
         end
-    elseif State == states.purchasing then
+    elseif State == states.purchasing or State == states.stealing then
         if Btnp("up") then
             menu.option_chosen = menu.option_chosen - 1
             if menu.option_chosen < 1 then
@@ -154,7 +155,7 @@ function Update()
             Action = actions.waiting
         elseif Action == actions.stealing then
             if dice.check_for_success(Difficulty) == true then
-                State = states.purchasing
+                State = states.stealing
                 Current_event.generate_purchasing_options()
                 Current_event.options = Current_event.purchasing_options
                 menu.current_menu = menu.new_menu(Current_event)
