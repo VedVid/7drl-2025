@@ -2,6 +2,7 @@ local dice = require "game/dice"
 local items = require "game/items"
 local map = require "game/map"
 local player = require "game/player"
+local utils = require "game/utils"
 
 
 local event = {}
@@ -34,7 +35,15 @@ end
 function event.generate_inventory()
     local inventory_size = math.random(2, 4)
     for i = 1, inventory_size do
-        table.insert(event.inventory, items.items[math.random(#items.items)])
+        local item = items.items[math.random(#items.items)]
+        while true do
+            if utils.has_value(event.inventory, item) then
+                item = items.items[math.random(#items.items)]
+            else
+                table.insert(event.inventory, item)
+                break
+            end
+        end
     end
 end
 
@@ -44,8 +53,9 @@ function event.generate_purchasing_options()
         local s = v.name
         if v ~= items.dice_red and v ~= items.dice_gold then
             if #v.boost > 0 or #v.nerf > 0 then
-                s = s .. " {"
+                s = s .. " "
                 for _, z in ipairs(v.boost) do
+                    s = s .. "{"
                     local boost_symbol = ""
                     if z[1] == 1 then
                         boost_symbol = "P+"
@@ -56,9 +66,10 @@ function event.generate_purchasing_options()
                     else
                         print("icorrect boost symbol")
                     end
-                    s = s .. boost_symbol .. z[2]
+                    s = s .. boost_symbol .. z[2] .. "}"
                 end
                 for _, z in ipairs(v.nerf) do
+                    s = s .. "{"
                     local nerf_symbol = ""
                     if z[1] == 1 then
                         nerf_symbol = "P-"
@@ -69,7 +80,7 @@ function event.generate_purchasing_options()
                     else
                         print("icorrect boost symbol")
                     end
-                    s = s .. nerf_symbol .. z[2]
+                    s = s .. nerf_symbol .. z[2] .. "}"
                 end
                 s = s .. "}"
             end
