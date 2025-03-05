@@ -35,13 +35,23 @@ end
 function event.generate_inventory()
     local inventory_size = math.random(2, 4)
     for i = 1, inventory_size do
-        local item = items.items[math.random(#items.items)]
-        while true do
-            if utils.has_value(event.inventory, item) then
-                item = items.items[math.random(#items.items)]
+        local chance = math.random(101)
+        if chance <= 30 then
+            local chance2 = math.random(101)
+            if chance2 <= 40 then
+                table.insert(event.inventory, items.dice_gold)
             else
-                table.insert(event.inventory, item)
-                break
+                table.insert(event.inventory, items.dice_red)
+            end
+        else
+            local item = items.items[math.random(#items.items)]
+            while true do
+                if utils.has_value(event.inventory, item) then
+                    item = items.items[math.random(#items.items)]
+                else
+                    table.insert(event.inventory, item)
+                    break
+                end
             end
         end
     end
