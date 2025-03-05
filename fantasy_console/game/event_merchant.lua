@@ -40,7 +40,7 @@ function event.generate_inventory()
             table.insert(event.inventory, items.dice_gold)
         elseif chance <= 35 and not utils.has_value(event.inventory, items.dice_red) then
             table.insert(event.inventory, items.dice_red)
-        elseif chance <= 60 and not utils.has_value(event.inventory, items.nutritious_meal) then
+        elseif chance <= 90 and not utils.has_value(event.inventory, items.nutritious_meal) then
             table.insert(event.inventory, items.nutritious_meal)
         else
             local item = items.items[math.random(#items.items)]
@@ -60,7 +60,7 @@ function event.generate_purchasing_options()
     event.purchasing_options = {}
     for _, v in ipairs(event.inventory) do
         local s = v.name
-        if v ~= items.dice_red and v ~= items.dice_gold then
+        if v ~= items.dice_red and v ~= items.dice_gold and v ~= items.nutritious_meal then
             if #v.boost > 0 or #v.nerf > 0 then
                 s = s .. " "
                 for _, z in ipairs(v.boost) do
@@ -114,7 +114,9 @@ function event.generate_travel_options()
 end
 
 function event.check_if_in_inventory(s)
+    print(s)
     for _, v in ipairs(event.inventory) do
+        print(v.name)
         if string.find(s, v.name) then
             return true
         end
@@ -125,6 +127,7 @@ end
 function event.player_purchase_from_merchant(item_index)
     local item = event.inventory[item_index]
     if player.gold < item.price then return end
+    print(item.name)
     if string.find(item.name, "Red die") then
         if player.add_to_inventory(dice.red) == true then
             player.gold = player.gold - item.price
@@ -136,12 +139,15 @@ function event.player_purchase_from_merchant(item_index)
             table.remove(event.inventory, item_index)
         end
     elseif string.find(item.name, "meal") then
+        print("MEAL TIME")
         if player.current_health < player.max_health then
             player.current_health = player.current_health + 1
         else
             player.max_health = player.max_health + 1
             player.current_health = player.max_health
         end
+        player.gold = player.gold - item.price
+        table.remove(event.inventory, item_index)
     else
         for _, v in ipairs(item.boost) do
             local skill_to_buff = v[1]
