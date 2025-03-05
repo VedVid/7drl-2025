@@ -49,5 +49,30 @@ items.heavy_shoes = items.new_item(
 )
 table.insert(items.items, items.heavy_shoes)
 
+items.heavy_armor = items.new_item(
+    "Heavy armor", {{1, 3}}, {{2, 2}}
+)
+table.insert(items.items, items.heavy_armor)
+
+items.dagger = items.new_item(
+    "Dagger", {{1, 1}, {2, 1}}, {{3, 2}}
+)
+table.insert(items.items, items.dagger)
+
+items.sling = items.new_item(
+    "Sling", {{1, 1}, {2, 1}}
+)
+table.insert(items.items, items.sling)
+
+items.royal_sword = items.new_item(
+    "Royal sword", {{1, 2}, {3, 2}}, {{2, 1}}
+)
+table.insert(items.items, items.royal_sword)
+
+items.card_deck = items.new_item(
+    "Card deck", {{2, 1}, {3, 1}}
+)
+table.insert(items.items, items.card_deck)
+
 
 return items
