@@ -33,7 +33,7 @@ items.dice_gold.price = 40
 table.insert(items.items, items.dice_gold)
 
 items.nutritious_meal = {}
-items.nutritious_meal.name = "Nutritious meal {HP+1}"
+items.nutritious_meal.name = "Nutritious meal"
 items.nutritious_meal.price = 50
 table.insert(items.items, items.nutritious_meal)
 

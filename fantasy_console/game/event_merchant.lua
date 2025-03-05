@@ -92,6 +92,8 @@ function event.generate_purchasing_options()
                     s = s .. nerf_symbol .. z[2] .. "}"
                 end
             end
+        elseif v == items.nutritious_meal then
+            s = s .. " {HP+1}"
         end
         s = s .. " [" .. v.price .. "$]"
         table.insert(event.purchasing_options, s)
@@ -114,9 +116,7 @@ function event.generate_travel_options()
 end
 
 function event.check_if_in_inventory(s)
-    print(s)
     for _, v in ipairs(event.inventory) do
-        print(v.name)
         if string.find(s, v.name) then
             return true
         end
