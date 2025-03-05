@@ -12,17 +12,17 @@ event.events = {}
 event.free_meal = {}
 event.free_meal.header = "You see an iron ration on table."
 event.free_meal.options = {"Yum!"}
---table.insert(event.events, event.free_meal)
+table.insert(event.events, event.free_meal)
 
 event.decrease_danger = {}
 event.decrease_danger.header = "You see a poster with your likeness\nhanged on the wall."
 event.decrease_danger.options = {"Tear down the poster!"}
---table.insert(event.events, event.decrease_danger)
+table.insert(event.events, event.decrease_danger)
 
 event.fresh_corpse = {}
 event.fresh_corpse.header = "You see a fresh corpse on the floor.\nSomeone was there before you..."
 event.fresh_corpse.options = {"Search the pockets", "Do not disturb the corpse"}
---table.insert(event.events, event.fresh_corpse)
+table.insert(event.events, event.fresh_corpse)
 
 event.infighting = {}
 event.infighting.header = "You see two groups fighting\neach other.\nWhat do you do?"
@@ -31,7 +31,7 @@ event.infighting.options = {
     "Help the larger group",
     "Do not interfere"
 }
---table.insert(event.events, event.infighting)
+table.insert(event.events, event.infighting)
 
 event.arguing_couple = {}
 event.arguing_couple.header = "You see two people arguing fiercely.\nWhat do you do?"
