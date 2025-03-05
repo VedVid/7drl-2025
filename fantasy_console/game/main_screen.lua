@@ -1,6 +1,7 @@
 require "../api"
 
 local dice = require "game/dice"
+local event_merchant = require "game/event_merchant"
 local events_options = require "game/events_options"
 local map = require "game/map"
 local menu = require "game/menu"
@@ -214,6 +215,11 @@ function screen.draw_menu()
         end
         if State == states.stealing then
             if option ~= "Go back" and Stole_already == true then
+                color = BlackBold
+            end
+        end
+        if Current_event == event_merchant then
+            if Current_event.angry == true and option ~= "Leave" then
                 color = BlackBold
             end
         end
