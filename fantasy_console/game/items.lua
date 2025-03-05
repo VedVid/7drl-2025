@@ -1,6 +1,3 @@
-local player = require "game/player"
-
-
 local items = {}
 
 

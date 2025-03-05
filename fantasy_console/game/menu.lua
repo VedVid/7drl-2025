@@ -97,8 +97,6 @@ function menu.choose_option()
         if menu.option_chosen > #menu.current_menu.options then
             menu.option_chosen = #menu.current_menu.options
         end
-    elseif string.find(v, events_options.sell) then
-        do end -- TODO: MERCHANT SELL
     elseif string.find(v, events_options.steal_from) then
         do end -- TODO: MERCHANT PICKPOCKET
     elseif string.find(v, events_options.leave) then
