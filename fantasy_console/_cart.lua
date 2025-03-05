@@ -157,6 +157,7 @@ function Update()
         elseif Action == actions.stealing then
             if dice.check_for_success(Difficulty) == true then
                 State = states.stealing
+                Difficulty = Difficulty + 1
                 Current_event.generate_purchasing_options()
                 Current_event.options = Current_event.purchasing_options
                 menu.current_menu = menu.new_menu(Current_event)
