@@ -123,20 +123,22 @@ function menu.choose_option()
         Stole_already = false
         player.make_a_roll(actions.stealing, events_options.lookup_with_dice[events_options.steal_from])
     elseif State == states.stealing then
-        if event_merchant.check_if_in_inventory(v) then
-            event_merchant.player_purchase_from_merchant(menu.option_chosen)
-            Stole_already = true
-        end
-        Current_event.generate_purchasing_options()
-        Current_event.options = Current_event.purchasing_options
-        menu.current_menu = menu.new_menu(Current_event)
-        if Action == actions.stealing then
-            menu.current_menu.header = "You've distracted the merchant.\nWhat item do you want to steal?"
-        else
-            menu.current_menu.header = "You quickly grab an item and hide it."
-        end
-        if menu.option_chosen > #menu.current_menu.options then
-            menu.option_chosen = #menu.current_menu.options
+        if Stole_already == false then
+            if event_merchant.check_if_in_inventory(v) then
+                event_merchant.player_purchase_from_merchant(menu.option_chosen)
+                Stole_already = true
+            end
+            Current_event.generate_purchasing_options()
+            Current_event.options = Current_event.purchasing_options
+            menu.current_menu = menu.new_menu(Current_event)
+            if Action == actions.stealing then
+                menu.current_menu.header = "You've distracted the merchant.\nWhat item do you want to steal?"
+            else
+                menu.current_menu.header = "You quickly grab an item and hide it.\nMerchant becomes more alert."
+            end
+            if menu.option_chosen > #menu.current_menu.options then
+                menu.option_chosen = #menu.current_menu.options
+            end
         end
     elseif string.find(v, events_options.leave) then
         Current_event.reset()
