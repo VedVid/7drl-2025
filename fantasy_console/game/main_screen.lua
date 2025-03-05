@@ -186,6 +186,7 @@ end
 
 function screen.draw_menu()
     Write(3, 86, menu.current_menu.header, White)
+
     local y = 122
     local y_step = 10
     local x = 15
@@ -193,10 +194,33 @@ function screen.draw_menu()
         if (State == states.menu or State == states.purchasing) and i == menu.option_chosen then
             Spr(x-12, y-1, 181)
         end
+        local color = White
+        if State == states.purchasing and string.find(option, "%]") then
+            local ss1 = Split(option, "]")
+            local ss2
+            local price
+            for _, s in ipairs(ss1) do
+                if string.find(s, "$") then
+                    --print("print(s):")
+                    --print(s)
+                    ss2 = Split(s, "%[")
+                    --local pprint = require("pprint")
+                    --print("pprint(ss2):")
+                    --pprint(ss2)
+                    if #ss2 >= 2 then
+                        price = Sub(ss2[2], 1, #ss2[2]-2)
+                    end
+                    --print(#ss2[2])
+                end
+            end
+            if tonumber(price) > player.gold then
+                color = BlackBold
+            end
+        end
         if events_options.lookup_with_dice[menu.current_menu.options[i]] then
-            Write(x, y, option .. " [#=" .. Difficulty .. "]", White)
+            Write(x, y, option .. " [#=" .. Difficulty .. "]", color)
         else
-            Write(x, y, option, White)
+            Write(x, y, option, color)
         end
         y = y + y_step
     end

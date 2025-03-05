@@ -35,13 +35,20 @@ end
 function event.generate_inventory()
     local inventory_size = math.random(2, 4)
     for i = 1, inventory_size do
-        local item = items.items[math.random(#items.items)]
-        while true do
-            if utils.has_value(event.inventory, item) then
-                item = items.items[math.random(#items.items)]
-            else
-                table.insert(event.inventory, item)
-                break
+        local chance = math.random(101)
+        if chance <= 15 and not utils.has_value(event.inventory, items.dice_gold) then
+            table.insert(event.inventory, items.dice_gold)
+        elseif chance <= 20 and not utils.has_value(event.inventory, items.dice_red) then
+            table.insert(event.inventory, items.dice_red)
+        else
+            local item = items.items[math.random(#items.items)]
+            while true do
+                if utils.has_value(event.inventory, item) then
+                    item = items.items[math.random(#items.items)]
+                else
+                    table.insert(event.inventory, item)
+                    break
+                end
             end
         end
     end
@@ -82,7 +89,6 @@ function event.generate_purchasing_options()
                     end
                     s = s .. nerf_symbol .. z[2] .. "}"
                 end
-                s = s .. "}"
             end
         end
         s = s .. " [" .. v.price .. "$]"
