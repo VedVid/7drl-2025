@@ -125,7 +125,11 @@ function menu.choose_option()
         Current_event.generate_purchasing_options()
         Current_event.options = Current_event.purchasing_options
         menu.current_menu = menu.new_menu(Current_event)
-        menu.current_menu.header = "You've distracted the merchant.\nWhat item do you want to steal?"
+        if Action == actions.stealing then
+            menu.current_menu.header = "You've distracted the merchant.\nWhat item do you want to steal?"
+        else
+            menu.current_menu.header = "You quickly grab an item and hide it."
+        end
         if menu.option_chosen > #menu.current_menu.options then
             menu.option_chosen = #menu.current_menu.options
         end
