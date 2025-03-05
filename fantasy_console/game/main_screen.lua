@@ -1,6 +1,7 @@
 require "../api"
 
 local dice = require "game/dice"
+local event_merchant = require "game/event_merchant"
 local events_options = require "game/events_options"
 local map = require "game/map"
 local menu = require "game/menu"
@@ -188,12 +189,11 @@ end
 
 function screen.draw_menu()
     Write(3, 86, menu.current_menu.header, White)
-
     local y = 122
     local y_step = 10
     local x = 15
     for i, option in ipairs(menu.current_menu.options) do
-        if (State == states.menu or State == states.purchasing) and i == menu.option_chosen then
+        if (State == states.menu or State == states.purchasing or State == states.stealing) and i == menu.option_chosen then
             Spr(x-12, y-1, 181)
         end
         local color = White
@@ -210,6 +210,16 @@ function screen.draw_menu()
                 end
             end
             if tonumber(price) > player.gold then
+                color = BlackBold
+            end
+        end
+        if State == states.stealing then
+            if option ~= "Go back" and Stole_already == true then
+                color = BlackBold
+            end
+        end
+        if Current_event == event_merchant then
+            if Current_event.angry == true and option ~= "Leave" then
                 color = BlackBold
             end
         end

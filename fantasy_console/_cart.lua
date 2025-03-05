@@ -7,6 +7,7 @@ local debug = require "game/debug"
 local dice = require "game/dice"
 local event_start = require "game/event_start"
 local event_combat = require "game/event_combat"
+local event_merchant = require "game/event_merchant"
 local events_options = require "game/events_options"
 local map = require "game/map"
 local menu = require "game/menu"
@@ -23,6 +24,7 @@ function Init()
     Room = 1
     Base_difficulty = 1
     Difficulty = 1
+    Stole_already = false
     F = 0
     map.generate_rooms()
     Current_event = event_start
@@ -150,6 +152,24 @@ function Update()
                 menu.current_menu.header = "Your persuasion attempts failed.\nPeace is no longer on the table."
                 menu.option_chosen = 1
                 Difficulty = Difficulty + 1
+            end
+            Action = actions.waiting
+        elseif Action == actions.stealing then
+            if dice.check_for_success(Difficulty) == true then
+                State = states.stealing
+                Difficulty = Difficulty + 1
+                Current_event.generate_purchasing_options()
+                Current_event.options = Current_event.purchasing_options
+                menu.current_menu = menu.new_menu(Current_event)
+                menu.current_menu.header = "You've distracted the merchant.\nWhat item do you want to steal?"
+                if menu.option_chosen > #menu.current_menu.options then
+                    menu.option_chosen = #menu.current_menu.options
+                end
+            else
+                event_merchant.angry = true
+                event_merchant.increase_prices(0.3)
+                State = states.menu
+                menu.current_menu.header = "You have been caught red handed.\nMerchant is furious and will\nnot trade with you anymore.\nGuild increases prices for you."
             end
             Action = actions.waiting
         end

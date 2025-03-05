@@ -2,6 +2,7 @@ local dice = require "game/dice"
 local items = require "game/items"
 local map = require "game/map"
 local player = require "game/player"
+local states = require "game/states"
 local utils = require "game/utils"
 
 
@@ -103,7 +104,9 @@ function event.generate_purchasing_options()
         elseif v == items.nutritious_meal then
             s = s .. " {HP+1}"
         end
-        s = s .. " [" .. v.price .. "$]"
+        if State == states.purchasing then
+            s = s .. " [" .. v.price .. "$]"
+        end
         table.insert(event.purchasing_options, s)
     end
     table.insert(event.purchasing_options, "Go back")
@@ -134,15 +137,19 @@ end
 
 function event.player_purchase_from_merchant(item_index)
     local item = event.inventory[item_index]
-    if player.gold < item.price then return end
+    if player.gold < item.price and State == states.purchasing then return end
     if string.find(item.name, "Red die") then
         if player.add_to_inventory(dice.red) == true then
-            player.gold = player.gold - item.price
+            if State == states.purchasing then
+                player.gold = player.gold - item.price
+            end
             table.remove(event.inventory, item_index)
         end
     elseif string.find(item.name, "Gold die") then
         if player.add_to_inventory(dice.gold) == true then
-            player.gold = player.gold - item.price
+            if State == states.purchasing then
+                player.gold = player.gold - item.price
+            end
             table.remove(event.inventory, item_index)
         end
     elseif string.find(item.name, "meal") then
@@ -152,7 +159,9 @@ function event.player_purchase_from_merchant(item_index)
             player.max_health = player.max_health + 1
             player.current_health = player.max_health
         end
-        player.gold = player.gold - item.price
+        if State == states.purchasing then
+            player.gold = player.gold - item.price
+        end
         table.remove(event.inventory, item_index)
     else
         for _, v in ipairs(item.boost) do
@@ -160,13 +169,15 @@ function event.player_purchase_from_merchant(item_index)
             player.skills[skill_to_buff][2] = player.skills[skill_to_buff][2] + v[2]
         end
         for _, v in ipairs(item.nerf) do
-            local skill_to_nerf = v[1]
+            local skill_to_nerf = v[2]
             player.skills[skill_to_nerf][2] = player.skills[skill_to_nerf][2] - v[2]
-            if player.skills[skill_to_nerf] < 1 then
-                player.skills[skill_to_nerf] = 1
+            if player.skills[skill_to_nerf][2] < 1 then
+                player.skills[skill_to_nerf][2] = 1
             end
         end
-        player.gold = player.gold - item.price
+        if State == states.purchasing then
+            player.gold = player.gold - item.price
+        end
         table.remove(event.inventory, item_index)
     end
 end
