@@ -1,5 +1,6 @@
 require "../api"
 
+local actions = require "game/actions"
 local dice = require "game/dice"
 local events_options = require "game/events_options"
 local map = require "game/map"
@@ -188,7 +189,6 @@ end
 
 function screen.draw_menu()
     Write(3, 86, menu.current_menu.header, White)
-
     local y = 122
     local y_step = 10
     local x = 15
@@ -210,6 +210,11 @@ function screen.draw_menu()
                 end
             end
             if tonumber(price) > player.gold then
+                color = BlackBold
+            end
+        end
+        if State == states.stealing then
+            if option ~= "Go back" then
                 color = BlackBold
             end
         end
