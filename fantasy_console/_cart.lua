@@ -158,6 +158,7 @@ function Update()
                 Current_event.generate_purchasing_options()
                 Current_event.options = Current_event.purchasing_options
                 menu.current_menu = menu.new_menu(Current_event)
+                menu.current_menu.header = "You've distracted the merchant.\nWhat item do you want to steal?"
                 if menu.option_chosen > #menu.current_menu.options then
                     menu.option_chosen = #menu.current_menu.options
                 end
