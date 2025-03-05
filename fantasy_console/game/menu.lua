@@ -191,11 +191,11 @@ function menu.choose_option()
             menu.current_menu = menu.new_menu(Current_event)
             menu.current_menu.header = "You decided to leave.\nWhere are you going to go now?"
             menu.option_chosen = 1
-        elseif string.find(v, event_random.infighting[1]) then
+        elseif string.find(v, event_random.infighting.options[1]) then
             player.make_a_roll(actions.help_smaller, events_options.lookup_with_dice[events_options.help_smaller_group])
-        elseif string.find(v, event_random.infighting[2]) then
+        elseif string.find(v, event_random.infighting.options[2]) then
             player.make_a_roll(actions.help_larger, events_options.lookup_with_dice[events_options.help_larger_group])
-        elseif string.find(v, event_random.infighting[3]) then
+        elseif string.find(v, event_random.infighting.options[3]) then
             Current_event.generate_travel_options()
             menu.current_menu = menu.new_menu(Current_event)
             menu.current_menu.header = "You sneaked away before\nanyone noticed you.\nWhere are you going to go now?"

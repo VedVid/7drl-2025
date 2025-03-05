@@ -215,7 +215,7 @@ function Update()
                 -- TODO: show game over if you died there
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(Current_event)
-                menu.current_menu.header = "There were too many enemies and you\nwere unable to drive them away...\nYou are all in bruises.\nWhere are you going to go now?"
+                menu.current_menu.header = "There were too many enemies and\nyou could not drive them away...\nYou are all bruised up.\nWhere are you going to go now?"
             end
             menu.option_chosen = 1
             Action = actions.waiting
