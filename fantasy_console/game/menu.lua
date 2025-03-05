@@ -34,13 +34,12 @@ function menu.choose_option()
         map.travel_destination = 1
         Current_event.options = Current_event.base_options
         Stole_already = false
-        Difficulty = Base_difficulty
         Room = Room + 1
         if Room % 10 == 0 then
             Base_difficulty = Base_difficulty + 1
-            Difficulty = Base_difficulty
             event_merchant.increase_prices(0.1)
         end
+        Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
             Current_event.generate_inventory()
@@ -48,6 +47,7 @@ function menu.choose_option()
             Current_event = event_combat
         elseif string.find(v, map.door_names.event) then
             Current_event = event_random
+            Current_event.choose_and_update_event()
         end
     elseif string.find(v, events_options.go_to_second_room) then
         State = states.travel
@@ -55,13 +55,12 @@ function menu.choose_option()
         map.travel_destination = 2
         Current_event.options = Current_event.base_options
         Stole_already = false
-        Difficulty = Base_difficulty
         Room = Room + 1
         if Room % 10 == 0 then
             Base_difficulty = Base_difficulty + 1
-            Difficulty = Base_difficulty
             event_merchant.increase_prices(0.1)
         end
+        Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
             Current_event.generate_inventory()
@@ -69,6 +68,7 @@ function menu.choose_option()
             Current_event = event_combat
         elseif string.find(v, map.door_names.event) then
             Current_event = event_random
+            Current_event.choose_and_update_event()
         end
     elseif string.find(v, events_options.go_to_third_room) then
         State = states.travel
@@ -76,13 +76,12 @@ function menu.choose_option()
         map.travel_destination = 3
         Current_event.options = Current_event.base_options
         Stole_already = false
-        Difficulty = Base_difficulty
         Room = Room + 1
         if Room % 10 == 0 then
             Base_difficulty = Base_difficulty + 1
-            Difficulty = Base_difficulty
             event_merchant.increase_prices(0.1)
         end
+        Difficulty = Base_difficulty
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
             Current_event.generate_inventory()
@@ -90,6 +89,7 @@ function menu.choose_option()
             Current_event = event_combat
         elseif string.find(v, map.door_names.event) then
             Current_event = event_random
+            Current_event.choose_and_update_event()
         end
     ---
     --- MERCHANT
@@ -162,11 +162,36 @@ function menu.choose_option()
     ---
     --- RANDOM EVENTS
     ---
-    elseif string.find(v, events_options.proceed) then
-        Current_event.generate_travel_options()
-        menu.current_menu = menu.new_menu(Current_event)
-        menu.current_menu.header = "Event finished.\nWhere are you going to go now?"
-        menu.option_chosen = 1
+    else
+        if string.find(v, event_random.free_meal.options[1]) then
+            if player.current_health < player.max_health then
+                player.current_health = player.current_health + 1
+            else
+                player.max_health = player.max_health + 1
+                player.current_health = player.max_health
+            end
+            Current_event.generate_travel_options()
+            menu.current_menu = menu.new_menu(Current_event)
+            menu.current_menu.header = "You feel better.\nWhere are you going to go now?"
+            menu.option_chosen = 1
+        elseif string.find(v, event_random.decrease_danger.options[1]) then
+            Base_difficulty = Base_difficulty - 1
+            if Base_difficulty <= 0 then
+                Base_difficulty = 1
+            end
+            Difficulty = Base_difficulty
+            Current_event.generate_travel_options()
+            menu.current_menu = menu.new_menu(Current_event)
+            menu.current_menu.header = "You feel safer already.\nWhere are you going to go now?"
+            menu.option_chosen = 1
+        elseif string.find(v, event_random.fresh_corpse.options[1]) then
+            player.make_a_roll(actions.searching_pockets, events_options.lookup_with_dice[events_options.search_pockets])
+        elseif string.find(v, event_random.fresh_corpse.options[2]) then
+            Current_event.generate_travel_options()
+            menu.current_menu = menu.new_menu(Current_event)
+            menu.current_menu.header = "You decided to leave.\nWhere are you going to go now?"
+            menu.option_chosen = 1
+        end
     end
 end
 
