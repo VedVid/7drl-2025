@@ -16,6 +16,7 @@ function items.new_item(name, boost, nerf)
         price = price - (5 * n[2])
     end
     item.price = price
+    item.base_price = price
     return item
 end
 
@@ -25,16 +26,19 @@ items.items = {}
 items.dice_red = {}
 items.dice_red.name = "Red die"
 items.dice_red.price = 20
+items.dice_red.base_price = 20
 table.insert(items.items, items.dice_red)
 
 items.dice_gold = {}
 items.dice_gold.name = "Gold die"
 items.dice_gold.price = 40
+items.dice_gold.base_price = 40
 table.insert(items.items, items.dice_gold)
 
 items.nutritious_meal = {}
 items.nutritious_meal.name = "Nutritious meal"
 items.nutritious_meal.price = 50
+items.nutritious_meal.base_price = 50
 table.insert(items.items, items.nutritious_meal)
 
 items.potion_of_strength = items.new_item(

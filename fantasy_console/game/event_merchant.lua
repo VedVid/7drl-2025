@@ -32,6 +32,14 @@ function event.reset()
     event.prices_overall = event.prices_normal
 end
 
+function event.increase_prices(amount)
+    if not amount then amount = 0.1 end
+    event.price_modifier = event.price_modifier + amount
+    for _, item in ipairs(items.items) do
+        item.price = math.ceil(item.base_price * event.price_modifier)
+    end
+end
+
 function event.generate_inventory()
     local inventory_size = math.random(2, 4)
     for i = 1, inventory_size do

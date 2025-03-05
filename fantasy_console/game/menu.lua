@@ -38,6 +38,7 @@ function menu.choose_option()
         if Room % 10 == 0 then
             Base_difficulty = Base_difficulty + 1
             Difficulty = Base_difficulty
+            event_merchant.increase_prices(0.1)
         end
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
@@ -57,6 +58,7 @@ function menu.choose_option()
         if Room % 10 == 0 then
             Base_difficulty = Base_difficulty + 1
             Difficulty = Base_difficulty
+            event_merchant.increase_prices(0.1)
         end
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
@@ -76,6 +78,7 @@ function menu.choose_option()
         if Room % 10 == 0 then
             Base_difficulty = Base_difficulty + 1
             Difficulty = Base_difficulty
+            event_merchant.increase_prices(0.1)
         end
         if string.find(v, map.door_names.merchant) then
             Current_event = event_merchant
