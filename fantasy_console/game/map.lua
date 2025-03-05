@@ -17,8 +17,19 @@ map.door_names.start = "start"
 function map.generate_rooms()
     map.doors_to = {}
     local amount_of_rooms = math.random(3)
-    for i = 1, amount_of_rooms do
+    if amount_of_rooms == 1 then
         table.insert(map.doors_to, map.possible_doors[math.random(#map.possible_doors)])
+    else
+        for i = 1, amount_of_rooms do
+            local chances = math.random(80)
+            if chances <= 20 then
+                table.insert(map.doors_to, map.door_names.merchant)
+            elseif chances <= 40 then
+                table.insert(map.doors_to, map.door_names.event)
+            else
+                table.insert(map.doors_to, map.door_names.combat)
+            end
+        end
     end
 end
 
