@@ -2,6 +2,7 @@ require "../api"
 
 local g = require "globals"
 
+local actions = require "game/actions"
 local dice = require "game/dice"
 local event_merchant = require "game/event_merchant"
 local events_options = require "game/events_options"
@@ -303,19 +304,32 @@ function screen.draw_game_over_screen()
     Write(60, 160, s)
     local highscore = false
     local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold)
-    local f = io.open("data/highscores.txt", "r")
-    if not f then print("No data/highscores.txt file!"); return end
-    local content = f:read "*a"
-    f:close()
-    if #content < 10 then
-        highscore = true
-        do end  -- add score
-    else
-        for _, line in ipairs(content) do
-            if score > tonumber(line) then
-                highscore = true
-                do end -- add score
-                break
+    if Action == actions.add_to_high_scores then
+        Action = actions.waiting
+        local f = io.open("fantasy_console/data/highscores.txt", "r")
+        if not f then print("No fantasy_console/data/highscores.txt file!"); Write(60, 160 + ystep, "Your total score is: " .. score .. "."); return end
+        local content = f:read "*a"
+        f:close()
+        if #content < 10 then
+            highscore = true
+            table.insert(content, score)
+            table.sort(content)
+            -- write content line by line to the file TODO
+            local f = io.open("fantasy_console/data/highscores.txt", "a")
+            if not f then print("No fantasy_console/data/highscores.txt file!"); Write(60, 160 + ystep, "Your total score is: " .. score .. "."); return end
+            f:write(score)
+        else
+            for _, line in ipairs(content) do
+                if score > tonumber(line) then
+                    highscore = true
+                    table.insert(content, score)
+                    table.sort(content)
+                    table.remove(1)
+                    local f = io.open("fantasy_console/data/highscores.txt", "a")
+                    if not f then print("No fantasy_console/data/highscores.txt file!"); Write(60, 160 + ystep, "Your total score is: " .. score .. "."); return end
+                    f:write(score)
+                    break
+                end
             end
         end
     end

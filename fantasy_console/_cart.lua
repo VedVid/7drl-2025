@@ -171,6 +171,7 @@ function Update()
                 if player.current_health <= 0 then
                     menu.current_menu.options = {}
                     menu.current_menu.header = "You have been hit one time too many."
+                    Action = actions.add_to_high_scores
                     State = states.game_over_animation
                     return
                 end
@@ -253,6 +254,7 @@ function Update()
                 if player.current_health <= 0 then
                     menu.current_menu.options = {}
                     menu.current_menu.header = "There were too many enemies and\nyou could not drive them away..."
+                    Action = actions.add_to_high_scores
                     State = states.game_over_animation
                     return
                 end
@@ -282,6 +284,7 @@ function Update()
                 if player.current_health <= 0 then
                     menu.current_menu.options = {}
                     menu.current_menu.header = "The opponents fought very bravely\nand managed to drive you away."
+                    Action = actions.add_to_high_scores
                     State = states.game_over_animation
                     return
                 end
