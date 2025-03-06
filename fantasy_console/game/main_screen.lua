@@ -338,13 +338,13 @@ function screen.draw_game_over_screen()
             end
         end
     end
-    print(Highscore)
     if Highscore == false then
         Write(60, 160 + ystep, "Your total score is: " .. score .. ".")
     else
         Write(60, 160 + ystep, "HIGHSCORE!", RedBold)
         Write(60+43, 160 + ystep, "Your total score is: " .. score .. ".")
     end
+    Write(170, 184, "Press ENTER to continue.", BlackBold)
 end
 
 
