@@ -17,7 +17,7 @@ local states = require "game/states"
 
 
 function Init()
-    Debug = true
+    Debug = false
     math.randomseed(os.time())
     State = states.main_menu
     Action = actions.waiting
@@ -116,6 +116,28 @@ function Input()
                 -- quit game
                 love.event.quit(0)
             end
+        end
+    elseif State == states.game_over then
+        if Btnp("return") then
+            Debug = false
+            math.randomseed(os.time())
+            State = states.main_menu
+            Action = actions.waiting
+            Room = 1
+            Base_difficulty = 1
+            Difficulty = 1
+            Stole_already = false
+            Game_over_anim_x = 2
+            Highscore = false
+            F = 0
+            map.generate_rooms()
+            Current_event = event_start
+            Current_event.options = {}
+            Current_event.generate_travel_options()
+            menu.current_menu = menu.new_menu(event_start)
+            player.set_random_skills()
+            player.gold = 50
+            player.inventory = {dice.red, dice.gold}
         end
     end
 end
