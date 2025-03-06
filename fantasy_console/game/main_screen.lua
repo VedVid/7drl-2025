@@ -315,9 +315,9 @@ function screen.draw_game_over_screen()
             table.insert(content, score)
             table.sort(content)
             -- write content line by line to the file TODO
-            local f = io.open("fantasy_console/data/highscores.txt", "a")
+            local f = io.open("fantasy_console/data/highscores.txt", "w")
             if not f then print("No fantasy_console/data/highscores.txt file!"); Write(60, 160 + ystep, "Your total score is: " .. score .. "."); return end
-            f:write(score)
+            f:write(content)
         else
             for _, line in ipairs(content) do
                 if score > tonumber(line) then
@@ -325,9 +325,9 @@ function screen.draw_game_over_screen()
                     table.insert(content, score)
                     table.sort(content)
                     table.remove(1)
-                    local f = io.open("fantasy_console/data/highscores.txt", "a")
+                    local f = io.open("fantasy_console/data/highscores.txt", "w")
                     if not f then print("No fantasy_console/data/highscores.txt file!"); Write(60, 160 + ystep, "Your total score is: " .. score .. "."); return end
-                    f:write(score)
+                    f:write(content)
                     break
                 end
             end
