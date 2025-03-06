@@ -1,5 +1,6 @@
 local states = {}
 
+states.high_scores = -5
 states.game_over_animation = -4
 states.game_over = -3
 states.main_menu = -2

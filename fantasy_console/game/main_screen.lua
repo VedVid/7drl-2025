@@ -350,20 +350,40 @@ end
 
 function screen.draw_high_scores_menu()
     local ystep = 5
-    Write(43, 10,              "                   :::    :::       :::::::::::       ::::::::       :::    :::              ", YellowBold)
-    Write(43, 10+ystep,        "                  :+:    :+:           :+:          :+:    :+:      :+:    :+:               ", Yellow)
-    Write(43, 10+(ystep * 2),  "                 +:+    +:+           +:+          +:+             +:+    +:+                ", Yellow)
-    Write(43, 10+(ystep * 3),  "                +#++:++#++           +#+          :#:             +#++:++#++                 ", Yellow)
-    Write(43, 10+(ystep * 4),  "               +#+    +#+           +#+          +#+  ++#+#      +#+    +#+                  ", Yellow)
-    Write(43, 10+(ystep * 5),  "              #+#    #+#           #+#          #+#    #+#      #+#    #+#                   ", Yellow)
-    Write(43, 10+(ystep * 6),  "             ###    ###       ###########       ########       ###    ###                    ", Red)
-    Write(43, 12+(ystep * 7),  "      ::::::::       ::::::::       ::::::::       :::::::::       ::::::::::       :::::::: ", YellowBold)
-    Write(43, 12+(ystep * 8),  "    :+:    :+:     :+:    :+:     :+:    :+:      :+:    :+:      :+:             :+:    :+: ", Yellow)
-    Write(43, 12+(ystep * 9),  "   +:+            +:+            +:+    +:+      +:+    +:+      +:+             +:+         ", Yellow)
-    Write(43, 12+(ystep * 10), "  +#++:++#++     +#+            +#+    +:+      +#++:++#:       +#++:++#        +#++:++#++   ", Yellow)
-    Write(43, 12+(ystep * 11), "        +#+     +#+            +#+    +#+      +#+    +#+      +#+                    +#+    ", Yellow)
-    Write(43, 12+(ystep * 12), "#+#    #+#     #+#    #+#     #+#    #+#      #+#    #+#      #+#             #+#    #+#     ", Yellow)
-    Write(43, 12+(ystep * 13), "########       ########       ########       ###    ###      ##########       ########       ", Red)
+    Write(43, 10,              "                   ...    ...       ...........       ........       ...    ...              ", YellowBold)
+    Write(43, 10+ystep,        "                  :::    :::           :::          :::    :::      :::    :::               ", Yellow)
+    Write(43, 10+(ystep * 2),  "                 :::    :::           :::          :::             :::    :::                ", Yellow)
+    Write(43, 10+(ystep * 3),  "                ::::::::::           :::          :::             ::::::::::                 ", Yellow)
+    Write(43, 10+(ystep * 4),  "               :::    :::           :::          :::  :::::      :::    :::                  ", Yellow)
+    Write(43, 10+(ystep * 5),  "              :::    :::           :::          :::    :::      :::    :::                   ", Yellow)
+    Write(43, 10+(ystep * 6),  "              ;;;    ;;;       ;;;;;;;;;;;      ;;;;;;;;;;      ;;;    ;;;                    ", Red)
+    Write(43, 12+(ystep * 7),  "      ........       ........       ........       .........       ..........       ........ ", YellowBold)
+    Write(43, 12+(ystep * 8),  "    :::    :::     :::    :::     :::    :::      :::    :::      :::             :::    ::: ", Yellow)
+    Write(43, 12+(ystep * 9),  "   :::            :::            :::    :::      :::    :::      :::             :::         ", Yellow)
+    Write(43, 12+(ystep * 10), "  ::::::::::     :::            :::    :::      :::::::::       ::::::::        ::::::::::   ", Yellow)
+    Write(43, 12+(ystep * 11), "        :::     :::            :::    :::      :::    :::      :::                    :::    ", Yellow)
+    Write(43, 12+(ystep * 12), ":::    :::     :::    :::     :::    :::      :::    :::      :::             :::    :::     ", Yellow)
+    Write(43, 12+(ystep * 13), ";;;;;;;;;;     ;;;;;;;;;;     ;;;;;;;;;;      ;;;    ;;;      ;;;;;;;;;;      ;;;;;;;;;;     ", Red)
+    local f = io.open("fantasy_console/data/highscores.txt", "r")
+    if not f then print("No fantasy_console/data/highscores.txt file!"); return end
+    local content = f:read "*a"
+    f:close()
+    local content_table_s = Split(content, "\n")
+    local i = #content_table_s
+    local j = 1
+    local ystep = 0
+    local xstep = 0
+    while i > 0 do
+        Write(74+xstep, 94+ystep, j .. ". " .. content_table_s[i])
+        ystep = ystep + 10
+        j = j + 1
+        if j == 6 then
+            xstep = 62
+            ystep = 0
+        end
+        i = i - 1
+    end
+    Write(192, 184, "ENTER to continue.", BlackBold)
 end
 
 

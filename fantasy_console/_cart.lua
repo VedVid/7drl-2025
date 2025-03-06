@@ -111,7 +111,7 @@ function Input()
                 do end
             elseif menu.option_chosen == 3 then
                 -- show high scores list
-                do end
+                State = states.high_scores
             elseif menu.option_chosen == 4 then
                 -- quit game
                 love.event.quit(0)
@@ -138,6 +138,10 @@ function Input()
             player.set_random_skills()
             player.gold = 50
             player.inventory = {dice.red, dice.gold}
+        end
+    elseif State == states.high_scores then
+        if Btnp("return") then
+            State = states.main_menu
         end
     end
 end
@@ -374,6 +378,10 @@ function Draw()
     end
     if State == states.game_over then
         screen.draw_game_over_screen()
+        return
+    end
+    if State == states.high_scores then
+        screen.draw_high_scores_menu()
         return
     end
     screen.draw_dividers()
