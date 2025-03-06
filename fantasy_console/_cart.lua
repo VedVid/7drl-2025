@@ -321,8 +321,8 @@ end
 
 function Draw()
     if State == states.main_menu then
-        --screen.draw_main_menu()
-        screen.draw_game_over_screen()
+        screen.draw_main_menu()
+        --screen.draw_game_over_screen()
         return
     end
     screen.draw_dividers()

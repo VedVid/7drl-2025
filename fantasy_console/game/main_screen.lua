@@ -235,15 +235,15 @@ function screen.draw_menu()
 end
 
 function screen.draw_main_menu()
-    local ystep = g.screen.gamepixel.h
+    local ystep = 5
     --Write(10, 10,             "     :::    :::       ::::    :::       ::::::::      :::    :::       :::::::::       :::::::::: ", YellowBold)
-    Write(31, 10,             "     ...    ...       ....    ...       ........      ...    ...       .........       .......... ", YellowBold)
-    Write(31, 10+ystep,       "    :::    :::       :::::   :::      :::    :::     :::    :::       :::    :::      :::         ", Yellow)
-    Write(31, 10+(ystep * 2), "   :::    :::       ::::::  :::      :::            :::    :::       :::    :::      :::          ", Yellow)
-    Write(31, 10+(ystep * 3), "  :::    :::       ::: ::: :::      ::::::::::     :::    :::       :::::::::       ::::::::      ", Yellow)
-    Write(31, 10+(ystep * 4), " :::    :::       :::  ::::::             :::     :::    :::       :::    :::      :::            ", Yellow)
-    Write(31, 10+(ystep * 5), ":::    :::       :::   :::::      :::    :::     :::    :::       :::    :::      :::             ", Yellow)
-    Write(31, 10+(ystep * 6), ";;;;;;;;;;       ;;;   ;;;;;      ;;;;;;;;;;     ;;;;;;;;;;       ;;;    ;;;      ;;;;;;;;;       ", Red)
+    Write(31, 15,             "     ...    ...       ....    ...       ........      ...    ...       .........       .......... ", YellowBold)
+    Write(31, 15+ystep,       "    :::    :::       :::::   :::      :::    :::     :::    :::       :::    :::      :::         ", Yellow)
+    Write(31, 15+(ystep * 2), "   :::    :::       ::::::  :::      :::            :::    :::       :::    :::      :::          ", Yellow)
+    Write(31, 15+(ystep * 3), "  :::    :::       ::: ::: :::      ::::::::::     :::    :::       :::::::::       ::::::::      ", Yellow)
+    Write(31, 15+(ystep * 4), " :::    :::       :::  ::::::             :::     :::    :::       :::    :::      :::            ", Yellow)
+    Write(31, 15+(ystep * 5), ":::    :::       :::   :::::      :::    :::     :::    :::       :::    :::      :::             ", Yellow)
+    Write(31, 15+(ystep * 6), ";;;;;;;;;;       ;;;   ;;;;;      ;;;;;;;;;;     ;;;;;;;;;;       ;;;    ;;;      ;;;;;;;;;       ", Red)
     Spr(80-12, 89 + (8 * (menu.option_chosen - 1)), 181)
     Write(80, 90, "Start new game")
     Write(80, 98, "Play tutorial game")
@@ -253,7 +253,7 @@ function screen.draw_main_menu()
 end
 
 function screen.draw_game_over_screen()
-    local ystep = g.screen.gamepixel.h
+    local ystep = 5
     Write(56, 10,              "      ........           ...          ...   ...       .......... ", YellowBold)
     Write(56, 10+ystep,        "    :::    :::        ::: :::       ::::: :::::      :::         ", Yellow)
     Write(56, 10+(ystep * 2),  "   :::              :::   :::     ::: ::::: :::     :::          ", Yellow)
