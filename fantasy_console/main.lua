@@ -9,6 +9,7 @@ local mode = nil
 
 
 function love.load(args)
+    love.window.setTitle("Unsure v1.0 7DRL 2025")
     mode = args[1] or "playing"
     canvas.get_player_screen_dimension()
     canvas.set_global_screen_variables(canvas.default_scale)
