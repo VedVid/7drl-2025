@@ -26,6 +26,7 @@ function Init()
     Difficulty = 1
     Stole_already = false
     Game_over_anim_x = 2
+    Highscore = false
     F = 0
     map.generate_rooms()
     Current_event = event_start
@@ -360,7 +361,7 @@ function Draw()
     screen.draw_inventory()
     screen.draw_menu()
     if State == states.game_over_animation then
-        Rectfill(0, 0, Game_over_anim_x, 191, Black)
+        Rectfill(0, 0, Game_over_anim_x, 192, Black)
         return
     end
 end

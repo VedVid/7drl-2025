@@ -302,7 +302,6 @@ function screen.draw_game_over_screen()
         end
     end
     Write(60, 160, s)
-    local highscore = false
     local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold)
     if Action == actions.add_to_high_scores then
         Action = actions.waiting
@@ -312,23 +311,21 @@ function screen.draw_game_over_screen()
         f:close()
         local content_table_s = Split(content, "\n")
         local content_table = {}
-
         for _, value in ipairs(content_table_s) do
             table.insert(content_table, tonumber(value))
         end
         if #content_table < 10 then
-            highscore = true
+            Highscore = true
             table.insert(content_table, score)
             table.sort(content_table)
             content = Join(content_table, "\n")
-            -- write content line by line to the file TODO
             local f = io.open("fantasy_console/data/highscores.txt", "w")
             if not f then print("No fantasy_console/data/highscores.txt file!"); Write(60, 160 + ystep, "Your total score is: " .. score .. "."); return end
             f:write(content)
         else
             for _, line in ipairs(content_table) do
                 if score > tonumber(line) then
-                    highscore = true
+                    Highscore = true
                     table.insert(content_table, score)
                     table.sort(content_table)
                     table.remove(content_table, 1)
@@ -341,7 +338,8 @@ function screen.draw_game_over_screen()
             end
         end
     end
-    if highscore == false then
+    print(Highscore)
+    if Highscore == false then
         Write(60, 160 + ystep, "Your total score is: " .. score .. ".")
     else
         Write(60, 160 + ystep, "HIGHSCORE!", RedBold)
