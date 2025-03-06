@@ -348,4 +348,23 @@ function screen.draw_game_over_screen()
 end
 
 
+function screen.draw_high_scores_menu()
+    local ystep = 5
+    Write(43, 10,              "                   :::    :::       :::::::::::       ::::::::       :::    :::              ", YellowBold)
+    Write(43, 10+ystep,        "                  :+:    :+:           :+:          :+:    :+:      :+:    :+:               ", Yellow)
+    Write(43, 10+(ystep * 2),  "                 +:+    +:+           +:+          +:+             +:+    +:+                ", Yellow)
+    Write(43, 10+(ystep * 3),  "                +#++:++#++           +#+          :#:             +#++:++#++                 ", Yellow)
+    Write(43, 10+(ystep * 4),  "               +#+    +#+           +#+          +#+  ++#+#      +#+    +#+                  ", Yellow)
+    Write(43, 10+(ystep * 5),  "              #+#    #+#           #+#          #+#    #+#      #+#    #+#                   ", Yellow)
+    Write(43, 10+(ystep * 6),  "             ###    ###       ###########       ########       ###    ###                    ", Red)
+    Write(43, 12+(ystep * 7),  "      ::::::::       ::::::::       ::::::::       :::::::::       ::::::::::       :::::::: ", YellowBold)
+    Write(43, 12+(ystep * 8),  "    :+:    :+:     :+:    :+:     :+:    :+:      :+:    :+:      :+:             :+:    :+: ", Yellow)
+    Write(43, 12+(ystep * 9),  "   +:+            +:+            +:+    +:+      +:+    +:+      +:+             +:+         ", Yellow)
+    Write(43, 12+(ystep * 10), "  +#++:++#++     +#+            +#+    +:+      +#++:++#:       +#++:++#        +#++:++#++   ", Yellow)
+    Write(43, 12+(ystep * 11), "        +#+     +#+            +#+    +#+      +#+    +#+      +#+                    +#+    ", Yellow)
+    Write(43, 12+(ystep * 12), "#+#    #+#     #+#    #+#     #+#    #+#      #+#    #+#      #+#             #+#    #+#     ", Yellow)
+    Write(43, 12+(ystep * 13), "########       ########       ########       ###    ###      ##########       ########       ", Red)
+end
+
+
 return screen
