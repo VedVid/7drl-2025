@@ -25,6 +25,7 @@ function Init()
     Base_difficulty = 1
     Difficulty = 1
     Stole_already = false
+    Game_over_anim_x = 2
     F = 0
     map.generate_rooms()
     Current_event = event_start
@@ -136,6 +137,11 @@ function Update()
             menu.option_chosen = 1
             menu.current_menu = menu.new_menu(Current_event)
         end
+    elseif State == states.game_over_animation and F% 2 == 0 then
+        Game_over_anim_x = Game_over_anim_x + g.screen.gamepixel.w
+        if Game_over_anim_x > 256 - 1 then
+            State = states.game_over
+        end
     elseif State == states.menu then
         if Action == actions.fleeing then
             if dice.check_for_success(Difficulty) == true then
@@ -162,6 +168,12 @@ function Update()
                 Difficulty = Base_difficulty
             else
                 player.current_health = player.current_health - 1
+                if player.current_health <= 0 then
+                    menu.current_menu.options = {}
+                    menu.current_menu.header = "You have been hit one time too many."
+                    State = states.game_over_animation
+                    return
+                end
                 menu.current_menu.header = "You have been hit.\nWhat do you do?"
             end
             Action = actions.waiting
@@ -238,7 +250,12 @@ function Update()
                 end
             else
                 player.current_health = player.current_health - 2
-                -- TODO: show game over if you died there
+                if player.current_health <= 0 then
+                    menu.current_menu.options = {}
+                    menu.current_menu.header = "There were too many enemies and\nyou could not drive them away..."
+                    State = states.game_over_animation
+                    return
+                end
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(Current_event)
                 menu.current_menu.header = "There were too many enemies and\nyou could not drive them away...\nYou are all bruised up.\nWhere are you going to go now?"
@@ -262,7 +279,12 @@ function Update()
                 end
             else
                 player.current_health = player.current_health - 1
-                -- TODO: show game over if you died there
+                if player.current_health <= 0 then
+                    menu.current_menu.options = {}
+                    menu.current_menu.header = "The opponents fought very bravely\nand managed to drive you away."
+                    State = states.game_over_animation
+                    return
+                end
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(Current_event)
                 menu.current_menu.header = "The opponents fought very bravely\nand managed to drive you away.\nYou are slightly bruised.\nWhere are you going to go now?"
@@ -322,7 +344,10 @@ end
 function Draw()
     if State == states.main_menu then
         screen.draw_main_menu()
-        --screen.draw_game_over_screen()
+        return
+    end
+    if State == states.game_over then
+        screen.draw_game_over_screen()
         return
     end
     screen.draw_dividers()
@@ -331,4 +356,8 @@ function Draw()
     screen.draw_player_data()
     screen.draw_inventory()
     screen.draw_menu()
+    if State == states.game_over_animation then
+        Rectfill(0, 0, Game_over_anim_x, 191, Black)
+        return
+    end
 end
