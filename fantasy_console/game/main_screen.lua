@@ -268,6 +268,41 @@ function screen.draw_game_over_screen()
     Write(56, 12+(ystep * 11), " :::    :::    :::   :::        :::              :::    :::      ", Yellow)
     Write(56, 12+(ystep * 12), ":::    :::     :::::::         :::              :::    :::       ", Yellow)
     Write(56, 12+(ystep * 13), ";;;;;;;;;;     ;;;;;;;         ;;;;;;;;;;       ;;;    ;;;       ", Red)
+    Write(60, 94, "You died at " .. Room .. " room.")
+    Write(60, 106, "You character had the following skills:")
+    Write(64, 116, "Physique:")
+    Write(100, 116, tostring(player.skills[1][2]))
+    Write(64, 126, "Cunning:")
+    Write(100, 126, tostring(player.skills[2][2]))
+    Write(64, 136, "Empathy:")
+    Write(100, 136, tostring(player.skills[3][2]))
+    Write(60, 148, "You gathered " .. player.gold .. " gold pieces.")
+    local red_dice = 0
+    local gold_dice = 0
+    for _, v in ipairs(player.inventory) do
+        if v == dice.red then
+            red_dice = red_dice + 1
+        elseif v == dice.gold then
+            gold_dice = gold_dice + 1
+        end
+    end
+    local s = "You had"
+    ystep = 12
+    if red_dice <= 0 and gold_dice <= 0 then
+        s = s .. " no dice in the inventory in the moment you died."
+    else
+        ystep = ystep + ystep - 4
+        if red_dice >= 1 and gold_dice <= 0 then
+            s = s .. " " .. red_dice .. "x red die in the inventory\nin the moment you died."
+        elseif red_dice <= 0 and gold_dice >= 1 then
+            s = s .. " " .. gold_dice .. "x gold die in the inventory\nin the moment you died."
+        else
+            s = s .. " " .. red_dice .. "x red die and " .. gold_dice .. " x gold die\nin the inventory in the moment you died."
+        end
+    end
+    Write(60, 160, s)
+    local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold)
+    Write(60, 160 + ystep, "Your total score is: " .. score .. ".")
 end
 
 
