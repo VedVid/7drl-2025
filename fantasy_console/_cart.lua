@@ -89,6 +89,32 @@ function Input()
         elseif Btnp("return") then
             menu.choose_option()
         end
+    elseif State == states.main_menu then
+        if Btnp("up") then
+            menu.option_chosen = menu.option_chosen - 1
+            if menu.option_chosen < 1 then
+                menu.option_chosen = 4
+            end
+        elseif Btnp("down") then
+            menu.option_chosen = menu.option_chosen + 1
+            if menu.option_chosen > 4 then
+                menu.option_chosen = 1
+            end
+        elseif Btnp("return") then
+            if menu.option_chosen == 1 then
+                -- start new game
+                State = states.menu
+            elseif menu.option_chosen == 2 then
+                -- start tutorial game
+                do end
+            elseif menu.option_chosen == 3 then
+                -- show high scores list
+                do end
+            elseif menu.option_chosen == 4 then
+                -- quit game
+                love.event.quit(0)
+            end
+        end
     end
 end
 
