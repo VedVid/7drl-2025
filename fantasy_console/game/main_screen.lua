@@ -252,5 +252,23 @@ function screen.draw_main_menu()
     Write(80, 184, "7DRL 2025 entry by Tomasz \"VedVid\" Nowakowski", BlackBold)
 end
 
+function screen.draw_game_over_screen()
+    local ystep = g.screen.gamepixel.h
+    Write(56, 10,              "      ........           ...          ...   ...       .......... ", YellowBold)
+    Write(56, 10+ystep,        "    :::    :::        ::: :::       ::::: :::::      :::         ", Yellow)
+    Write(56, 10+(ystep * 2),  "   :::              :::   :::     ::: ::::: :::     :::          ", Yellow)
+    Write(56, 10+(ystep * 3),  "  :::             :::::::::::    :::  :::  :::     ::::::::      ", Yellow)
+    Write(56, 10+(ystep * 4),  " :::   ::::      :::     :::    :::       :::     :::            ", Yellow)
+    Write(56, 10+(ystep * 5),  ":::    :::      :::     :::    :::       :::     :::             ", Yellow)
+    Write(56, 10+(ystep * 6),  ";;;;;;;;;;      ;;;     ;;;    ;;;       ;;;     ;;;;;;;;;;      ", Red)
+    Write(56, 12+(ystep * 7),  "      ........    ...     ...       ..........       .........   ", YellowBold)
+    Write(56, 12+(ystep * 8),  "    :::    :::   :::     :::       :::              :::    :::   ", Yellow)
+    Write(56, 12+(ystep * 9),  "   :::    :::   :::     :::       :::              :::    :::    ", Yellow)
+    Write(56, 12+(ystep * 10), "  :::    :::   :::     :::       ::::::::         :::::::::      ", Yellow)
+    Write(56, 12+(ystep * 11), " :::    :::    :::   :::        :::              :::    :::      ", Yellow)
+    Write(56, 12+(ystep * 12), ":::    :::     :::::::         :::              :::    :::       ", Yellow)
+    Write(56, 12+(ystep * 13), ";;;;;;;;;;     ;;;;;;;         ;;;;;;;;;;       ;;;    ;;;       ", Red)
+end
+
 
 return screen
