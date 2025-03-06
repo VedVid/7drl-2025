@@ -22,7 +22,7 @@ function Init()
     State = states.main_menu
     Action = actions.waiting
     Room = 1
-    Base_difficulty = 1
+    Base_difficulty = 10
     Difficulty = 1
     Stole_already = false
     Game_over_anim_x = 2

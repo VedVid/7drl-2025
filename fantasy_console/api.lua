@@ -91,10 +91,6 @@ function Join(ss, delimiter)
 
     assert(ss ~= nil, "First argument (ss) to Join must not be nil. Got nil.")
     assert(type(ss) == "table", "First argument (ss) to Join must be a table. Got " .. tostring(ss) .. " (type " .. tostring(type(ss)) .. ").")
-    for _, element in ipairs(ss) do
-        assert(type(element) == "string", "Every element of table passed to Join must be a valid ASCII string. Got " .. tostring(element) .. " (type " .. tostring(type(element)) .. ").")
-        assert(utils.check_if_string_is_valid_ascii(element), "Every element of table passed to Join must be a valid ASCII string. Got " .. tostring(element) .. ".")
-    end
 
     if not delimiter then
         delimiter = ""
