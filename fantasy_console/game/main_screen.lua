@@ -301,8 +301,25 @@ function screen.draw_game_over_screen()
         end
     end
     Write(60, 160, s)
+    local highscore = false
     local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold)
     Write(60, 160 + ystep, "Your total score is: " .. score .. ".")
+    local f = io.open("data/highscores.txt", "r")
+    if not f then print("No data/highscores.txt file!"); return end
+    local content = f:read "*a"
+    f:close()
+    if #content < 10 then
+        highscore = true
+        do end  -- add score
+    else
+        for _, line in ipairs(content) do
+            if score > tonumber(line) then
+                highscore = true
+                do end -- add score
+                break
+            end
+        end
+    end
 end
 
 
