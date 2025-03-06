@@ -19,7 +19,7 @@ local states = require "game/states"
 function Init()
     Debug = true
     math.randomseed(os.time())
-    State = states.menu
+    State = states.main_menu
     Action = actions.waiting
     Room = 1
     Base_difficulty = 1
@@ -294,6 +294,10 @@ end
 
 
 function Draw()
+    if State == states.main_menu then
+        screen.draw_main_menu()
+        return
+    end
     screen.draw_dividers()
     screen.draw_map()
     screen.draw_last_roll(State)

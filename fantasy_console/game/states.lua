@@ -1,5 +1,7 @@
 local states = {}
 
+states.game_over = -3
+states.main_menu = -2
 states.blank = -1
 states.rolling = 1
 states.travel = 2

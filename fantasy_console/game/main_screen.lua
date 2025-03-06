@@ -1,5 +1,7 @@
 require "../api"
 
+local g = require "globals"
+
 local dice = require "game/dice"
 local event_merchant = require "game/event_merchant"
 local events_options = require "game/events_options"
@@ -230,6 +232,23 @@ function screen.draw_menu()
         end
         y = y + y_step
     end
+end
+
+function screen.draw_main_menu()
+    local ystep = g.screen.gamepixel.h
+    --Write(10, 10,             "     :::    :::       ::::    :::       ::::::::      :::    :::       :::::::::       :::::::::: ", YellowBold)
+    Write(31, 10,             "     ...    ...       ....    ...       ........      ...    ...       .........       .......... ", YellowBold)
+    Write(31, 10+ystep,       "    :::    :::       :::::   :::      :::    :::     :::    :::       :::    :::      :::         ", Yellow)
+    Write(31, 10+(ystep * 2), "   :::    :::       ::::::  :::      :::            :::    :::       :::    :::      :::          ", Yellow)
+    Write(31, 10+(ystep * 3), "  :::    :::       ::: ::: :::      ::::::::::     :::    :::       :::::::::       ::::::::      ", Yellow)
+    Write(31, 10+(ystep * 4), " :::    :::       :::  ::::::             :::     :::    :::       :::    :::      :::            ", Yellow)
+    Write(31, 10+(ystep * 5), ":::    :::       :::   :::::      :::    :::     :::    :::       :::    :::      :::             ", Yellow)
+    Write(31, 10+(ystep * 6), ";;;;;;;;;;       ;;;   ;;;;;      ;;;;;;;;;;     ;;;;;;;;;;       ;;;    ;;;      ;;;;;;;;;       ", Red)
+    Write(80, 90, "Start new game")
+    Write(80, 98, "Play tutorial game")
+    Write(80, 106, "Show high scores")
+    Write(80, 114, "Quit game")
+    Write(80, 184, "7DRL 2025 entry by Tomasz \"VedVid\" Nowakowski", BlackBold)
 end
 
 
