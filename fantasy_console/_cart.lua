@@ -78,6 +78,39 @@ function Input()
         else
             return
         end
+    elseif Tutorial == 13 then
+        if Btnp("return") then
+            player.handle_dice_marking()
+            Tutorial = 14
+            return
+        else
+            return
+        end
+    elseif Tutorial == 14 then
+        if Btnp("down") then
+            player.inventory_chosen = 2
+            Tutorial = 15
+            return
+        else
+            return
+        end
+    elseif Tutorial == 15 then
+        if Btnp("return") then
+            player.handle_dice_marking()
+            Tutorial = 16
+            return
+        else
+            return
+        end
+    elseif Tutorial == 16 then
+        if Btnp("left") then
+            player.inventory_chosen = 1
+            State = states.menu
+            Tutorial = 17
+            return
+        else
+            return
+        end
     end
     if State == states.inventory then
         if Btnp("up") then

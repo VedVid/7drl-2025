@@ -464,7 +464,7 @@ function screen.draw_tutorial()
         Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, YellowBold)
         Write((256/2) + 60, (192 / 2) - 15 + 30, "Dices above are\nin your inventory.\nTo pass the test,\nyou need at least", YellowBold)
         Write((256/2) + 7, (192 / 2) - 15 + 62, "as many successes (\"6\" at die) as\ncurrent danger level. To maximize\nchance of success, add dice to your\ndice pool. To do so, enter inventory\nby pressing right arrow.", YellowBold)
-    elseif Tutorial == 13 then
+    elseif Tutorial == 13 or Tutorial == 14 or Tutorial == 15 or Tutorial == 16 or Tutorial == 17 then
         Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
         Write(8, 10, "You are in the merchant's room.", Yellow)
         Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
