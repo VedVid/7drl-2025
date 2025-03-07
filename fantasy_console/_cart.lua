@@ -69,6 +69,7 @@ function Input()
         end
     elseif Tutorial == 11 then
         Tutorial = 12
+        return
     end
     if State == states.inventory then
         if Btnp("up") then
