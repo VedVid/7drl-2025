@@ -41,6 +41,10 @@ function Input()
     if Debug then
         debug.inputs()
     end
+    if Tutorial == 1 then
+        Tutorial = 2
+        return
+    end
     if State == states.inventory then
         if Btnp("up") then
             player.inventory_chosen = player.inventory_chosen - 1
@@ -72,6 +76,10 @@ function Input()
             end
             player.inventory_marked_for_use = {}
         elseif Btnp("return") then
+            if Tutorial == 3 then
+                Tutorial = 4
+                return
+            end
             menu.choose_option()
         elseif Btnp("right") then
             if events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]] then
@@ -168,6 +176,9 @@ function Update()
     elseif State == states.travel and F % 2 == 0 then
         Travel_anim_x = Travel_anim_x + g.screen.gamepixel.w
         if Travel_anim_x >= 256/2 then
+            if Tutorial == 2 then
+                Tutorial = 3
+            end
             map.travel()
             State = states.menu
             menu.option_chosen = 1
@@ -399,6 +410,9 @@ function Draw()
     screen.draw_player_data()
     screen.draw_inventory()
     screen.draw_menu()
+    if Tutorial > 0 then
+        screen.draw_tutorial()
+    end
     if State == states.game_over_animation then
         Rectfill(0, 0, Game_over_anim_x, 192, Black)
         return
