@@ -24,6 +24,17 @@ player.inventory_chosen = 1
 player.inventory_marked_for_use = {}
 
 function player.set_random_skills()
+    if Tutorial > 0 then
+        player.skills = {
+            {"physique", 5},
+            {"cunning", 5},
+            {"empathy", 5},
+            {"health", 5}
+        }
+        player.max_health = player.skills[4][2]
+        player.current_health = player.max_health
+        return
+     end
     local iterations = 4
     for i = 1, iterations do
         local skill_buff = math.random(4)

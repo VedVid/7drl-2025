@@ -193,6 +193,7 @@ function Input()
                 Tutorial = 1
                 State = states.menu
                 Action = actions.waiting
+                player.set_random_skills()
                 map.generate_rooms()
                 Current_event = event_start
                 Current_event.options = {}
