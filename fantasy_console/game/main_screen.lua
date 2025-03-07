@@ -264,7 +264,10 @@ function screen.draw_game_over_screen()
     Write(56, 12+(ystep * 11), " :::    :::    :::   :::        :::              :::    :::      ", Yellow)
     Write(56, 12+(ystep * 12), ":::    :::     :::::::         :::              :::    :::       ", Yellow)
     Write(56, 12+(ystep * 13), ";;;;;;;;;;     ;;;;;;;         ;;;;;;;;;;       ;;;    ;;;       ", Red)
-    Write(60, 94, "You died at " .. Room .. " room.")
+    if Tutorial == 0 then
+        Write(60, 94, "You died at " .. Room .. " room.")
+    else
+        Write(60, 94, "You died at " .. Room .. " room. This run started as tutorial.")
     Write(60, 106, "You character had the following skills:")
     Write(64, 116, "Physique:")
     Write(100, 116, tostring(player.skills[1][2]))
@@ -297,7 +300,7 @@ function screen.draw_game_over_screen()
         end
     end
     Write(60, 160, s)
-    local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold)
+    local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold + (Tutorial * 10))
     if Action == actions.add_to_high_scores then
         Action = actions.waiting
         local f = io.open("fantasy_console/data/highscores.txt", "r")

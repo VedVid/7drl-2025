@@ -151,7 +151,7 @@ function Input()
             player.inventory_marked_for_use = {}
         elseif Btnp("return") then
             if Tutorial == 18 then
-                Tutorial = 0
+                Tutorial = -1
             end
             menu.choose_option()
         elseif Btnp("right") then
@@ -199,7 +199,6 @@ function Input()
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(event_start)
                 menu.option_chosen = 1
-                player.gold = 200
             elseif menu.option_chosen == 3 then
                 -- show high scores list
                 State = states.high_scores
