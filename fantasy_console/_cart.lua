@@ -118,13 +118,6 @@ function Input()
         else
             return
         end
-    elseif Tutorial == 18 then
-        if Btnp("return") then
-            Tutorial = 0
-            return
-        else
-            return
-        end
     end
     if State == states.inventory then
         if Btnp("up") then
@@ -157,6 +150,9 @@ function Input()
             end
             player.inventory_marked_for_use = {}
         elseif Btnp("return") then
+            if Tutorial == 18 then
+                Tutorial = 0
+            end
             menu.choose_option()
         elseif Btnp("right") then
             if events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]] then

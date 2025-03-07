@@ -484,7 +484,7 @@ function screen.draw_tutorial()
         Write((256/2) + 60, (192 / 2) - 15 + 30, "Dices above are\nin your inventory.\nTo pass the test,\nyou need at least", Yellow)
         Write((256/2) + 7, (192 / 2) - 15 + 62, "as many successes (\"6\" at die) as\ncurrent danger level. To maximize\nchance of success, add dice to your\ndice pool. To do so, enter inventory\nby pressing right arrow.", Yellow)
         Write((256/2) + 2 + 6, 22, "Now, mark both dice by pressing\nEnter when cursor is on them, and\nexit from inventory by pressing\nleft arrow. Then confirm roll\nby pressing Enter.", Yellow)
-        Write(8, (192 / 2) - 15 + 23, "Now you should steal something\nbut it's time to finish the tutorial...", Yellow)
+        Write(8, (192 / 2) - 15 + 23, "Here, the tutorial ends,\nbut you can continue. Press ENTER.", Yellow)
     end
 end
 
