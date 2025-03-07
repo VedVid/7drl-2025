@@ -464,6 +464,16 @@ function screen.draw_tutorial()
         Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, YellowBold)
         Write((256/2) + 60, (192 / 2) - 15 + 30, "Dices above are\nin your inventory.\nTo pass the test,\nyou need at least", YellowBold)
         Write((256/2) + 7, (192 / 2) - 15 + 62, "as many successes (\"6\" at die) as\ncurrent danger level. To maximize\nchance of success, add dice to your\ndice pool. To do so, enter inventory\nby pressing right arrow.", YellowBold)
+    elseif Tutorial == 13 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
+        Write(8, 10, "You are in the merchant's room.", Yellow)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Let's try stealing. Navigate to\n\"Steal\" option. If you fail test,\nmerchant won't interact with you\nanymore. Also the guild will raise\ntheir prices.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, YellowBold)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Dices above are\nin your inventory.\nTo pass the test,\nyou need at least", Yellow)
+        Write((256/2) + 7, (192 / 2) - 15 + 62, "as many successes (\"6\" at die) as\ncurrent danger level. To maximize\nchance of success, add dice to your\ndice pool. To do so, enter inventory\nby pressing right arrow.", Yellow)
+        Write((256/2) + 2 + 6, 22, "Now, mark both dice by pressing\nEnter when cursor is on them, and\nexit from inventory by pressing\nleft arrow. Then confirm roll\nby pressing Enter.", YellowBold)
     end
 end
 
