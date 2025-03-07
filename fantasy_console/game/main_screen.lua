@@ -268,6 +268,7 @@ function screen.draw_game_over_screen()
         Write(60, 94, "You died at " .. Room .. " room.")
     else
         Write(60, 94, "You died at " .. Room .. " room. This run started as tutorial.")
+    end
     Write(60, 106, "You character had the following skills:")
     Write(64, 116, "Physique:")
     Write(100, 116, tostring(player.skills[1][2]))
