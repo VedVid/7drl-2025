@@ -20,11 +20,6 @@ screen.dice_slots = {
     {131, 38}, {149, 38}, {167, 38}, {185, 38}, {203, 38}, {221, 38}, {239, 38}
 }
 
-function screen.draw_dividers()
-    Line(256/2, 0, 256/2, 192, BlackBold)
-    Line(0, (192/2)-15, 256, (192/2)-15, BlackBold)
-end
-
 function screen.draw_last_roll(state)
     for i, roll in ipairs(dice.last_results) do
         local side_to_show = dice.last_results[i][2]
@@ -269,7 +264,11 @@ function screen.draw_game_over_screen()
     Write(56, 12+(ystep * 11), " :::    :::    :::   :::        :::              :::    :::      ", Yellow)
     Write(56, 12+(ystep * 12), ":::    :::     :::::::         :::              :::    :::       ", Yellow)
     Write(56, 12+(ystep * 13), ";;;;;;;;;;     ;;;;;;;         ;;;;;;;;;;       ;;;    ;;;       ", Red)
-    Write(60, 94, "You died at " .. Room .. " room.")
+    if Tutorial == 0 then
+        Write(60, 94, "You died at " .. Room .. " room.")
+    else
+        Write(60, 94, "You died at " .. Room .. " room. This run started as tutorial.")
+    end
     Write(60, 106, "You character had the following skills:")
     Write(64, 116, "Physique:")
     Write(100, 116, tostring(player.skills[1][2]))
@@ -302,7 +301,7 @@ function screen.draw_game_over_screen()
         end
     end
     Write(60, 160, s)
-    local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold)
+    local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold + (Tutorial * 30))
     if Action == actions.add_to_high_scores then
         Action = actions.waiting
         local f = io.open("fantasy_console/data/highscores.txt", "r")
@@ -384,6 +383,119 @@ function screen.draw_high_scores_menu()
         i = i - 1
     end
     Write(192, 184, "ENTER to continue.", BlackBold)
+end
+
+
+function screen.draw_tutorial()
+    if Tutorial == 1 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, YellowBold)
+        Write(8, 10, "This is the map. The highlighted\nroom is where you are.", YellowBold)
+        Write(8, 52, "On the right side, there are rooms\nyou can reach from current room.\nPress ENTER to continue.", YellowBold)
+    elseif Tutorial == 2 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
+        Write(8, 10, "This is the map. The highlighted\nroom is where you are.", Yellow)
+        Write(8, 52, "On the right side, there are rooms\nyou can reach from current room.", Yellow)
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, YellowBold)
+        Write(8, (192 / 2) - 15 + 60, "This is the main menu that you\nuse for interaction with\nthe game world.\nPress ENTER to select currently\nhighlighted option.", YellowBold)
+    elseif Tutorial == 3 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, YellowBold)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level. Press ENTER.", YellowBold)
+    elseif Tutorial == 4 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, YellowBold)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\nPress ENTER.", YellowBold)
+    elseif Tutorial == 5 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, YellowBold)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\n", Yellow)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Please note that\nthe relevant skill\nis always\nhighlighted.\nPress ENTER.", YellowBold)
+    elseif Tutorial == 6 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, Yellow)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\n", Yellow)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Please note that\nthe relevant skill\nis always\nhighlighted.", Yellow)
+        Rect((256/2) + 2, 1, (256/2) - 4, (192/2) - 15 - 2, YellowBold)
+        Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.\nPress ENTER.", YellowBold)
+    elseif Tutorial == 7 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, Yellow)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\n", Yellow)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Please note that\nthe relevant skill\nis always\nhighlighted.", Yellow)
+        Rect((256/2) + 2, 1, (256/2) - 4, (192/2) - 15 - 2, YellowBold)
+        Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.", Yellow)
+        if menu.option_chosen == 1 then
+            Write((256/2) + 2 + 6, 56, "Fight: you need to win.\nIf you win, you get rewards.", YellowBold)
+        elseif menu.option_chosen == 2 then
+            Write((256/2) + 2 + 6, 56, "Flee: always successful,\nbut you might get hit.", YellowBold)
+        elseif menu.option_chosen == 3 then
+            Write((256/2) + 2 + 6, 56, "Diplomacy: one-time chance\nto resolve the conflict peacefully.\nFail makes the other tests harder.", YellowBold)
+        end
+    elseif Tutorial == 8 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, Yellow)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\n", Yellow)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Please note that\nthe relevant skill\nis always\nhighlighted.", Yellow)
+        Rect((256/2) + 2, 1, (256/2) - 4, (192/2) - 15 - 2, YellowBold)
+        Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.", Yellow)
+        Write((256/2) + 2 + 6, 56, "Now, proceed further.\nPress ENTER.", YellowBold)
+    elseif Tutorial == 9 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, YellowBold)
+        Write(8, 10, "You are in the merchant's room.", YellowBold)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.\nPress ENTER.", YellowBold)
+    elseif Tutorial == 10 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
+        Write(8, 10, "You are in the merchant's room.", Yellow)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 6, YellowBold)
+        Write(8, (192 / 2) - 15 + 70, "Let's try stealing. Navigate to\n\"Steal\" option.", YellowBold)
+    elseif Tutorial == 11 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
+        Write(8, 10, "You are in the merchant's room.", Yellow)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, YellowBold)
+        Write(8, (192 / 2) - 15 + 70, "Let's try stealing. Navigate to\n\"Steal\" option. If you fail test,\nmerchant won't interact with you\nanymore. Also the guild will raise\ntheir prices. Press ENTER.", YellowBold)
+    elseif Tutorial == 12 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
+        Write(8, 10, "You are in the merchant's room.", Yellow)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Let's try stealing. Navigate to\n\"Steal\" option. If you fail test,\nmerchant won't interact with you\nanymore. Also the guild will raise\ntheir prices.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, YellowBold)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Dices above are\nin your inventory.\nTo pass the test,\nyou need at least", YellowBold)
+        Write((256/2) + 7, (192 / 2) - 15 + 62, "as many successes (\"6\" at die) as\ncurrent danger level. To maximize\nchance of success, add dice to your\ndice pool. To do so, enter inventory\nby pressing right arrow.", YellowBold)
+    elseif Tutorial == 13 or Tutorial == 14 or Tutorial == 15 or Tutorial == 16 or Tutorial == 17 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
+        Write(8, 10, "You are in the merchant's room.", Yellow)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Let's try stealing. Navigate to\n\"Steal\" option. If you fail test,\nmerchant won't interact with you\nanymore. Also the guild will raise\ntheir prices.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, YellowBold)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Dices above are\nin your inventory.\nTo pass the test,\nyou need at least", Yellow)
+        Write((256/2) + 7, (192 / 2) - 15 + 62, "as many successes (\"6\" at die) as\ncurrent danger level. To maximize\nchance of success, add dice to your\ndice pool. To do so, enter inventory\nby pressing right arrow.", Yellow)
+        Write((256/2) + 2 + 6, 22, "Now, mark both dice by pressing\nEnter when cursor is on them, and\nexit from inventory by pressing\nleft arrow. Then confirm roll\nby pressing Enter.", YellowBold)
+    elseif Tutorial == 18 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
+        Write(8, 10, "You are in the merchant's room.", Yellow)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 12, YellowBold)
+        Write(8, (192 / 2) - 15 + 70, "Let's try stealing. Navigate to\n\"Steal\" option. If you fail test,\nmerchant won't interact with you\nanymore. Also the guild will raise\ntheir prices.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 12, Yellow)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Dices above are\nin your inventory.\nTo pass the test,\nyou need at least", Yellow)
+        Write((256/2) + 7, (192 / 2) - 15 + 62, "as many successes (\"6\" at die) as\ncurrent danger level. To maximize\nchance of success, add dice to your\ndice pool. To do so, enter inventory\nby pressing right arrow.", Yellow)
+        Write((256/2) + 2 + 6, 22, "Now, mark both dice by pressing\nEnter when cursor is on them, and\nexit from inventory by pressing\nleft arrow. Then confirm roll\nby pressing Enter.", Yellow)
+        Write(8, (192 / 2) - 15 + 23, "Here, the tutorial ends,\nbut you can continue. Press ENTER.", Yellow)
+    end
+end
+
+
+function screen.draw_dividers()
+    Line(256/2, 0, 256/2, 192, BlackBold)
+    Line(0, (192/2)-15, 256, (192/2)-15, BlackBold)
 end
 
 

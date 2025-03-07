@@ -19,6 +19,7 @@ local states = require "game/states"
 function Init()
     Debug = false
     math.randomseed(os.time())
+    Tutorial = 0
     State = states.main_menu
     Action = actions.waiting
     Room = 1
@@ -39,6 +40,84 @@ end
 function Input()
     if Debug then
         debug.inputs()
+    end
+    if Tutorial == 1 then
+        Tutorial = 2
+        return
+    elseif Tutorial == 3 then
+        Tutorial = 4
+        return
+    elseif Tutorial == 4 then
+        Tutorial = 5
+        return
+    elseif Tutorial == 5 then
+        Tutorial = 6
+        return
+    elseif Tutorial == 6 then
+        Tutorial = 7
+        return
+    elseif Tutorial == 9 then
+        Tutorial = 10
+        return
+    elseif Tutorial == 10 then
+        if Btnp("down") then
+            menu.option_chosen = 2
+            Tutorial = 11
+            return
+        else
+            return
+        end
+    elseif Tutorial == 11 then
+        Tutorial = 12
+        return
+    elseif Tutorial == 12 then
+        if Btnp("right") then
+            State = states.inventory
+            Tutorial = 13
+            return
+        else
+            return
+        end
+    elseif Tutorial == 13 then
+        if Btnp("return") then
+            player.handle_dice_marking()
+            Tutorial = 14
+            return
+        else
+            return
+        end
+    elseif Tutorial == 14 then
+        if Btnp("down") then
+            player.inventory_chosen = 2
+            Tutorial = 15
+            return
+        else
+            return
+        end
+    elseif Tutorial == 15 then
+        if Btnp("return") then
+            player.handle_dice_marking()
+            Tutorial = 16
+            return
+        else
+            return
+        end
+    elseif Tutorial == 16 then
+        if Btnp("left") then
+            player.inventory_chosen = 1
+            State = states.menu
+            Tutorial = 17
+            return
+        else
+            return
+        end
+    elseif Tutorial == 17 then
+        if Btnp("return") then
+            Tutorial = 18
+            return
+        else
+            return
+        end
     end
     if State == states.inventory then
         if Btnp("up") then
@@ -71,6 +150,9 @@ function Input()
             end
             player.inventory_marked_for_use = {}
         elseif Btnp("return") then
+            if Tutorial == 18 then
+                Tutorial = -1
+            end
             menu.choose_option()
         elseif Btnp("right") then
             if events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]] then
@@ -108,7 +190,16 @@ function Input()
                 State = states.menu
             elseif menu.option_chosen == 2 then
                 -- start tutorial game
-                do end
+                Tutorial = 1
+                State = states.menu
+                Action = actions.waiting
+                player.set_random_skills()
+                map.generate_rooms()
+                Current_event = event_start
+                Current_event.options = {}
+                Current_event.generate_travel_options()
+                menu.current_menu = menu.new_menu(event_start)
+                menu.option_chosen = 1
             elseif menu.option_chosen == 3 then
                 -- show high scores list
                 State = states.high_scores
@@ -121,6 +212,7 @@ function Input()
         if Btnp("return") then
             Debug = false
             math.randomseed(os.time())
+            Tutorial = 0
             State = states.main_menu
             Action = actions.waiting
             Room = 1
@@ -159,6 +251,11 @@ function Update()
     elseif State == states.travel and F % 2 == 0 then
         Travel_anim_x = Travel_anim_x + g.screen.gamepixel.w
         if Travel_anim_x >= 256/2 then
+            if Tutorial == 2 then
+                Tutorial = 3
+            elseif Tutorial == 8 then
+                Tutorial = 9
+            end
             map.travel()
             State = states.menu
             menu.option_chosen = 1
@@ -183,6 +280,9 @@ function Update()
                 menu.current_menu.header = "You managed to escape,\nbut not unscathed.\nWhere are you going to go now?"
                 menu.option_chosen = 1
             end
+            if Tutorial == 7 then
+                Tutorial = 8
+            end
             Difficulty = Base_difficulty
             Action = actions.waiting
         elseif Action == actions.fighting then
@@ -193,6 +293,9 @@ function Update()
                 menu.current_menu.header = "You defeated the opponents.\n" .. loot_string .. "\nWhere are you going to go now?"
                 menu.option_chosen = 1
                 Difficulty = Base_difficulty
+                if Tutorial == 7 then
+                    Tutorial = 8
+                end
             else
                 player.current_health = player.current_health - 1
                 if player.current_health <= 0 then
@@ -212,6 +315,9 @@ function Update()
                 menu.current_menu.header = "You talked your way out of it.\nWhere are you going to go now?"
                 menu.option_chosen = 1
                 Difficulty = Base_difficulty
+                if Tutorial == 7 then
+                    Tutorial = 8
+                end
             else
                 Current_event.options = {"Fight", "Try to flee"}
                 menu.current_menu = menu.new_menu(Current_event)
@@ -390,6 +496,9 @@ function Draw()
     screen.draw_player_data()
     screen.draw_inventory()
     screen.draw_menu()
+    if Tutorial > 0 then
+        screen.draw_tutorial()
+    end
     if State == states.game_over_animation then
         Rectfill(0, 0, Game_over_anim_x, 192, Black)
         return
