@@ -301,7 +301,7 @@ function screen.draw_game_over_screen()
         end
     end
     Write(60, 160, s)
-    local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold + (Tutorial * 10))
+    local score = math.ceil(Room + Base_difficulty + ((player.max_health + player.current_health) / 2) + player.skills[1][2] + player.skills[2][2] + player.skills[3][2] + player.gold + (Tutorial * 30))
     if Action == actions.add_to_high_scores then
         Action = actions.waiting
         local f = io.open("fantasy_console/data/highscores.txt", "r")
