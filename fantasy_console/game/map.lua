@@ -18,10 +18,8 @@ function map.generate_rooms()
     map.doors_to = {}
     if Tutorial == 1 then
         table.insert(map.doors_to, map.door_names.combat)
-    elseif Tutorial == 2 then
-        table.insert(map.doors_to, map.door_names.merchant)
     elseif Tutorial == 3 then
-        table.insert(map.doors_to, map.door_names.event)
+        table.insert(map.doors_to, map.door_names.merchant)
     else
         local amount_of_rooms = math.random(3)
         if amount_of_rooms == 1 then

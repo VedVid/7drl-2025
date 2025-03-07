@@ -17,9 +17,9 @@ local states = require "game/states"
 
 
 function Init()
-    Tutorial = 0
     Debug = false
     math.randomseed(os.time())
+    Tutorial = 0
     State = states.main_menu
     Action = actions.waiting
     Room = 1
@@ -147,6 +147,7 @@ function Input()
         if Btnp("return") then
             Debug = false
             math.randomseed(os.time())
+            Tutorial = 0
             State = states.main_menu
             Action = actions.waiting
             Room = 1
@@ -214,6 +215,9 @@ function Update()
             end
             Difficulty = Base_difficulty
             Action = actions.waiting
+            if Tutorial == 7 then
+                Tutorial = 8
+            end
         elseif Action == actions.fighting then
             if dice.check_for_success(Difficulty) == true then
                 local loot_string = event_combat.grant_rewards()
@@ -222,6 +226,9 @@ function Update()
                 menu.current_menu.header = "You defeated the opponents.\n" .. loot_string .. "\nWhere are you going to go now?"
                 menu.option_chosen = 1
                 Difficulty = Base_difficulty
+                if Tutorial == 7 then
+                    Tutorial = 8
+                end
             else
                 player.current_health = player.current_health - 1
                 if player.current_health <= 0 then
@@ -241,6 +248,9 @@ function Update()
                 menu.current_menu.header = "You talked your way out of it.\nWhere are you going to go now?"
                 menu.option_chosen = 1
                 Difficulty = Base_difficulty
+                if Tutorial == 7 then
+                    Tutorial = 8
+                end
             else
                 Current_event.options = {"Fight", "Try to flee"}
                 menu.current_menu = menu.new_menu(Current_event)
