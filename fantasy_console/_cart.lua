@@ -56,6 +56,8 @@ function Input()
     elseif Tutorial == 6 then
         Tutorial = 7
         return
+    elseif Tutorial == 8 and Btnp("down") then
+        Tutorial = 9
     end
     if State == states.inventory then
         if Btnp("up") then
@@ -188,6 +190,8 @@ function Update()
         if Travel_anim_x >= 256/2 then
             if Tutorial == 2 then
                 Tutorial = 3
+            elseif Tutorial == 8 then
+                Tutorial = 9
             end
             map.travel()
             State = states.menu
@@ -213,11 +217,11 @@ function Update()
                 menu.current_menu.header = "You managed to escape,\nbut not unscathed.\nWhere are you going to go now?"
                 menu.option_chosen = 1
             end
-            Difficulty = Base_difficulty
-            Action = actions.waiting
             if Tutorial == 7 then
                 Tutorial = 8
             end
+            Difficulty = Base_difficulty
+            Action = actions.waiting
         elseif Action == actions.fighting then
             if dice.check_for_success(Difficulty) == true then
                 local loot_string = event_combat.grant_rewards()

@@ -430,6 +430,19 @@ function screen.draw_tutorial()
         elseif menu.option_chosen == 3 then
             Write((256/2) + 2 + 6, 56, "Diplomacy: one-time chance\nto resolve the conflict peacefully.\nFail makes the other tests harder.", YellowBold)
         end
+    elseif Tutorial == 8 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 6, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 6, Yellow)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\n", Yellow)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Please note that\nthe relevant skill\nis always\nhighlighted.", Yellow)
+        Rect((256/2) + 2, 1, (256/2) - 4, (192/2) - 15 - 2, YellowBold)
+        Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.", Yellow)
+        Write((256/2) + 2 + 6, 56, "Now, proceed further.\nPress ENTER.", YellowBold)
+    elseif Tutorial == 9 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, YellowBold)
+        Write(8, 10, "You are in the merchant's room.", YellowBold)
+        Write(8, 52, "You can either skip interaction\npurchase something, or try to\nsteal something from him.", YellowBold)
     end
 end
 
