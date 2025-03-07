@@ -17,6 +17,7 @@ local states = require "game/states"
 
 
 function Init()
+    Tutorial = 0
     Debug = false
     math.randomseed(os.time())
     State = states.main_menu
@@ -108,7 +109,15 @@ function Input()
                 State = states.menu
             elseif menu.option_chosen == 2 then
                 -- start tutorial game
-                do end
+                Tutorial = 1
+                State = states.menu
+                Action = actions.waiting
+                map.generate_rooms()
+                Current_event = event_start
+                Current_event.options = {}
+                Current_event.generate_travel_options()
+                menu.current_menu = menu.new_menu(event_start)
+                menu.option_chosen = 1
             elseif menu.option_chosen == 3 then
                 -- show high scores list
                 State = states.high_scores
