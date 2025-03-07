@@ -19,6 +19,17 @@ function menu.new_menu(event)
     local new_menu = {}
     new_menu.event = event
     new_menu.header = event.header
+    if event == event_combat then
+        local chances = math.random(90)
+        if chances <= 30 then
+            new_menu.header = "You have been ambushed!\nWhat do you do?"
+        elseif chances <= 30 then
+            new_menu.header = "You see a band of raubritters\nrunning towards you, with\nweapons in hands.\nWhat do you do?"
+        end
+        if Tutorial > 0 then
+            new_menu.header = "You have been ambushed!\nWhat do you do?"
+        end
+    end
     new_menu.options = event.options
     return new_menu
 end

@@ -29,12 +29,6 @@ function Init()
     Game_over_anim_x = 2
     Highscore = false
     F = 0
-    map.generate_rooms()
-    Current_event = event_start
-    Current_event.generate_travel_options()
-    menu.current_menu = menu.new_menu(event_start)
-    player.set_random_skills()
-    player.inventory = {dice.red, dice.gold}
 end
 
 function Input()
@@ -187,19 +181,27 @@ function Input()
         elseif Btnp("return") then
             if menu.option_chosen == 1 then
                 -- start new game
-                State = states.menu
-            elseif menu.option_chosen == 2 then
-                -- start tutorial game
-                Tutorial = 1
-                State = states.menu
-                Action = actions.waiting
                 player.set_random_skills()
+                player.inventory = {dice.red, dice.gold}
                 map.generate_rooms()
                 Current_event = event_start
-                Current_event.options = {}
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(event_start)
                 menu.option_chosen = 1
+                State = states.menu
+                Action = actions.waiting
+            elseif menu.option_chosen == 2 then
+                -- start tutorial game
+                Tutorial = 1
+                player.set_random_skills()
+                player.inventory = {dice.red, dice.gold}
+                map.generate_rooms()
+                Current_event = event_start
+                Current_event.generate_travel_options()
+                menu.current_menu = menu.new_menu(event_start)
+                menu.option_chosen = 1
+                State = states.menu
+                Action = actions.waiting
             elseif menu.option_chosen == 3 then
                 -- show high scores list
                 State = states.high_scores
