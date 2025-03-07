@@ -31,6 +31,10 @@ function event.generate_travel_options()
 end
 
 function event.grant_rewards()
+    if Tutorial > 0 then
+        player.gold = player.gold + 50
+        return "Looted 50 GP."
+    end
     local gold = math.random(5, 20) * Base_difficulty
     local chance = math.random(101)
     local amount = 0

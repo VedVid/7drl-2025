@@ -422,12 +422,13 @@ function screen.draw_tutorial()
         Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\n", Yellow)
         Write((256/2) + 60, (192 / 2) - 15 + 30, "Please note that\nthe relevant skill\nis always\nhighlighted.", Yellow)
         Rect((256/2) + 2, 1, (256/2) - 4, (192/2) - 15 - 2, YellowBold)
+        Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.", Yellow)
         if menu.option_chosen == 1 then
-            Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.\nFight: you need to win.\nIf you win, you get rewards.", YellowBold)
+            Write((256/2) + 2 + 6, 56, "Fight: you need to win.\nIf you win, you get rewards.", YellowBold)
         elseif menu.option_chosen == 2 then
-            Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.\nFlee: always successful,\nbut you might get hit.", YellowBold)
+            Write((256/2) + 2 + 6, 56, "Flee: always successful,\nbut you might get hit.", YellowBold)
         elseif menu.option_chosen == 3 then
-            Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.\nDiplomacy: one-time chance\nto resolve the conflict peacefully.\nFail makes the other tests harder.", YellowBold)
+            Write((256/2) + 2 + 6, 56, "Diplomacy: one-time chance\nto resolve the conflict peacefully.\nFail makes the other tests harder.", YellowBold)
         end
     end
 end
