@@ -56,6 +56,19 @@ function Input()
     elseif Tutorial == 6 then
         Tutorial = 7
         return
+    elseif Tutorial == 9 then
+        Tutorial = 10
+        return
+    elseif Tutorial == 10 then
+        if Btnp("down") then
+            menu.option_chosen = 2
+            Tutorial = 11
+            return
+        else
+            return
+        end
+    elseif Tutorial == 11 then
+        Tutorial = 12
     end
     if State == states.inventory then
         if Btnp("up") then

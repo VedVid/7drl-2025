@@ -446,9 +446,24 @@ function screen.draw_tutorial()
     elseif Tutorial == 10 then
         Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
         Write(8, 10, "You are in the merchant's room.", Yellow)
-        Write(8, 52, "You can either skip interaction\npurchase something, or try to\nsteal something from him.", Yellow)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
         Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 6, YellowBold)
-        Write(8, (192 / 2) - 15 + 70, "Let's try stealing.\nNavigate to \"Steal from\" option.", Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Let's try stealing.\nNavigate to \"Steal from\" option.", YellowBold)
+    elseif Tutorial == 11 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
+        Write(8, 10, "You are in the merchant's room.", Yellow)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 6, YellowBold)
+        Write(8, (192 / 2) - 15 + 70, "Let's try stealing.\nNavigate to \"Steal from\" option.\nIf you fail this test, merchant\nwon't interact with you anymore.", YellowBold)
+    elseif Tutorial == 12 then
+        Rect(1, 1, (256/2) - 2, (192/2) - 15 - 2, Yellow)
+        Write(8, 10, "You are in the merchant's room.", Yellow)
+        Write(8, 52, "You can either skip interaction,\npurchase or steal something.", Yellow)
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 6, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Let's try stealing.\nNavigate to \"Steal from\" option.\nIf you fail this test, merchant\nwon't interact with you anymore.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 6, YellowBold)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Dices above are\nin your inventory.\nTo pass the test,\nyou need at least", YellowBold)
+        
     end
 end
 
