@@ -400,7 +400,35 @@ function screen.draw_tutorial()
         Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 6, Yellow)
         Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
         Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 6, YellowBold)
-        Write((256/2) + 4, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.", YellowBold)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\nPress ENTER.", YellowBold)
+    elseif Tutorial == 5 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 6, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 6, YellowBold)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\n", Yellow)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Please note that\nthe relevant skill\nis always\nhighlighted.\nPress ENTER.", YellowBold)
+    elseif Tutorial == 6 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 6, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 6, Yellow)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\n", Yellow)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Please note that\nthe relevant skill\nis always\nhighlighted.", Yellow)
+        Rect((256/2) + 2, 1, (256/2) - 4, (192/2) - 15 - 2, YellowBold)
+        Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.\nPress ENTER.", YellowBold)
+    elseif Tutorial == 7 then
+        Rect(1, (192 / 2) - 15 + 2, (256/2) - 2, (192/2) + 6, Yellow)
+        Write(8, (192 / 2) - 15 + 70, "Pay attention to the # marks\ninside the square brackets.\nThey indicate the current\ndanger level.", Yellow)
+        Rect((256/2) + 2, (192 / 2) - 15 + 2, (256/2) - 4, (192/2) + 6, Yellow)
+        Write((256/2) + 8, (192 / 2) - 15 + 70, "Fighting uses Physique,\nfleeing uses Cunning,\ndiplomacy uses Empathy.\n", Yellow)
+        Write((256/2) + 60, (192 / 2) - 15 + 30, "Please note that\nthe relevant skill\nis always\nhighlighted.", Yellow)
+        Rect((256/2) + 2, 1, (256/2) - 4, (192/2) - 15 - 2, YellowBold)
+        if menu.option_chosen == 1 then
+            Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.\nFight: you need to win.\nIf you win, you get rewards.", YellowBold)
+        elseif menu.option_chosen == 2 then
+            Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.\nFlee: always successful,\nbut you might get hit.", YellowBold)
+        elseif menu.option_chosen == 3 then
+            Write((256/2) + 2 + 6, 22, "This is where dice roll.\nAmount of dice rolled is equal\nto the relevant skill level.\nNow, resolve the conflict.\nDiplomacy: one-time chance\nto resolve the conflict peacefully.\nFail makes the other tests harder.", YellowBold)
+        end
     end
 end
 

@@ -44,6 +44,18 @@ function Input()
     if Tutorial == 1 then
         Tutorial = 2
         return
+    elseif Tutorial == 3 then
+        Tutorial = 4
+        return
+    elseif Tutorial == 4 then
+        Tutorial = 5
+        return
+    elseif Tutorial == 5 then
+        Tutorial = 6
+        return
+    elseif Tutorial == 6 then
+        Tutorial = 7
+        return
     end
     if State == states.inventory then
         if Btnp("up") then
@@ -76,10 +88,6 @@ function Input()
             end
             player.inventory_marked_for_use = {}
         elseif Btnp("return") then
-            if Tutorial == 3 then
-                Tutorial = 4
-                return
-            end
             menu.choose_option()
         elseif Btnp("right") then
             if events_options.lookup_with_dice[menu.current_menu.options[menu.option_chosen]] then
@@ -126,6 +134,7 @@ function Input()
                 Current_event.generate_travel_options()
                 menu.current_menu = menu.new_menu(event_start)
                 menu.option_chosen = 1
+                player.gold = 200
             elseif menu.option_chosen == 3 then
                 -- show high scores list
                 State = states.high_scores
